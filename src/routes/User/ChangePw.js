@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
 import Container from '@mui/material/Container';
-import MyTextFieldPW from '../../components/User/MUI/MyTextFieldPW';
-import MyTextFieldPW2 from '../../components/User/MUI/MyTextFieldPW2';
-import MyButton from "../../components/User/MUI/MyButton";
-import MyTypography from '../../components/User/MUI/MyTypography';
-import MyBox from '../../components/User/MUI/MyBox';
-import MyAvatar from '../../components/User/MUI/MyAvatar'; 
+import TextField from '@mui/material/TextField';
 import styled from 'styled-components'
 import Header from'../../components/Header';
-
-
-// 비밀번호 양식 표시 TEXT스타일
-const StyledText = styled.div`
-color:red;
-font-size:0.8rem;
-`;
 
 const ChangePw = () => {
     const navigate = useNavigate(); 
@@ -61,8 +52,8 @@ const ChangePw = () => {
     }
 
     //Enter가 버튼 클릭 기능으로 구현되도록 설정
-    const onCheckEnter = (e) => {
-      if(e.key === 'Enter' && notAllow===false ) {
+    const handleKeyDown = (e) => {
+      if(e.code === 'Enter' && notAllow===false ) {
         onClickConfirmButton()
       }
     }
@@ -78,42 +69,72 @@ const ChangePw = () => {
     
     //페이지 UI 설정
     return (
-      <><Header/>
-      <Container component="main" maxWidth="xs">
-      <MyBox>
-        <MyAvatar/>
-        <MyTypography>CSWS</MyTypography>
-        <MyTextFieldPW
-          value={pw}
-          onChange={handlePw}
-          onKeyPress={onCheckEnter}
-        />
-        <div>
+      <>
+        <Header/>
+        <Container component="main" maxWidth="xs">
+        <Box 
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+          <div>CSWS</div>
+          <TextField
+            value={pw}
+            onChange={handlePw}
+            onKeyDown={handleKeyDown}
+            margin="normal"
+            label="비밀번호"
+            type="password"
+            name="password"
+            placeholder="특수문자 제외, 영문, 숫자 포함 8자 이상"
+            required
+            fullWidth
+            autoComplete="current-password"
+          />
           {
             !pwValid && pw.length > 0 && (
               <StyledText>특문자 제외 영문자 숫자로 8자 이상 20자 미만으로 입력해주세요</StyledText>
-            )}
-        </div>
-        <MyTextFieldPW2
-          value={pw2}
-          onChange={handlePw2}
-          onKeyPress={onCheckEnter}
-        />
-        <div>
+            )
+          }
+          <TextField
+            value={pw2}
+            onChange={handlePw2}
+            onKeyDown={handleKeyDown}
+            margin="normal"
+            label="비밀번호 확인"
+            type="password"
+            name="passwordConfirm"
+            required
+            fullWidth
+            autoComplete="current-password"
+          />
           {
             !pw2Valid && pw2.length > 0 && (
               <StyledText>비밀번호가 일치하지 않습니다</StyledText>
-            )}
-        </div>        
-        <MyButton
-          disabled={notAllow}
-          onClick={onClickConfirmButton}>
-          비밀번호 변경
-        </MyButton>
-      </MyBox>
-    </Container></>
-    );
-    
+            )
+          }
+          <Button
+            disabled={notAllow}
+            onClick={onClickConfirmButton}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}>
+            비밀번호 변경
+          </Button>
+        </Box>
+      </Container>
+    </>
+  ); 
 };
 
 export default ChangePw;
+
+const StyledText = styled.div`
+color:red;
+font-size:0.8rem;
+`;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, MenuItem } from '@mui/material';
 import axios from 'axios';
-import { baseUrl } from "../../../Atoms";
+import { baseUrl } from "../../Atoms";
 import { useRecoilState } from "recoil";
 
-const MyTextFieldDeptStu = ({ universityId: initialUniversityId, setDeptStu, ...props }) => {
+const SelectDept = ({ universityId: initialUniversityId, setDeptStu, ...props }) => {
   const [BASEURL,] = useRecoilState(baseUrl);
   const [departments, setDepartments] = useState([]);
   const [universityId, setUniversityId] = useState(''); 
@@ -53,4 +53,4 @@ const MyTextFieldDeptStu = ({ universityId: initialUniversityId, setDeptStu, ...
   );
 }
 
-export default MyTextFieldDeptStu;
+export default SelectDept;

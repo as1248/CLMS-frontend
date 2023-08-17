@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MyTextFieldID from '../../components/User/MUI/MyTextFieldID';
-import MyButton from "../../components/User/MUI/MyButton";
-import MyBox from '../../components/User/MUI/MyBox';
+import TextField from '@mui/material/TextField';
+import Button from "@mui/material/Button";
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MyTextFieldNumber from './MyTextFieldNumber';
 
@@ -48,29 +48,47 @@ const EmailVerified = () => {
     }
   };
 
-  const onCheckEnter = (e) => {
-    if (e.key === 'Enter' && !notAllow) {
+  const handleKeyDown = (e) => {
+    if (e.code === 'Enter' && !notAllow) {
       onClickConfirmButton();
     }
   };
 
   return (
-      <MyBox>
-        <Grid container spacing={2}>
-          <Grid item xs={9}>
-            <MyTextFieldID
-              value={email}
-              onChange={handleEmail}
-              onKeyPress={onCheckEnter}
-              disabled={showEmailField}
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <MyButton onClick={handleButtonClick}>전송</MyButton>
-          </Grid>
+    <Box
+      sx={{
+        marginTop: 8,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={9}>
+          <TextField 
+            value={email} 
+            onChange={handleEmail} 
+            onKeyDown={handleKeyDown} 
+            label="이메일" 
+            placeholder="이메일을 입력해주세요." 
+            margin="normal" 
+            required 
+            fullWidth
+          />
         </Grid>
-        {showEmailField && <MyTextFieldNumber onNumberValidChange={setNumberValid} />}
-      </MyBox>
+        <Grid item xs={9}>
+          <Button
+            onClick={handleButtonClick}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}>
+            전송
+          </Button>
+        </Grid>
+      </Grid>
+      {showEmailField && <MyTextFieldNumber onNumberValidChange={setNumberValid} />}
+    </Box>
   );
 };
 

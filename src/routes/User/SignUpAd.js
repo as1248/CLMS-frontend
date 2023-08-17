@@ -1,35 +1,25 @@
 import React, { useEffect, useState } from "react";
+import Header from'../../components/Header';
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import MyBox from '../../components/User/MUI/MyBox';
-import MyAvatar from '../../components/User/MUI/MyAvatar'; 
-import MyTypography from '../../components/User/MUI/MyTypography';
-import MyTextFieldID from "../../components/User/SignUpAd/MyTextFieldID";
-import MyTextFieldPW from '../../components/User/MUI/MyTextFieldPW';
-import MyTextFieldPW2 from '../../components/User/MUI/MyTextFieldPW2';
-import MyTextFieldTel from "../../components/User/SignUpAd/MyTextFieldTel";
-import MyButton from "../../components/User/SignUpAd/MyButton";
-import axios from 'axios';
 import Grid from '@mui/material/Grid';
-import MyTextFieldNumber from '../../components/User/MUI/MyTextFieldNumber';
-import {baseUrl} from "../../Atoms"
+import TextField from '@mui/material/TextField';
 import styled from 'styled-components'
+import {baseUrl} from "../../Atoms"
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import MyTextFieldUnivStu from '../../components/User/MUI/MyTextFieldUnivStu';
-import MyTextFieldDeptStu from '../../components/User/MUI/MyTextFieldDeptStu';
-import Header from'../../components/Header';
-
-const StyledText = styled.div`
-color:red;
-font-size:0.8rem;
-`;
+import axios from 'axios';
+import VerifyEmail from '../../components/User/VerifyEmail';
+import SelectUniv from '../../components/User/SelectUniv';
+import SelectDept from '../../components/User/SelectDept';
 
 const User = {
     email: 'wkdroal11@gmail.com',
     pw: 'hyuk0229'
   }
 
-  
 const SignUpAd = () => {
     const [BASEURL,] = useRecoilState(baseUrl);
     const [NumberValid, setNumberValid] = useState(false);
@@ -101,8 +91,8 @@ const SignUpAd = () => {
     }
 
     //Enter로 버튼 클릭 가능하게
-    const onCheckEnter = (e) => {
-      if(e.key === 'Enter' && notAllow===false ) {
+    const handleKeyDown = (e) => {
+      if(e.code === 'Enter' && notAllow===false ) {
         onClickConfirmButton()
       }
     }
@@ -143,57 +133,115 @@ const SignUpAd = () => {
 
       
     return (
-    <><Header/>
-    <Container component="main" maxWidth="xs">
-        <MyBox>
-            <MyAvatar/>
-            <MyTypography>관리자 회원가입</MyTypography>
-            <Grid container spacing={2}>
+    <>
+      <Header/>
+      <Container component="main" maxWidth="xs">
+        <Box 
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+        <div>관리자 회원가입</div>
+        <Grid container spacing={2}>
           <Grid item xs={9}>
-            <MyTextFieldID
+            <TextField
               value={email}
               onChange={handleEmail}
-              onKeyPress={onCheckEnter}
-              disabled={showEmailField}/>
-            <div>
-              {
-                !emailValid && email.length > 0 && (
-                  <StyledText>올바른 이메일 형식을 입력해주세요</StyledText>
-                )}
-            </div></Grid>
-        <Grid item xs={3}>
-          <MyButton onClick={handleButtonClick} disabled={!emailValid || sendButtonDisabled} >
-            전송
-          </MyButton>
-          </Grid></Grid>
-          {showEmailField && <MyTextFieldNumber email={email} onNumberValidChange={setNumberValid}/>}
-        <MyTextFieldPW
+              onKeyDown={handleKeyDown}
+              disabled={showEmailField}
+              label="이메일"
+              placeholder="example@company.com"
+              margin="normal"
+              required
+              fullWidth
+            />
+            {
+              !emailValid && email.length > 0 && (
+                <StyledText>올바른 이메일 형식을 입력해주세요</StyledText>
+              )
+            }
+          </Grid>
+          <Grid item xs={3}>
+            <Button
+              disabled={!emailValid || sendButtonDisabled}
+              onClick={handleButtonClick}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              전송
+            </Button>
+          </Grid>
+        </Grid>
+        {showEmailField && <VerifyEmail email={email} onNumberValidChange={setNumberValid}/>}
+        <TextField
           value={pw}
           onChange={handlePw}
-          onKeyPress={onCheckEnter}/>
-        <div>
-          {
-            !pwValid && pw.length > 0 && (
-              <StyledText >특문자 제외 영문자 숫자로 8자 이상 20자 미만으로 입력해주세요</StyledText>
-            )}
-        </div>        
-        <MyTextFieldPW2
+          onKeyDown={handleKeyDown}
+          margin="normal"
+          label="비밀번호"
+          type="password"
+          name="password"
+          placeholder="특수문자 제외, 영문, 숫자 포함 8자 이상"
+          required
+          fullWidth
+          autoComplete="current-password"
+        />
+        {
+          !pwValid && pw.length > 0 && (
+            <StyledText >특문자 제외 영문자 숫자로 8자 이상 20자 미만으로 입력해주세요</StyledText>
+          )
+        }
+        <TextField
           value={pw2}
           onChange={handlePw2}
-          onKeyPress={onCheckEnter}/>
-        <div>
-          {
-            !pw2Valid && pw2.length > 0 && (
-              <StyledText>비밀번호가 일치하지 않습니다</StyledText>
-            )}
-        </div>    
-            <MyTextFieldUnivStu setUnivStu={setUnivStu}/>
-            <MyTextFieldDeptStu universityId={UnivStu} setDeptStu={setDeptStu}/>  
-            <MyTextFieldTel value={Tel}  onChange={handleTel}/>
-            <MyButton disabled={notAllow} onClick={onClickConfirmButton}/>
-        </MyBox>
-    </Container></>
+          onKeyDown={handleKeyDown}
+          margin="normal"
+          label="비밀번호 확인"
+          type="password"
+          name="passwordConfirm"
+          required
+          fullWidth
+          autoComplete="current-password"
+        />
+        {
+          !pw2Valid && pw2.length > 0 && (
+            <StyledText>비밀번호가 일치하지 않습니다</StyledText>
+          )
+        }    
+          <SelectUniv setUnivStu={setUnivStu}/>
+          <SelectDept universityId={UnivStu} setDeptStu={setDeptStu}/>
+          <TextField
+            value={Tel}  
+            onChange={handleTel}
+            label="학과 전화번호"
+            margin="normal"
+            required
+            fullWidth
+          />
+          <Button
+            disabled={notAllow}
+            onClick={onClickConfirmButton}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            가입하기
+          </Button>
+        </Box>
+      </Container></>
     );
 }
 
 export default SignUpAd;
+
+const StyledText = styled.div`
+color:red;
+font-size:0.8rem;
+`;

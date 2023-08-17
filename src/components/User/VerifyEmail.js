@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import MyButton from "./MyButton";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Timer from '../VerifyEmail/Timer';
+import Timer from './Timer';
 import { useRecoilState } from "recoil";
-import {baseUrl} from "../../../Atoms"
+import {baseUrl} from "../../Atoms"
 import axios from 'axios';
 
 
-const MyTextFieldNumber = ({ email, onNumberValidChange }) => {
+const VerifyEmail = ({ email, onNumberValidChange }) => {
   const [BASEURL,] = useRecoilState(baseUrl);
   const [showEmailField, setShowEmailField] = useState(false);
   const [resetKey, setResetKey] = useState(0);
@@ -20,7 +19,7 @@ const MyTextFieldNumber = ({ email, onNumberValidChange }) => {
   const [timerRunning, setTimerRunning] = useState(true);
 
 
-    //이메일 재전송
+  //이메일 재전송
   const handleResetTimer = () => {
     if (!numberValid) {
       setResetKey(resetKey + 1);
@@ -38,19 +37,19 @@ const MyTextFieldNumber = ({ email, onNumberValidChange }) => {
 // 이메일 인증 버튼 눌렀을 시
 const showAlert = () => {
   if (timerExpired) {
-    window.alert("인증 시간 초과!");
+    window.alert("인증 시간이 초과되었습니다.");
   } else if (textFieldValue.trim() === '') {
-    window.alert("인증번호를 입력해주세요!");
+    window.alert("인증번호를 입력해주세요.");
   } else {
     axios.post(BASEURL+'/register/verification', {authNumber : textFieldValue, email:email})
       .then(response => {
         if (response.data.success) {
-          window.alert("인증이 완료되었습니다!");
+          window.alert("인증이 완료되었습니다.");
           setShowEmailField(true);
           setNumberValid(true);
           setTimerRunning(false); // 타이머 중지
         } else {
-          window.alert("인증번호가 잘못되었습니다!");
+          window.alert("인증번호가 잘못되었습니다.");
         }
       })
       .catch(error => {
@@ -85,9 +84,16 @@ const showAlert = () => {
           />
         </Grid>
         <Grid item xs={3}>
-          <MyButton onClick={showAlert} disabled={isTextFieldEmpty || numberValid}>
+          <Button 
+            onClick={showAlert} 
+            disabled={isTextFieldEmpty || numberValid}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          > 
             인증
-          </MyButton>
+          </Button>
         </Grid>
       </Grid>
       <Grid container>
@@ -106,4 +112,4 @@ const showAlert = () => {
   );
 };
 
-export default MyTextFieldNumber;
+export default VerifyEmail;

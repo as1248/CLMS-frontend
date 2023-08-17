@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import MyTypography from '../MUI/MyTypography';
 
 const Timer = ({ onTimerExpired, timerRunning }) => {
   const [timer, setTimer] = useState(180);
@@ -29,16 +28,12 @@ const Timer = ({ onTimerExpired, timerRunning }) => {
 
   if (timerExpired) {
     return (
-      <MyTypography variant="h5.5">
-        인증 시간 초과!
-      </MyTypography>
+      <div>인증 시간 초과!</div>
     );
   }
 
   return (
-    <MyTypography variant="h5.5">
-      {`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}
-    </MyTypography>
+    <div>{`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}</div>
   );
 };
 

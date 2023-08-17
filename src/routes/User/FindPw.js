@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MyTextFieldID from '../../components/User/MUI/MyTextFieldID';
-import MyButton from "../../components/User/MUI/MyButton";
-import MyTypography from '../../components/User/MUI/MyTypography';
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import MyBox from '../../components/User/MUI/MyBox';
-import MyAvatar from '../../components/User/MUI/MyAvatar';
 import Grid from '@mui/material/Grid';
-import MyTextFieldNumber from '../../components/User/MUI/MyTextFieldNumber';
+import TextField from '@mui/material/TextField';
+import VerifyEmail from '../../components/User/VerifyEmail';
 import Header from'../../components/Header';
 
 // 더미데이터
@@ -47,7 +46,7 @@ const FindPw = () => {
 
   // 이메일 인증이 완료되면 다음 비밀번호 변경 페이지로 이동
   const onClickConfirmButton = () => {
-    navigate('/login/findpw/ChangePw');
+    navigate('/login/findPw/changePw');
   };
 
   // 전송 버튼을 클릭했을 때 
@@ -61,8 +60,8 @@ const FindPw = () => {
   };
 
   //Enter가 버튼 클릭 기능으로 구현되도록 설정
-  const onCheckEnter = (e) => {
-    if (e.key === 'Enter' && !notAllow) {
+  const handleKeyDown = (e) => {
+    if (e.code === 'Enter' && !notAllow) {
       onClickConfirmButton();
     }
   };
@@ -70,32 +69,58 @@ const FindPw = () => {
 
   //페이지 UI 설정
   return (
-    <><Header/>
-    <Container component="main" maxWidth="xs">
-      <MyBox>
-        <MyAvatar />
-        <MyTypography>CSWS</MyTypography>
-        <Grid container spacing={2}>
-          <Grid item xs={9}>
-            <MyTextFieldID
-              value={email}
-              onChange={handleEmail}
-              onKeyPress={onCheckEnter}
-              disabled={showEmailField}
-            />
+    <>
+      <Header/>
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+          <div>CSWS</div>
+          <Grid container spacing={2}>
+            <Grid item xs={9}>
+              <TextField
+                value={email}
+                onChange={handleEmail}
+                onKeyDown={handleKeyDown}
+                disabled={showEmailField}
+                label="이메일"
+                placeholder="example@company.com"
+                margin="normal"
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <Button
+                disabled={!emailValid || sendButtonDisabled}
+                onClick={handleButtonClick}
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}>
+                전송
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={3}>
-            <MyButton onClick={handleButtonClick} disabled={!emailValid || sendButtonDisabled}>전송</MyButton>
-          </Grid>
-        </Grid>
-        {showEmailField && <MyTextFieldNumber onNumberValidChange={setNumberValid} />}
-        <MyButton disabled={notAllow} onClick={onClickConfirmButton}>
-          비밀번호 변경
-        </MyButton>
-      </MyBox>
-    </Container></>
-
-    
+          {showEmailField && <VerifyEmail onNumberValidChange={setNumberValid} />}
+          <Button
+            disabled={notAllow}
+            onClick={onClickConfirmButton}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}>
+            비밀번호 변경
+          </Button>
+        </Box>
+      </Container>
+    </>
   );
 };
 
