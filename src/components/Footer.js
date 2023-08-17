@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import logo from '../img/Logo.png'
 import icons from '../img/icons.png';
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+    const userRole = localStorage.getItem('userRole');
+    const navigate = useNavigate();
+    const logOut = () => {
+        localStorage.setItem('userRole',null);
+        navigate('/');
+    }
     return (
         <FooterContent>
             <Logo src={logo}/>
@@ -23,7 +30,11 @@ const Footer = () => {
                     <List>정수진</List>
                 </Content>
                 <Content>
-                    <Login>콘솔에 로그인</Login>
+                    {(userRole == null) ? (
+                        <Login onClick={()=>navigate('/login')}>콘솔에 로그인</Login>
+                    ) : (
+                        <Login onClick={logOut}>로그아웃</Login>
+                    )}
                     <Icons src={icons}/>
                 </Content>
             </Contents>
@@ -34,7 +45,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterContent = styled.footer`
-    width: 100%;
+    width: 96%;
     height: 200px;
     background-color: #232f3e;
     padding: 2%;
