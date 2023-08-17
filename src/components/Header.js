@@ -24,7 +24,7 @@ const Header = () => {
         ) : (userRole === 'ROLE_ADMIN') ? (
         /* 어드민 */
         <ButtonGroup>
-          <HeaderBtn onClick={() => navigate('/Admin')}>관리자 인증</HeaderBtn>
+          <HeaderBtn onClick={() => navigate('/admin')}>관리자 인증</HeaderBtn>
           <HeaderBtn onClick={() => handleLogout()}>로그아웃</HeaderBtn>
         </ButtonGroup>) : 
         (userRole === 'ROLE_MANAGER') ? (
@@ -51,7 +51,7 @@ const HeaderContent = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 96%;
   min-width: 900px;
   height: 40px;
   padding: 2%;

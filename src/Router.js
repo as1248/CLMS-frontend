@@ -6,13 +6,14 @@ import SignUp from "./routes/User/SignUp"
 import SignUpAd from "./routes/User/SignUpAd"
 import FindPw from "./routes/User/FindPw";
 import ChangePw from "./routes/User/ChangePw";
-import DashBoard from "./routes/Instance/DashBoard";
 import InstanceDetail from "./routes/Instance/InstanceDetail";
 import CreateInstance from "./routes/Instance/CreateInstance";
 import InboundRules from "./routes/Instance/InboundRules";
 import ServerResources from "./routes/Server/ServerResources";
 import CreateServer from "./routes/Server/CreateServer";
-import ManageStudents from "./routes/Server/ManageStudents";
+import Lecture from "./routes/Lecture/Lecture";
+import CreateLecture from "./routes/Lecture/CreateLecture";
+import StudentAdministration from "./routes/StudentAdministraion";
 
 
 
@@ -21,19 +22,20 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<Main/>}/>
-          <Route path="/Admin" exact element={<Admin/>}/>
+          <Route path="/admin" exact element={<Admin/>}/>
           <Route path="/login" exact element={<Login/>}/>
-            <Route path="/login/signup" exact element={<SignUp/>}/>
-              <Route path="/login/signupad" exact element={<SignUpAd/>}/>
-            <Route path="/login/findpw" exact element={<FindPw/>}/>
-              <Route path="/login/findpw/ChangePw" exact element={<ChangePw/>}/>
+            <Route path="/login/signUp" exact element={<SignUp/>}/>
+            <Route path="/login/signUpAd" exact element={<SignUpAd/>}/>
+            <Route path="/login/findPw" exact element={<FindPw/>}/>
+              <Route path="/login/findPw/changePw" exact element={<ChangePw/>}/>
+          <Route path="/studentAdministration" exact element={<StudentAdministration/>}/>
           <Route path="/serverResources" exact element={<ServerResources/>}/>
           <Route path="/createServer" exact element={<CreateServer/>}/>
-          <Route path="/manageStudents" exact element={<ManageStudents/>}/>
-          <Route path="/dashboard" exact element={<DashBoard/>}/>
-            <Route path="/dashboard/:instanceId" exact element={<InstanceDetail/>}/>
-              <Route path="/dashboard/:instanceId/inboundRules" exact element={<InboundRules/>}/>
-            <Route path="/dashboard/createInstance" exact element={<CreateInstance/>}/>
+          <Route path="/createLecture" exact element={<CreateLecture/>}/>
+          <Route path="/:lectureId" exact element={<Lecture/>}/>
+            <Route path="/:lectureId/instanceDetail" exact element={<InstanceDetail/>}/>
+              <Route path="/:lectureId/instanceDetail/inboundRules" exact element={<InboundRules/>}/>
+            <Route path="/:lectureId/createInstance" exact element={<CreateInstance/>}/>
       </Routes>
     </BrowserRouter>
   );
