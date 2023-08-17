@@ -1,7 +1,7 @@
 import { MenuItem, Select } from "@mui/material";
 import styled from "styled-components";
 
-const StorageSection = ({setData, data}) => {
+const Storage = ({setData, data}) => {
   const storageHandler = (event) => {
     setData({...data, storage: event.target.value});
   };
@@ -20,7 +20,7 @@ const StorageSection = ({setData, data}) => {
     );
 };
 
-export default StorageSection;
+export default Storage;
 
 const Content = styled.div`
   display: flex;

@@ -9,6 +9,7 @@ const InstanceDescription = ({data, domainName, setInstanceDetail}) => {
   const [BASEURL,] = useRecoilState(baseUrl);
   const navigate = useNavigate();
   const [IOption, setIOption] = useState(false);
+  //URL 바뀌어서 instanceId 다른데서 받기
   const {instanceId} = useParams();
   //인스턴스 시작
   const instanceStart = () => {

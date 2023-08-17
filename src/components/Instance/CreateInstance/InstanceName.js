@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import styled from "styled-components";
 
-const InstanceNameSection = ({setData, data, validate, setValidate}) => {
+const InstanceName = ({setData, data, validate, setValidate}) => {
     const validation = (str) => {
       const reg = /[a-zA-Zㄱ-ㅎ가-힣0-9]+/gim;
       return reg.test(str);
@@ -30,7 +30,7 @@ const InstanceNameSection = ({setData, data, validate, setValidate}) => {
     );
 };
 
-export default InstanceNameSection;
+export default InstanceName;
 
 const Content = styled.div`
   display: flex;

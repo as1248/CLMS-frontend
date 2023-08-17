@@ -23,7 +23,7 @@ const SelectServer = ({data, setData, setHostname}) => {
           console.error(error);
         }
     }
-    console.log(serverList);
+    
     useEffect(()=>{
         loadServerList();
     },[BASEURL]);

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import InstanceNameSection from "../../components/Instance/CreateInstance/InstanceNameSection";
-import KeyPairSection from "../../components/Instance/CreateInstance/KeyPairSection";
-import MachineImageSection from "../../components/Instance/CreateInstance/MachineImageSection";
-import StorageSection from "../../components/Instance/CreateInstance/StorageSection";
+import InstanceName from "../../components/Instance/CreateInstance/InstanceName";
+import SetKeyPair from "../../components/Instance/CreateInstance/SetKeyPair";
+import MachineImage from "../../components/Instance/CreateInstance/MachineImage";
+import Storage from "../../components/Instance/CreateInstance/Storage";
 import Navigation from "../../components/Navigation";
 import SelectServer from "../../components/Instance/CreateInstance/SelectServer";
 import CreateInstanceButtons from "../../components/Instance/CreateInstance/CreateInstanceButtons";
@@ -30,11 +30,11 @@ const CreateInstance = () => {
         <Content>
           <Navigation/>
           <Box>
-            <InstanceNameSection setData={setData} data={data} validate={nameValidate} setValidate={setNameValidate}/>
-            <StorageSection setData={setData} data={data}/>
+            <InstanceName setData={setData} data={data} validate={nameValidate} setValidate={setNameValidate}/>
+            <Storage setData={setData} data={data}/>
             <SelectServer setData={setData} data={data} setHostname={setHostname}/>
-            <KeyPairSection setData={setData} data={data} validate={keyPairValidate} setValidate={setKeyPairValidate} hostname={hostname}/>
-            <MachineImageSection setData={setData} data={data}/>
+            <SetKeyPair setData={setData} data={data} validate={keyPairValidate} setValidate={setKeyPairValidate} hostname={hostname}/>
+            <MachineImage setData={setData} data={data}/>
             <CreateInstanceButtons data={data} validate={nameValidate&&keyPairValidate}/>
           </Box>
         </Content>  

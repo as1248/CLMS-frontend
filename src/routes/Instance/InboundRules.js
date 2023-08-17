@@ -5,15 +5,15 @@ import EditInboundRules from "../../components/Instance/InboundRules/EditInbound
 
 const InboundRules = () => {
   
-    return (
-      <>
-        <Header/>
-        <Content>
-          <Navigation/>
-          <EditInboundRules/>
-        </Content>
-      </>
-    );
+  return (
+    <>
+      <Header/>
+      <Content>
+        <Navigation/>
+        <EditInboundRules/>
+      </Content>
+    </>
+  );
 };
 export default InboundRules;
 

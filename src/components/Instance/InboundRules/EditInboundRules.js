@@ -7,7 +7,6 @@ import { useRecoilState } from "recoil";
 import { baseUrl } from "../../../Atoms";
 import NewInboundRule from "./NewInboundRule";
 
-//instanceId 별로 인바운드 리스트 조회 API 요청 하도록 구현
 const EditInboundRules = () => {
     const [BASEURL,] = useRecoilState(baseUrl);
     const navigate = useNavigate();
@@ -55,7 +54,7 @@ const EditInboundRules = () => {
           console.error(error);
         }
     }
-
+    //포트 입력에 대한 유효성 검사
     useEffect(()=>{
       const newArr = newData?.map((i)=>{
         const {number, ...rest} = i;

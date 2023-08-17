@@ -4,7 +4,7 @@ import KeyPairModal from "./KeyPairModal";
 import { TextField } from "@mui/material";
 
 
-const KeyPairSection = ({setData, data, validate, setValidate, hostname}) => {
+const SetKeyPair = ({setData, data, validate, setValidate, hostname}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [keyPairName, setKeyPairName] = useState('');
   const validation = (str) => {
@@ -44,7 +44,7 @@ const KeyPairSection = ({setData, data, validate, setValidate, hostname}) => {
     );
 };
 
-export default KeyPairSection;
+export default SetKeyPair;
 
 const Content = styled.div`
   display: flex;
