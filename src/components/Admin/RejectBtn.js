@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-const MyButtonFalse = ({ onClick, boxName, arrIds }) => {
+const RejectBtn = ({ onClick, boxName, arrIds }) => {
   const handleClick = () => {
     const confirmed = window.confirm("정말 거절하시겠습니까?");
     if (confirmed) {
@@ -28,4 +28,4 @@ const MyButtonFalse = ({ onClick, boxName, arrIds }) => {
   );
 };
 
-export default MyButtonFalse;
+export default RejectBtn;

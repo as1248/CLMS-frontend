@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import {baseUrl} from "../../Atoms"
 
-const MyTable = ({ onRowSelectionModelChange }) => {
+const VerificationList = ({ onRowSelectionModelChange }) => {
   const [BASEURL,] = useRecoilState(baseUrl);
   const [rows, setRows] = useState([]);
 
@@ -20,7 +19,7 @@ const MyTable = ({ onRowSelectionModelChange }) => {
           setRows([]);
         }
       });
-  }, []);
+  }, [BASEURL]);
 
   const handleSelectionModelChange = (ids) => {
     onRowSelectionModelChange(ids);
@@ -44,4 +43,4 @@ const MyTable = ({ onRowSelectionModelChange }) => {
   );
 };
 
-export default MyTable;
+export default VerificationList;

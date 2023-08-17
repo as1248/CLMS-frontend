@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-const MyButtonTrue = ({onClick, boxName, arrIds}) => {
+const ConfirmBtn = ({onClick, boxName, arrIds}) => {
   const handleClick = () => {
     const confirmed = window.confirm("정말 승인하시겠습니까?");
     if (confirmed) {
@@ -27,4 +27,4 @@ const MyButtonTrue = ({onClick, boxName, arrIds}) => {
   );
 };
 
-export default MyButtonTrue;
+export default ConfirmBtn;

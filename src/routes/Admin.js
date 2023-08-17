@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Container from "@mui/material/Container";
-import MyBox from "../components/User/MUI/MyBox";
-import MyAvatar from "../components/User/MUI/MyAvatar";
-import MyTypography from "../components/User/MUI/MyTypography";
+import Box from '@mui/material/Box';
+import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
-import MyButtonFalse from "../components/Admin/MyButtonFalse";
-import MyButtonTrue from "../components/Admin/MyButtonTrue";
-import MyTable from "../components/Admin/MyTable";
+import RejectBtn from "../components/Admin/RejectBtn";
+import ConfirmBtn from "../components/Admin/ConfirmBtn";
+import VerificationList from "../components/Admin/VerificationList";
 
 const Admin = () => {
   const [arrIds, setArrIds] = useState([]);
@@ -19,19 +18,26 @@ const Admin = () => {
 
   return (
     <Container component="main" maxWidth="md">
-      <MyBox>
-        <MyAvatar />
-        <MyTypography>인증요청 목록</MyTypography>
-        <MyTable onRowSelectionModelChange={setArrIds} />
+      <Box 
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+        <div>인증요청 목록</div>
+        <VerificationList onRowSelectionModelChange={setArrIds} />
         <Grid container justifyContent="space-between">
           <Grid item xs={5}>
-            <MyButtonFalse onClick={handleClick} arrIds={arrIds} />
+            <RejectBtn onClick={handleClick} arrIds={arrIds} />
           </Grid>
           <Grid item xs={5}>
-            <MyButtonTrue onClick={handleClick} arrIds={arrIds} />
+            <ConfirmBtn onClick={handleClick} arrIds={arrIds} />
           </Grid>
         </Grid>
-      </MyBox>
+      </Box>
     </Container>
   );
 };
