@@ -13,7 +13,7 @@ import ServerResources from "./routes/Server/ServerResources";
 import CreateServer from "./routes/Server/CreateServer";
 import Lecture from "./routes/Lecture/Lecture";
 import CreateLecture from "./routes/Lecture/CreateLecture";
-import StudentAdministration from "./routes/StudentAdministraion";
+import StudentAdministration from "./routes/Lecture/StudentAdministration";
 
 
 
@@ -35,7 +35,7 @@ const Router = () => {
           <Route path="/:lectureId" exact element={<Lecture/>}/>
             <Route path="/:lectureId/instanceDetail" exact element={<InstanceDetail/>}/>
               <Route path="/:lectureId/instanceDetail/inboundRules" exact element={<InboundRules/>}/>
-            <Route path="/:lectureId/createInstance" exact element={<CreateInstance/>}/>
+            <Route path="/:lectureId/instanceDetail/createInstance" exact element={<CreateInstance/>}/>
       </Routes>
     </BrowserRouter>
   );
