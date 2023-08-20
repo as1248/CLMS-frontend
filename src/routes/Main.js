@@ -1,64 +1,39 @@
 import styled from "styled-components";
 import Header from "../components/Header";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image4 from "../img/IMAGE4.png";
-import Image5 from "../img/IMAGE5.png";
-
 import Footer from "../components/Footer";
+import LectureList from "../components/Main/LectureList";
+import ServerList from "../components/Main/ServerList";
 
 const Main = () => {
-  const settings = {
-    dots: false,
-    lazyLoad: true,
-    infinite: true,
-    autoplay: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 2,
-    arrows: false,
-  };
-
+  //관리자일때와 학생일때 구분해서 만들기
   return (
     <>
       <Header />
       <Content>
-        <SliderWrapper>
-        <Slider {...settings}>
-            <div>
-            <SlideImage 
-              src={Image4}
-              alt="광고4"
-            /></div>
-            <div>
-            <SlideImage 
-              src={Image5}
-              alt="광고5"
-            /></div>
-        </Slider>
-        </SliderWrapper>
-
-        
+        <Title>진행중인 강의</Title>
+        <LectureList/>
+        <Title>서버</Title>
+        <ServerList/>
       </Content>
       <Footer/>
     </>
   );
 };
 
+export default Main;
+
 const Content = styled.div`
-  padding-top: 55px;
+  padding-top: 30px;
   width: 100%;
   min-height: 80vh;
   margin-bottom: 120px;
 `;
-const SlideImage = styled.img`
-  width: 100%;
-  height: auto;
-`;
-const SliderWrapper = styled.div`
-  width: 100%;
-`;
 
-export default Main;
+const Title = styled.div`
+  font-size: 32px;
+  font-weight: 600;
+  margin: 3%;
+  margin-left: 5%;
+`;
