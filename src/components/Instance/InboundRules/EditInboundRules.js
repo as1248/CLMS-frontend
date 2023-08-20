@@ -148,7 +148,7 @@ const BtnSection = styled.div`
 const AddRule = styled.div`
   cursor: pointer;
   border: 3px solid #3eb5c4;
-  height: 25px;
+  height: 35px;
   padding: 4px 15px;
   background-color: white;
   border-radius: 20px;

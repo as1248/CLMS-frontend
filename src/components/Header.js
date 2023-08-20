@@ -51,7 +51,7 @@ const HeaderContent = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 96%;
+  width: 100%;
   min-width: 900px;
   height: 40px;
   padding: 2%;

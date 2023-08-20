@@ -5,7 +5,8 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { baseUrl } from "../../../Atoms";
 
-const InstanceDescription = ({data, domainName, setInstanceDetail}) => {
+//userId, address(ip주소) 받아오는 기능 추가하기
+const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, address=1}) => {
   const [BASEURL,] = useRecoilState(baseUrl);
   const navigate = useNavigate();
   const [IOption, setIOption] = useState(false);
@@ -63,6 +64,7 @@ const InstanceDescription = ({data, domainName, setInstanceDetail}) => {
                     <SetState onClick={()=>instanceDelete()}>인스턴스 종료</SetState>
                   </SetStates>) : (<></>)}
               </InstanceState>
+              <InstanceCreate onClick={() => navigate('createInstance',{state: {userId, address}})}>인스턴스 생성</InstanceCreate>
             </DetailHeader>
             
             <DescriptionContent>
@@ -101,11 +103,11 @@ const DetailHeader = styled.div`
   border-radius: 20px;
   width: 100%;
   min-width: 900px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 
 const Title = styled.div`
-  width: 50%;
+  width: 60%;
   min-width: 500px;
   padding: 1%;
   font-size: 20px;
@@ -116,12 +118,12 @@ const InstanceState = styled.div`
   cursor: pointer;
   border: 0.5px solid #879596;
   margin-right: 2%;
-  min-width: 190px;
+  min-width: 200px;
 `;
 
 const State = styled.div`
   padding: 4px 15px;
-  width: 160px;
+  width: 200px;
   font-weight: 600;
   background-color: white;
   &:hover{
@@ -139,13 +141,26 @@ const SetState = styled.div`
   padding: 4px 15px;
   border: 0.5px solid #879596;
   font-weight: 600;
-  width: 160px;
+  width: 200px;
   &:hover{
     background-color: #fafafa;
     border: 2px solid #879596;
     color: black;
   }
 `;
+
+const InstanceCreate = styled.div`
+  cursor: pointer;
+  padding: 6px 15px;
+  height: 35px;
+  background-color: #3eb5c4;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  &:hover{
+    background-color: #2da4b3;
+  }
+`
 
 const DescriptionContent = styled.div`
   display: grid;

@@ -266,7 +266,7 @@ const DetailGrid = styled.div`
 
 const Box = styled.div`
   grid-column: 1 / 4;
-  width: 95%;
+  width: 100%;
   padding: 2%;
   min-width: 1150px;
 `;

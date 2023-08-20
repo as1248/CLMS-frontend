@@ -45,7 +45,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterContent = styled.footer`
-    width: 96%;
+    width: 100%;
     height: 200px;
     background-color: #232f3e;
     padding: 2%;
@@ -82,7 +82,7 @@ const List = styled.div`
 const Login = styled.div`
   cursor: pointer;
   padding: 6px 35px;
-  height: 25px;
+  height: 35px;
   background-color: #3eb5c4;
   text-align: center;
   border-radius: 20px;

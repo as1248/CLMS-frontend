@@ -5,7 +5,6 @@ import InstanceName from "../../components/Instance/CreateInstance/InstanceName"
 import SetKeyPair from "../../components/Instance/CreateInstance/SetKeyPair";
 import MachineImage from "../../components/Instance/CreateInstance/MachineImage";
 import Storage from "../../components/Instance/CreateInstance/Storage";
-import Navigation from "../../components/Navigation";
 import SelectServer from "../../components/Instance/CreateInstance/SelectServer";
 import CreateInstanceButtons from "../../components/Instance/CreateInstance/CreateInstanceButtons";
 import { useLocation } from "react-router-dom";
@@ -28,7 +27,6 @@ const CreateInstance = () => {
       <>
         <Header/>
         <Content>
-          <Navigation/>
           <Box>
             <InstanceName setData={setData} data={data} validate={nameValidate} setValidate={setNameValidate}/>
             <Storage setData={setData} data={data}/>
@@ -45,7 +43,7 @@ export default CreateInstance;
 
 const Content = styled.div`
   padding: 0 5%;
-  width: 90%;
+  width: 100%;
   min-height: 80vh;
   margin-bottom: 120px;
 `;
