@@ -61,7 +61,7 @@ const Title = styled.div`
 `;
 
 const Info = styled.div`
-  width: 80%;
+  width: 100%;
   font-size: 18px;
 `;
 

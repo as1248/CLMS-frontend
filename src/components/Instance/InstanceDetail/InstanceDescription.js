@@ -107,7 +107,7 @@ const DetailHeader = styled.div`
 `;
 
 const Title = styled.div`
-  width: 60%;
+  width: 70%;
   min-width: 500px;
   padding: 1%;
   font-size: 20px;
@@ -118,12 +118,12 @@ const InstanceState = styled.div`
   cursor: pointer;
   border: 0.5px solid #879596;
   margin-right: 2%;
-  min-width: 200px;
+  min-width: 190px;
 `;
 
 const State = styled.div`
   padding: 4px 15px;
-  width: 200px;
+  width: 190px;
   font-weight: 600;
   background-color: white;
   &:hover{
@@ -141,7 +141,7 @@ const SetState = styled.div`
   padding: 4px 15px;
   border: 0.5px solid #879596;
   font-weight: 600;
-  width: 200px;
+  width: 190px;
   &:hover{
     background-color: #fafafa;
     border: 2px solid #879596;
@@ -152,6 +152,7 @@ const SetState = styled.div`
 const InstanceCreate = styled.div`
   cursor: pointer;
   padding: 6px 15px;
+  min-width: 160px;
   height: 35px;
   background-color: #3eb5c4;
   border-radius: 20px;

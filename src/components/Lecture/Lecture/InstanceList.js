@@ -43,15 +43,15 @@ const InstanceList = () => {
   ]);
   return (
     <Section>
-      <Title>인스턴스 목록</Title>
       <IList>
-        <Instance>
+      <Title>인스턴스 목록</Title>
+        <InstanceHeader>
           <StudentName>이름</StudentName>
           <InstanceName>인스턴스 이름</InstanceName>
-        </Instance>
+        </InstanceHeader>
         <List
           style={{
-            maxHeight: 300,
+            maxHeight: 380,
             overflow: "auto",
             border: "1px solid #eaeded",
           }}
@@ -76,7 +76,6 @@ const InstanceList = () => {
 export default InstanceList;
 
 const Section = styled.section`
-  border: 1px solid black;
   width: 100%;
   padding: 3%;
 `;
@@ -87,18 +86,26 @@ const Title = styled.div`
   margin-bottom: 30px;
 `;
 
-const IList = styled.div``;
+const IList = styled.div`
+  background-color: white;
+  padding: 2%;
+`;
 
 const Instance = styled.div`
-  border: 1px solid black;
   display: flex;
   height: 60px;
   align-items: center;
 `;
+
+const InstanceHeader = styled(Instance)`
+  border-bottom: 1px solid black;
+`;
+
 const StudentName = styled.div`
   width: 40%;
   text-align: center;
 `;
+
 const InstanceName = styled.div`
   width: 60%;
   text-align: center;
