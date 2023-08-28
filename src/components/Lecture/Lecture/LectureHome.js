@@ -49,10 +49,9 @@ const LectureHome = () => {
 export default LectureHome;
 
 const Section = styled.section`
-  border: 1px solid black;
   width: 100%;
   padding: 3%;
-  `;
+`;
 
 const Title = styled.div`
   font-size: 24px;

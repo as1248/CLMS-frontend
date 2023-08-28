@@ -3,67 +3,24 @@ import Header from "../../components/Header";
 import { useState } from "react";
 import LectureHome from "../../components/Lecture/Lecture/LectureHome";
 import InstanceList from "../../components/Lecture/Lecture/InstanceList";
-import { FaBook, FaBullhorn } from "react-icons/fa";
-import { GoContainer } from "react-icons/go";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import LectureNav from "../../components/Lecture/Lecture/LectureNav";
+import Notice from "../../components/Lecture/Lecture/Notice";
 
 //관리자일때와 학생일때 구분해서 만들기
 const Lecture = () => {
   const [nav, setNav] = useState(1);
-  const [fold, setFold] = useState(false);
-  
   return (
     <>
       <Header />
       <Content>
-        {fold ? (
-          //접혔을 때
-        <FoldNav>
-          <div>
-            <NavItem onClick={()=>setNav(1)}>
-              <FaBook size={24}/>
-            </NavItem>
-            <NavItem onClick={()=>setNav(2)}>
-              <FaBullhorn size={24}/>
-            </NavItem>
-            <NavItem onClick={()=>setNav(3)}>
-              <GoContainer size={24}/>
-            </NavItem>
-          </div>
-          <LastNavItem onClick={()=>setFold(false)}>
-            <BsArrowRight size={32}/>
-          </LastNavItem>
-        </FoldNav>
-        ) : (
-          //펼쳤을 때
-        <Nav>
-          <div>
-            <NavItem onClick={()=>setNav(1)}>
-              <FaBook size={32}/>
-              <div>강의 홈</div>
-            </NavItem>
-            <NavItem onClick={()=>setNav(2)}>
-              <FaBullhorn size={32}/>
-              <div>공지사항</div>
-            </NavItem>
-            <NavItem onClick={()=>setNav(3)}>
-              <GoContainer size={32}/>
-              <div>인스턴스</div>
-            </NavItem>
-          </div>
-          <LastNavItem onClick={()=>setFold(true)}>
-            <BsArrowLeft size={32}/>
-          </LastNavItem>
-        </Nav>)}
+        <LectureNav setNav={setNav}/>
         
         {nav === 1 ? (
           //강의 홈
           <LectureHome />
         ) : nav === 2 ? (
           // 공지사항
-          <Section>
-            <Title>공지사항</Title>
-          </Section>
+          <Notice/>
         ) : (
           // 인스턴스
           <InstanceList />
@@ -77,7 +34,7 @@ export default Lecture;
 
 const Content = styled.div`
   width: 100%;
-  min-height: 90vh;
+  min-height: 95vh;
   display: flex;
 `;
 
