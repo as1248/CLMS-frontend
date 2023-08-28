@@ -2,8 +2,10 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import SelectServer from "../../components/Lecture/CreateLecture/SelectServer";
 import LectureName from "../../components/Lecture/CreateLecture/LectureName";
+import { useNavigate } from "react-router-dom";
 
 const CreateLecture = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Header/>
@@ -14,7 +16,7 @@ const CreateLecture = () => {
           <LectureName/>
         </Box>
         <Bottom>
-          <CreateBtn>생성하기 +</CreateBtn>
+          <CreateBtn onClick={()=>navigate('/')}>생성하기 +</CreateBtn>
         </Bottom>
       </Content>
     </>
@@ -49,6 +51,7 @@ const Bottom = styled.div`
 `;
 
 const CreateBtn = styled.div`
+  cursor: pointer;
   width: 15%;
   height: 50px;
   display: flex;

@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { List } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const InstanceList = () => {
+  const navigate = useNavigate();
   const [instanceList, setInstanceList] = useState([
     {
       userName: "asd",
@@ -62,7 +64,7 @@ const InstanceList = () => {
                 <StudentName component="div" key={item?.userName}>
                   {item?.userName}
                 </StudentName>
-                <InstanceName component="div" key={item?.instanceName}>
+                <InstanceName component="div" key={item?.instanceName} onClick={()=>navigate('instanceDetail')}>
                   {item?.instanceName}
                 </InstanceName>
               </Instance>
@@ -107,6 +109,7 @@ const StudentName = styled.div`
 `;
 
 const InstanceName = styled.div`
+  cursor: pointer;
   width: 60%;
   text-align: center;
 `;
