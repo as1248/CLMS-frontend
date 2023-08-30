@@ -4,7 +4,7 @@ import { useState } from "react";
 import LectureHome from "../../components/Lecture/Lecture/LectureHome";
 import InstanceList from "../../components/Lecture/Lecture/InstanceList";
 import LectureNav from "../../components/Lecture/Lecture/LectureNav";
-import Notice from "../../components/Lecture/Lecture/Notice";
+import Notices from "../../components/Lecture/Lecture/Notices";
 
 //관리자일때와 학생일때 구분해서 만들기
 const Lecture = () => {
@@ -20,7 +20,7 @@ const Lecture = () => {
           <LectureHome />
         ) : nav === 2 ? (
           // 공지사항
-          <Notice/>
+          <Notices/>
         ) : (
           // 인스턴스
           <InstanceList />
