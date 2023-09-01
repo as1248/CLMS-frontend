@@ -3,25 +3,27 @@ import Header from "../../components/Header";
 import SelectServer from "../../components/Lecture/CreateLecture/SelectServer";
 import LectureName from "../../components/Lecture/CreateLecture/LectureName";
 import { useNavigate } from "react-router-dom";
+import LectureIntroduction from "../../components/Lecture/CreateLecture/LectureIntroduction";
 
 const CreateLecture = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Header/>
+      <Header />
       <Content>
         <Title>강좌 생성</Title>
         <Box>
-          <SelectServer/>
-          <LectureName/>
+          <SelectServer />
+          <LectureName />
+          <LectureIntroduction />
         </Box>
         <Bottom>
-          <CreateBtn onClick={()=>navigate('/')}>생성하기 +</CreateBtn>
+          <CreateBtn onClick={() => navigate("/")}>생성하기 +</CreateBtn>
         </Bottom>
       </Content>
     </>
   );
-}
+};
 
 export default CreateLecture;
 
@@ -42,7 +44,7 @@ const Box = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 5% 0 ;
+  margin: 5% 0;
 `;
 
 const Bottom = styled.div`
