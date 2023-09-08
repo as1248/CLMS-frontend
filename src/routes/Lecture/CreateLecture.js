@@ -18,7 +18,9 @@ const CreateLecture = () => {
           <LectureIntroduction />
         </Box>
         <Bottom>
-          <CreateBtn onClick={() => navigate("/")}>생성하기 +</CreateBtn>
+          <CreateBtn onClick={() => navigate("/lecturesHome")}>
+            생성하기 +
+          </CreateBtn>
         </Bottom>
       </Content>
     </>
