@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Slider from "react-slick";
-import Image4 from "../img/IMAGE4.png";
-import Image5 from "../img/IMAGE5.png";
+import Image4 from "../../img/IMAGE4.png";
+import Image5 from "../../img/IMAGE5.png";
 
 const Slide = () => {
   const settings = {

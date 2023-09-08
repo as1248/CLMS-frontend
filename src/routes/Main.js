@@ -3,21 +3,16 @@ import Header from "../components/Header";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "../components/Footer";
-import LectureList from "../components/Main/LectureList";
-import ServerList from "../components/Main/ServerList";
+import Slide from "../components/Main/Slide";
 
 const Main = () => {
-  //관리자일때와 학생일때 구분해서 만들기
   return (
     <>
       <Header />
       <Content>
-        <Title>진행중인 강의</Title>
-        <LectureList/>
-        <Title>서버</Title>
-        <ServerList/>
+        <Slide />
       </Content>
-      <Footer/>
+      <Footer />
     </>
   );
 };
@@ -29,11 +24,4 @@ const Content = styled.div`
   width: 100%;
   min-height: 80vh;
   margin-bottom: 120px;
-`;
-
-const Title = styled.div`
-  font-size: 32px;
-  font-weight: 600;
-  margin: 3%;
-  margin-left: 5%;
 `;
