@@ -44,9 +44,9 @@ const InstanceList = () => {
     },
   ]);
   return (
-    <Section>
+    <Content>
       <IList>
-      <Title>인스턴스 목록</Title>
+        <Title>인스턴스 목록</Title>
         <InstanceHeader>
           <StudentName>이름</StudentName>
           <InstanceName>인스턴스 이름</InstanceName>
@@ -64,7 +64,11 @@ const InstanceList = () => {
                 <StudentName component="div" key={item?.userName}>
                   {item?.userName}
                 </StudentName>
-                <InstanceName component="div" key={item?.instanceName} onClick={()=>navigate('instanceDetail')}>
+                <InstanceName
+                  component="div"
+                  key={item?.instanceName}
+                  onClick={() => navigate("instanceDetail")}
+                >
                   {item?.instanceName}
                 </InstanceName>
               </Instance>
@@ -72,12 +76,12 @@ const InstanceList = () => {
           })}
         </List>
       </IList>
-    </Section>
+    </Content>
   );
 };
 export default InstanceList;
 
-const Section = styled.section`
+const Content = styled.div`
   width: 100%;
   padding: 3%;
 `;
