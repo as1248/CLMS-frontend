@@ -15,6 +15,8 @@ import Lecture from "./routes/Lecture/Lecture";
 import CreateLecture from "./routes/Lecture/CreateLecture";
 import StudentAdministration from "./routes/Lecture/StudentAdministration";
 import LecturesHome from "./routes/Lecture/LecturesHome";
+import Notices from "./routes/Lecture/Notices";
+import Instances from "./routes/Lecture/Instances";
 
 const Router = () => {
   return (
@@ -37,6 +39,8 @@ const Router = () => {
         <Route path="/createLecture" exact element={<CreateLecture />} />
         <Route path="/lecturesHome" exact element={<LecturesHome />} />
         <Route path="/:lectureId" exact element={<Lecture />} />
+        <Route path="/:lectureId/notice" exact element={<Notices />} />
+        <Route path="/:lectureId/instances" exact element={<Instances />} />
         <Route
           path="/:lectureId/instanceDetail"
           exact
