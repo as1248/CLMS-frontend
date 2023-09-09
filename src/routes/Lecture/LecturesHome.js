@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import LectureList from "../../components/Lecture/Lecture/LectureList";
-import ServerList from "../../components/Lecture/Lecture/ServerList";
+import LectureList from "../../components/Lecture/LecturesHome/LectureList";
+import ServerList from "../../components/Lecture/LecturesHome/ServerList";
 
 //학생, 관리자 구분해서 만들기
 const LecturesHome = () => {
