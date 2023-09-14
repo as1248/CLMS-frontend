@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import mainlogo from "../img/Logo.png" ;
+import mainlogo from "../img/Logo.png";
+import AdminHeader from "./Header/AdminHeader";
+import ManagerHeader from "./Header/ManagerHeader";
+import StudentHeader from "./Header/StudentHeader";
 
 const Header = () => {
   const userRole = localStorage.getItem('userRole');
@@ -12,7 +15,7 @@ const Header = () => {
     localStorage.removeItem('departmentId');
     navigate('/login');
   };
-
+  
   return (
     <HeaderContent>
       <HeaderLogo src={mainlogo} onClick={() => navigate('/')}/>
@@ -23,22 +26,15 @@ const Header = () => {
         <HeaderBtn onClick={() => navigate('/login')}>로그인</HeaderBtn>
         ) : (userRole === 'ROLE_ADMIN') ? (
         /* 어드민 */
-        <ButtonGroup>
-          <HeaderBtn onClick={() => navigate('/admin')}>관리자 인증</HeaderBtn>
-          <HeaderBtn onClick={() => handleLogout()}>로그아웃</HeaderBtn>
-        </ButtonGroup>) : 
+        <AdminHeader handleLogout={handleLogout}/>
+        ) : 
         (userRole === 'ROLE_MANAGER') ? (
         /* 관리자 */
-        <ButtonGroup>
-          <HeaderBtn onClick={() => navigate('/serverResources')}>서버 리소스</HeaderBtn>
-          <HeaderBtn onClick={() => navigate('/dashboard')}>대시보드</HeaderBtn>
-          <HeaderBtn onClick={() => handleLogout()}>로그아웃</HeaderBtn>
-        </ButtonGroup>) : (
+        <ManagerHeader handleLogout={handleLogout}/>
+        ) : (
         /* 학생 */
-        <ButtonGroup>
-          <HeaderBtn onClick={() => navigate('/dashboard')}>대시보드</HeaderBtn>
-          <HeaderBtn onClick={() => handleLogout()}>로그아웃</HeaderBtn>
-        </ButtonGroup>)
+        <StudentHeader handleLogout={handleLogout}/>
+        )
       }
       </div>
     </HeaderContent>
@@ -79,9 +75,4 @@ const HeaderBtn = styled.button`
   &:hover{
     background-color: #2da4b3;
   }
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
