@@ -1,38 +1,49 @@
 import { List } from "@mui/material";
+import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
+import { baseUrl } from "../../../Atoms";
+import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 
 const LectureHome = () => {
+  const [BASEURL,] = useRecoilState(baseUrl);
+  const [lectureDetail, setLectureDetail] = useState({
+    lectureName: "Web Programing",
+    introducing:"웹프 강의 입니다. "
+  });
+
   const [studentList, setStudentList] = useState([
     {
-      studentID: 123123,
+      id: 1,
+      name: '강동현',
+      studentId: 2018010837,
     },
     {
-      studentID: 123124,
-    },
-    {
-      studentID: 123125,
-    },
-    {
-      studentID: 123126,
-    },
-    {
-      studentID: 123127,
-    },
-    {
-      studentID: 123128,
+      id: 2,
+      name: '이건호',
+      studentId: 2018010836,
     },
   ]);
+
+  const loadLectureDetail = () => {
+    try{
+      axios.get(BASEURL + '/lecture/detail?id=1').then((response)=>console.log(response));
+    } catch (error) {
+      console.error(error);
+    };
+  }
+
+  useEffect(()=>{
+    loadLectureDetail();
+  },[BASEURL]);
+
   return (
     <Content>
       <Top>
-        <Title>웹 프로그래밍</Title>
+        <Title>{lectureDetail?.lectureName}</Title>
         <Info>
-          컴퓨터 과학 전공자로서 알아야 할 웹프로그래밍 기초 내용으로 클라이언트
-          중심의 프로그래밍 영역인 HTML, CSS, 자바스크립트를 기본으로 사용하는
-          법을 배운다. HTML5에 기반을 둔 콘텐츠 작성 방법, 콘텐츠의 스타일을
-          지정하는 CSS3, 자바스크립트 학습을 통해 동적인 웹페이지를 구축한다.
-          또한, 자바스크립트를 서버에서 사용하기 위해 node와 express를 학습한다.
+          {lectureDetail?.introducing}
         </Info>
       </Top>
       <Bottom>
@@ -44,9 +55,9 @@ const LectureHome = () => {
         <List sx={{ overflow: "auto", maxHeight: 300 }}>
           {studentList?.map((item) => {
             return (
-              <Student key={item.studentID}>
+              <Student key={item.id}>
                 <StudentName>{item?.name}</StudentName>
-                <StudentID>{item?.studentID}</StudentID>
+                <StudentID>{item?.studentId}</StudentID>
               </Student>
             );
           })}
