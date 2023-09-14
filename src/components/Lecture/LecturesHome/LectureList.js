@@ -1,32 +1,58 @@
 import styled from "styled-components";
 import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import { baseUrl } from "../../../Atoms";
+import { useRecoilState } from "recoil";
+import { useState } from "react";
 
 const LectureList = () => {
   const navigate = useNavigate();
+  const [BASEURL,] = useRecoilState(baseUrl);
+  const [lectureList,setLectureList] = useState([
+    {
+      lectureId: 1,
+      lectureName: "Web Programming",
+      noticeCount: 0
+    },
+    {
+      lectureId: 2,
+      lectureName: "Comprehensive Design",
+      noticeCount: 2
+    },
+    {
+      lectureId: 3,
+      lectureName: "Software Programming",
+      noticeCount: 1
+    },
+  ]);
+
+  const loadLectures = () => {
+    try{
+      axios.get(BASEURL + '/lecture?departmentId=1').then((response)=>console.log(response));
+    } catch (error) {
+      console.error(error);
+    };
+  }
+
+  useEffect(()=>{
+    loadLectures();
+  },[BASEURL]);
+
   return (
     <List>
-      <Lecture>
-        <Title>Web Programming</Title>
-        <Detail></Detail>
-        <LectureBtn onClick={()=>navigate('/123')}>
-          과목 홈 바로가기 <BsArrowRight size={24} />
-        </LectureBtn>
-      </Lecture>
-      <Lecture>
-        <Title>Comprehensive Design PBL</Title>
-        <Detail></Detail>
-        <LectureBtn onClick={()=>navigate('/123')}>
-          과목 홈 바로가기 <BsArrowRight size={24} />
-        </LectureBtn>
-      </Lecture>
-      <Lecture>
-        <Title>Software Programing</Title>
-        <Detail></Detail>
-        <LectureBtn onClick={()=>navigate('/123')}>
-          과목 홈 바로가기 <BsArrowRight size={24} />
-        </LectureBtn>
-      </Lecture>
+      {lectureList.map((i)=>{
+        return(
+          <Lecture key={i?.lectureId}>
+            <Title>{i.lectureName}</Title>
+            <Detail></Detail>
+            <LectureBtn onClick={()=>navigate(`/${i?.lectureId}`)}>
+              과목 홈 바로가기 <BsArrowRight size={24} />
+            </LectureBtn>
+          </Lecture>
+        )
+      })}
       <CreateLectureBtn onClick={()=>navigate('/createLecture')}>강의 생성하기 +</CreateLectureBtn>
     </List>
   );
