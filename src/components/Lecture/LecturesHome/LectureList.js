@@ -46,7 +46,12 @@ const LectureList = () => {
         return(
           <Lecture key={i?.lectureId}>
             <Title>{i.lectureName}</Title>
-            <Detail></Detail>
+            <Todos>
+              <Todo>
+                <div>공지</div>
+                <div style={{color:'silver'}}>{i?.noticeCount}</div>
+              </Todo>
+            </Todos>
             <LectureBtn onClick={()=>navigate(`/${i?.lectureId}`)}>
               과목 홈 바로가기 <BsArrowRight size={24} />
             </LectureBtn>
@@ -83,18 +88,27 @@ const Lecture = styled.div`
 const Title = styled.div`
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 25%;
   padding-left: 20px;
   font-size: 24px;
+  border-right: 1px solid black;
 `;
 
-const Detail = styled.div`
+const Todos = styled.div`
   display: flex;
+  width: 60%;
+  margin-left: 30px;
+`;
+
+const Todo = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 55%;
+  font-size: 18px;
 `;
 
 const LectureBtn = styled.div`
+  float: right;
   cursor: pointer;
   display: flex;
   justify-content: center;
