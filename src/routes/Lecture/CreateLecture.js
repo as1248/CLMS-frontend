@@ -2,11 +2,10 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import SelectServer from "../../components/Lecture/CreateLecture/SelectServer";
 import LectureName from "../../components/Lecture/CreateLecture/LectureName";
-import { useNavigate } from "react-router-dom";
 import LectureIntroduction from "../../components/Lecture/CreateLecture/LectureIntroduction";
+import CreateLectureBtn from "../../components/Lecture/CreateLecture/CreateLectureBtn";
 
 const CreateLecture = () => {
-  const navigate = useNavigate();
   return (
     <>
       <Header />
@@ -16,12 +15,8 @@ const CreateLecture = () => {
           <SelectServer />
           <LectureName />
           <LectureIntroduction />
+          <CreateLectureBtn/>
         </Box>
-        <Bottom>
-          <CreateBtn onClick={() => navigate("/lecturesHome")}>
-            생성하기 +
-          </CreateBtn>
-        </Bottom>
       </Content>
     </>
   );
@@ -47,20 +42,4 @@ const Box = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 5% 0;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const CreateBtn = styled.div`
-  cursor: pointer;
-  width: 15%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border-radius: 25px;
 `;
