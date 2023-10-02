@@ -4,27 +4,20 @@ import axios from 'axios';
 import { baseUrl } from "../../Atoms";
 import { useRecoilState } from "recoil";
 
-const SelectDept = ({ universityId: initialUniversityId, setDeptStu, ...props }) => {
+const SelectDept = ({ universityId = '1', setDeptStu}) => {
   const [BASEURL,] = useRecoilState(baseUrl);
   const [departments, setDepartments] = useState([]);
-  const [universityId, setUniversityId] = useState(''); 
-
-  useEffect(() => {
-    if (initialUniversityId) {
-        setUniversityId(initialUniversityId);
+  
+  const fetchDepartments = async () => {
+    try {
+      const response = await axios.get(BASEURL+'/register/departments?universityId='+universityId);
+      setDepartments(response.data.departments);
+    } catch (error) {
+      console.error(error);
     }
-}, [initialUniversityId]); 
+  };
 
   useEffect(() => {
-    const fetchDepartments = async () => {
-      try {
-        const response = await axios.get(BASEURL+'/register/departments?universityId='+universityId);
-        setDepartments(response.data.departments);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchDepartments();
   }, [universityId, BASEURL]); 
 
@@ -40,13 +33,12 @@ const SelectDept = ({ universityId: initialUniversityId, setDeptStu, ...props })
       required
       select
       fullWidth
-      onChange={handleDepartmentChange} 
-      {...props}
+      onChange={handleDepartmentChange}
       margin="normal"
     >
-      {departments.map((department) => (
-        <MenuItem key={department.id} value={department.name}>
-          {department.name}
+      {departments?.map((department) => (
+        <MenuItem key={department?.id} value={department?.name}>
+          {department?.name}
         </MenuItem>
       ))}
     </TextField>

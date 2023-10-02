@@ -4,7 +4,7 @@ import axios from 'axios';
 import { baseUrl } from "../../Atoms";
 import { useRecoilState } from "recoil";
 
-const SelectUniv = ({ setUnivStu, ...props }) => {
+const SelectUniv = ({setUnivStu}) => {
   const [BASEURL,] = useRecoilState(baseUrl);
   const [universities, setUniversities] = useState([]);
   
@@ -27,13 +27,12 @@ const SelectUniv = ({ setUnivStu, ...props }) => {
       required
       select
       fullWidth
-      {...props}
       margin="normal"
       onChange={handleUniversityChange} 
     >
-      {universities.map((university) => (
-        <MenuItem key={university.id} value={university.id}>
-          {university.name}
+      {universities?.map((university) => (
+        <MenuItem key={university?.id} value={university?.id}>
+          {university?.name}
         </MenuItem>
       ))}
     </TextField>
