@@ -17,6 +17,8 @@ import StudentAdministration from "./routes/Lecture/StudentAdministration";
 import LecturesHome from "./routes/Lecture/LecturesHome";
 import Notices from "./routes/Lecture/Notices";
 import Instances from "./routes/Lecture/Instances";
+import NoticeDetail from "./routes/Lecture/NoticeDetail";
+import CreateNotice from "./routes/Lecture/CreateNotice";
 
 const Router = () => {
   return (
@@ -29,33 +31,20 @@ const Router = () => {
         <Route path="/login/signUpAd" exact element={<SignUpAd />} />
         <Route path="/login/findPw" exact element={<FindPw />} />
         <Route path="/login/findPw/changePw" exact element={<ChangePw />} />
-        <Route
-          path="/studentAdministration"
-          exact
-          element={<StudentAdministration />}
-        />
+
+        <Route path="/studentAdministration" exact element={<StudentAdministration />} />
         <Route path="/serverResources" exact element={<ServerResources />} />
         <Route path="/createServer" exact element={<CreateServer />} />
         <Route path="/createLecture" exact element={<CreateLecture />} />
         <Route path="/lecturesHome" exact element={<LecturesHome />} />
         <Route path="/:lectureId" exact element={<Lecture />} />
         <Route path="/:lectureId/notice" exact element={<Notices />} />
+        <Route path="/:lectureId/notice/createNotice" exact element={<CreateNotice />} />
+        <Route path="/:lectureId/notice/:noticeId" exact element={<NoticeDetail />} />
         <Route path="/:lectureId/instances" exact element={<Instances />} />
-        <Route
-          path="/:lectureId/instanceDetail"
-          exact
-          element={<InstanceDetail />}
-        />
-        <Route
-          path="/:lectureId/instanceDetail/inboundRules"
-          exact
-          element={<InboundRules />}
-        />
-        <Route
-          path="/:lectureId/instanceDetail/createInstance"
-          exact
-          element={<CreateInstance />}
-        />
+        <Route path="/:lectureId/instanceDetail" exact element={<InstanceDetail />} />
+        <Route path="/:lectureId/instanceDetail/inboundRules" exact element={<InboundRules />} />
+        <Route path="/:lectureId/instanceDetail/createInstance" exact element={<CreateInstance />} />
       </Routes>
     </BrowserRouter>
   );
