@@ -3,12 +3,9 @@ import { redirect, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import InboundRule from "./InboundRule";
 import axios from "axios";
-import { useRecoilState } from "recoil";
-import { baseUrl } from "../../../Atoms";
 import NewInboundRule from "./NewInboundRule";
 
 const EditInboundRules = () => {
-    const [BASEURL,] = useRecoilState(baseUrl);
     const navigate = useNavigate();
     const {instanceId} = useParams();
     const [number,setNumber] = useState(1);
@@ -36,7 +33,7 @@ const EditInboundRules = () => {
     const saveInboundRules = () => {
       if(allValidate){
         try {
-          axios.put(BASEURL + `/instances/inbounds/setting`, reqData).then((response)=> console.log(response));
+          axios.put(`/instances/inbounds/setting`, reqData).then((response)=> console.log(response));
         } catch (error) {
           console.error(error);
         }
@@ -49,7 +46,7 @@ const EditInboundRules = () => {
     //인바운드 규칙 리스트 불러오기
     const loadInboundRules = () => {
         try {
-          axios.get(BASEURL + `/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setData(response?.data?.inbounds));
+          axios.get(`/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setData(response?.data?.inbounds));
         } catch (error) {
           console.error(error);
         }
@@ -79,7 +76,7 @@ const EditInboundRules = () => {
 
     useEffect(()=>{
       loadInboundRules();
-    },[BASEURL, instanceId]);
+    },[instanceId]);
 
     return (
         <>

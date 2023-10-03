@@ -6,31 +6,28 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
-import { useRecoilState } from "recoil";
-import { baseUrl } from "../../Atoms";
 
 //인스턴스 없으면 인스턴스 생성 버튼
 const InstanceDetail = () => {
-  const [BASEURL,] = useRecoilState(baseUrl);
   const [instanceDetail,setInstanceDetail] = useState();
   const [domainName,setDomainName] = useState('');
   const {instanceId} = useParams();
   //인스턴스 상세
   useEffect(()=>{
       try {
-        axios.get(BASEURL + `/instances/detail?instanceId=${instanceId}`).then((response)=> setInstanceDetail(response.data));
+        axios.get(`/instances/detail?instanceId=${instanceId}`).then((response)=> setInstanceDetail(response.data));
       } catch (error) {
         console.error(error);
       }
-  },[instanceId, BASEURL]);
+  },[instanceId]);
   //인스턴스 도메인
   useEffect(()=>{
       try {
-        axios.get(BASEURL + `/instances/domain?instanceId=${instanceId}`).then((response)=> setDomainName(response.data.domainName));
+        axios.get(`/instances/domain?instanceId=${instanceId}`).then((response)=> setDomainName(response.data.domainName));
       } catch (error) {
         console.error(error);
       }
-  },[instanceId, BASEURL]);
+  },[instanceId]);
 
     return (
       <>

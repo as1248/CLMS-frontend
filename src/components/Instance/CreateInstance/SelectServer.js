@@ -2,11 +2,8 @@ import axios from "axios";
 import { MenuItem, Select } from "@mui/material";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { baseUrl } from "../../../Atoms";
 
 const SelectServer = ({data, setData, setHostname}) => {
-    const [BASEURL,] = useRecoilState(baseUrl);
     const departmentId = localStorage.getItem('departmentId');
     const [serverList,setServerList] = useState([]);
     const serverIdHandler = (event) => {
@@ -18,7 +15,7 @@ const SelectServer = ({data, setData, setHostname}) => {
       
     const loadServerList = () => {
         try {
-          axios.get(BASEURL + `/servers/management/list?departmentId=${departmentId}`).then((response)=> setServerList(response.data.servers));
+          axios.get(`/servers/management/list?departmentId=${departmentId}`).then((response)=> setServerList(response.data.servers));
         } catch (error) {
           console.error(error);
         }
@@ -26,7 +23,7 @@ const SelectServer = ({data, setData, setHostname}) => {
     
     useEffect(()=>{
         loadServerList();
-    },[BASEURL]);
+    },[]);
 
     return (
     <Content>

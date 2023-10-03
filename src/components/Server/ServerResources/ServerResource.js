@@ -3,13 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { List, ListItemButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRecoilState } from "recoil";
-import { baseUrl } from "../../../Atoms";
 import RamChart from "./RamChart";
 import DiskChart from "./DiskChart";
 
 const ServerResource = ({server,studentList,serverId}) => {
-    const [BASEURL,] = useRecoilState(baseUrl);
     const navigate = useNavigate();
     const [resources,setResources] = useState([]);
     const [connection, setConnection] = useState('');
@@ -18,17 +15,17 @@ const ServerResource = ({server,studentList,serverId}) => {
     useEffect(()=>{
         if(serverId !== '' && serverId !== undefined){
             try {
-              axios.get(BASEURL + `/instances/resource/server?serverId=${serverId}`).then((response)=> setResources(response.data.resultList));
+              axios.get(`/instances/resource/server?serverId=${serverId}`).then((response)=> setResources(response.data.resultList));
             } catch (error) {
               console.error(error);
             }
             try {
-               axios.get(BASEURL + `/servers/management/resources?serverId=${serverId}`).then((response)=> setConnection(response.data.connection));
+               axios.get(`/servers/management/resources?serverId=${serverId}`).then((response)=> setConnection(response.data.connection));
             } catch (error) {
                console.error(error);
             }
         }
-      },[serverId, BASEURL]);
+      },[serverId]);
     return (
         <>
         <ServerAddress>{server}</ServerAddress>

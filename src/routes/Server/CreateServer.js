@@ -4,12 +4,9 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import axios from "axios";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { baseUrl } from "../../Atoms";
 
 //post 요청 구현하고 페이지 전환 기능 추가하기
 const CreateServer = () => {
-  const [BASEURL] = useRecoilState(baseUrl);
   const navigate = useNavigate();
   const departmentId = localStorage.getItem("departmentId");
   const [serverData, setServerData] = useState({ departmentId });
@@ -78,7 +75,7 @@ const CreateServer = () => {
   const registerServer = () => {
     if (IPValidate && serverNameValidate && serverUserNamevalidate) {
       try {
-        axios.post(BASEURL + "/servers/register/new", serverData).then(
+        axios.post("/servers/register/new", serverData).then(
           setTimeout(() => {
             redirect("/lectureHome");
             navigate("/lectureHome");

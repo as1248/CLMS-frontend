@@ -3,11 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { baseUrl } from "../../../Atoms";
 
 const TabsContent = ({data, domainName, setDomainName}) => {
-  const [BASEURL,] = useRecoilState(baseUrl);
   const userRole = localStorage.getItem('userRole');
   const navigate = useNavigate();
   const [list,setList] = useState('detail');
@@ -30,7 +27,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
 
   const loadInboundRules = () => {
       try {
-        axios.get(BASEURL + `/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setInboundRules(response.data.inbounds));
+        axios.get(`/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setInboundRules(response.data.inbounds));
     } catch (error) {
       console.error(error);
     }
@@ -71,7 +68,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
   const saveDomain = () => {
       if(domainValidate){
         try {
-        axios.post(BASEURL + `/instances/domain`,{instanceId, domainName: newDomain})
+        axios.post(`/instances/domain`,{instanceId, domainName: newDomain})
         .then((response)=>{
           if(response.data.success){
             setDomainName(response.data.domainName);
@@ -88,7 +85,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
   const deleteDomain = () => {
       try {
         console.log(instanceId)
-        axios.post(BASEURL + `/instances/domain/remove`,{instanceId, domainName: newDomain})
+        axios.post(`/instances/domain/remove`,{instanceId, domainName: newDomain})
         .then((response)=>{
           if(response.data.success){
             setDomainName('');
@@ -102,7 +99,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
   const changeOwner = () => {
       if(ownerValidate){
         try {
-        axios.patch(BASEURL + `/instances/owner`,{
+        axios.patch(`/instances/owner`,{
           data: {username: owner, instanceId}
           }).then((response)=> console.log(response));
       } catch (error) {
@@ -115,7 +112,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
   //인바운드 규칙 리스트 불러오기
   useEffect(()=>{
     loadInboundRules();
-  },[BASEURL, instanceId]);
+  },[instanceId]);
     return (
         <>
           {list === 'detail' ? 

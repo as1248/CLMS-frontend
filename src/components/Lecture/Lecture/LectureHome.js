@@ -2,12 +2,9 @@ import { List } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
-import { baseUrl } from "../../../Atoms";
-import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 
 const LectureHome = () => {
-  const [BASEURL,] = useRecoilState(baseUrl);
   const [lectureDetail, setLectureDetail] = useState({
     lectureName: "Web Programing",
     introducing:"웹프 강의 입니다. "
@@ -28,7 +25,7 @@ const LectureHome = () => {
 
   const loadLectureDetail = () => {
     try{
-      axios.get(BASEURL + '/lecture/detail?id=1').then((response)=>console.log(response));
+      axios.get('/lecture/detail?id=1').then((response)=>console.log(response));
     } catch (error) {
       console.error(error);
     };
@@ -36,7 +33,7 @@ const LectureHome = () => {
 
   useEffect(()=>{
     loadLectureDetail();
-  },[BASEURL]);
+  },[]);
 
   return (
     <Content>

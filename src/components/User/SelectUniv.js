@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, MenuItem } from '@mui/material';
 import axios from 'axios';
-import { baseUrl } from "../../Atoms";
-import { useRecoilState } from "recoil";
 
 const SelectUniv = ({setUnivStu}) => {
-  const [BASEURL,] = useRecoilState(baseUrl);
   const [universities, setUniversities] = useState([]);
   
   useEffect(() => {
-    axios.get(BASEURL+'/register/universities')
+    axios.get('/register/universities')
       .then(response => {
         setUniversities(response.data.universities);
       })
       .catch(error => {
         console.error(error);
       });
-  }, [BASEURL]);
+  }, []);
 
   const handleUniversityChange = (event) => {
     setUnivStu(event.target.value);

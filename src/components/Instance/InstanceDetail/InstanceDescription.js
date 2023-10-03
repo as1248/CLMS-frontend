@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { useParams, useNavigate, redirect } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { baseUrl } from "../../../Atoms";
 
 //userId, address(ip주소) 받아오는 기능 추가하기
 const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, address=1}) => {
-  const [BASEURL,] = useRecoilState(baseUrl);
   const navigate = useNavigate();
   const [IOption, setIOption] = useState(false);
   //URL 바뀌어서 instanceId 다른데서 받기
@@ -15,7 +12,7 @@ const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, add
   //인스턴스 시작
   const instanceStart = () => {
     try{
-      axios.post(BASEURL + '/instances/start', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'running'})));
+      axios.post('/instances/start', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'running'})));
     } catch (error) {
       console.error(error);
     };
@@ -24,7 +21,7 @@ const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, add
   //인스턴스 중지
   const instanceStop = () => {
     try{
-      axios.post(BASEURL + '/instances/stop', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'stopped'})));
+      axios.post('/instances/stop', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'stopped'})));
     } catch (error) {
       console.error(error);
     };
@@ -33,7 +30,7 @@ const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, add
   //인스턴스 재부팅
   const instanceRestart = () => {
     try{
-      axios.post(BASEURL + '/instances/restart', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'running'})));
+      axios.post('/instances/restart', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'running'})));
     } catch (error) {
       console.error(error);
     };
@@ -42,7 +39,7 @@ const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, add
   //인스턴스 종료
   const instanceDelete = () => {
     try{
-      axios.post(BASEURL + '/instances/delete', {instanceId}).then(redirect('/dashboard'));
+      axios.post('/instances/delete', {instanceId}).then(redirect('/dashboard'));
     } catch (error) {
       console.error(error);
     };

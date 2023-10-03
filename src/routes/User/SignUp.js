@@ -11,8 +11,6 @@ import TextField from '@mui/material/TextField';
 import VerifyEmail from '../../components/User/VerifyEmail';
 import SelectUniv from '../../components/User/SelectUniv';
 import SelectDept from '../../components/User/SelectDept';
-import { useRecoilState } from "recoil";
-import {baseUrl} from "../../Atoms"
 import axios from 'axios';
 
 
@@ -24,7 +22,6 @@ const User = {
 }
 
 const SignUp = () => {
-  const [BASEURL,] = useRecoilState(baseUrl);
   const [NumberValid, setNumberValid] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -76,7 +73,7 @@ const SignUp = () => {
     if(pw !== pw2){
       alert('비밀번호를 다시 확인해주세요.');
     } else {
-      axios.post(BASEURL+'/register/student', { username: email, password: pw, universityId: UnivStu , departmentId: DeptStu,  })
+      axios.post('/register/student', { username: email, password: pw, universityId: UnivStu , departmentId: DeptStu,  })
         .then(response => {
           navigate('/login');
         })
@@ -106,7 +103,7 @@ const SignUp = () => {
       } else {
         setShowEmailField(true);
         setSendButtonDisabled(true);
-        axios.get(BASEURL+'/register/verification',
+        axios.get('/register/verification',
                     { params: { email: email } },
                     { withCredentials: true })
           .then(response => {

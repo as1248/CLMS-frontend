@@ -3,13 +3,10 @@ import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-import { baseUrl } from "../../../Atoms";
-import { useRecoilState } from "recoil";
 import { useState } from "react";
 
 const LectureList = () => {
   const navigate = useNavigate();
-  const [BASEURL,] = useRecoilState(baseUrl);
   const [lectureList,setLectureList] = useState([
     {
       lectureId: 1,
@@ -30,7 +27,7 @@ const LectureList = () => {
 
   const loadLectures = () => {
     try{
-      axios.get(BASEURL + '/lecture?departmentId=1').then((response)=>console.log(response));
+      axios.get('/lecture?departmentId=1').then((response)=>console.log(response));
     } catch (error) {
       console.error(error);
     };
@@ -38,7 +35,7 @@ const LectureList = () => {
 
   useEffect(()=>{
     loadLectures();
-  },[BASEURL]);
+  },[]);
 
   return (
     <List>
