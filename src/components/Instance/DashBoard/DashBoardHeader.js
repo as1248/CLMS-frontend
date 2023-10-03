@@ -26,8 +26,8 @@ const Title = styled.div`
 
 const InstanceCreate = styled.div`
   cursor: pointer;
-  padding: 6px 15px;
-  height: 25px;
+  text-align: center;
+  height: 35px;
   background-color: #3eb5c4;
   border-radius: 20px;
   color: white;
