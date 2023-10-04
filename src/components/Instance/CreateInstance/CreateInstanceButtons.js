@@ -1,10 +1,11 @@
 import axios from "axios";
 import styled from "styled-components";
-import { useNavigate, redirect } from "react-router-dom";
+import { useNavigate, redirect, useParams } from "react-router-dom";
 
 //인스턴스 생성 후, 취소 버튼 눌렀을 때 url 수정하기
 const CreateInstanceButtons = ({data, validate}) => {
   const navigate = useNavigate();
+  const { lectureId } = useParams();
     //인스턴스 생성
   const createInstance = () => {
       if(validate){
@@ -22,7 +23,7 @@ const CreateInstanceButtons = ({data, validate}) => {
   }
     return (
     <Btn>
-        <Cancel onClick={() => navigate("/dashboard")}>취소</Cancel>
+        <Cancel onClick={() => navigate(`/${lectureId}/instanceDetail`)}>취소</Cancel>
         <Create onClick={() => createInstance()}>인스턴스 생성</Create> 
     </Btn>);
   
