@@ -26,7 +26,6 @@ const CancelBtn = styled.div`
   margin-right: 40px;
   cursor: pointer;
   padding: 4px 15px;
-  border: 3px solid #3eb5c4;
   border-radius: 20px;
   font-weight: 600;
   &:hover{

@@ -41,7 +41,7 @@ const Btn = styled.div`
 
 const Create = styled.div`
   cursor: pointer;
-  padding: 6px 15px;
+  padding: 5px 15px;
   height: 35px;
   background-color: #3eb5c4;
   border-radius: 20px;
@@ -57,6 +57,8 @@ const Create = styled.div`
 const Cancel = styled.div`
   cursor: pointer;
   padding: 4px 15px;
+  font-weight: 600;
+  border-radius: 20px;
   &:hover{
     background-color: white;
     color: black;

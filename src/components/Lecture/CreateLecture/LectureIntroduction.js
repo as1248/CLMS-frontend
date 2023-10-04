@@ -33,6 +33,8 @@ const LectureIntroduction = () => {
         helperText="강의 소개를 입력해주세요"
         error={!validate}
         size="small"
+        multiline
+        rows={4}
       />
     </Content>
   );
