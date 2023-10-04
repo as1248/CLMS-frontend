@@ -30,8 +30,8 @@ const CreateInstance = () => {
           <Box>
             <InstanceName setData={setData} data={data} validate={nameValidate} setValidate={setNameValidate}/>
             <Storage setData={setData} data={data}/>
-            <SetKeyPair setData={setData} data={data} validate={keyPairValidate} setValidate={setKeyPairValidate} hostname={hostname}/>
             <MachineImage setData={setData} data={data}/>
+            <SetKeyPair setData={setData} data={data} validate={keyPairValidate} setValidate={setKeyPairValidate} hostname={hostname}/>
             <CreateInstanceButtons data={data} validate={nameValidate&&keyPairValidate}/>
           </Box>
         </Content>  
