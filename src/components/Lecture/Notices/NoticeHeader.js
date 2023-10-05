@@ -7,10 +7,7 @@ const NoticeHeader = ({setDeleteNotice}) => {
     return (
     <Content>
       <Title>공지사항</Title>
-      <Buttons>
-        <Button variant='contained' color='error' onClick={()=>setDeleteNotice((prev)=>!prev)}>삭제</Button>
-        <Button variant='contained' onClick={()=>navigate('createNotice')}>글쓰기</Button>
-      </Buttons>
+      <Button variant='contained' onClick={()=>navigate('createNotice')} style={{width:'80px' ,height:'40px'}}>글쓰기</Button>
     </Content>
   );
 };
@@ -26,12 +23,4 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 30px;
-`;
-
-const Buttons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: 40px;
-  width: 15%;
-
 `;

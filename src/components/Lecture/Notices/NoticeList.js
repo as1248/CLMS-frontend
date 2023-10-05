@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { List } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import NoticeHeader from "./NoticeHeader";
-import Checkbox from "@mui/material/Checkbox";
-import { useEffect } from "react";
+import axios from 'axios';
 
 const NoticeList = () => {
   const navigate = useNavigate();
-  const [deleteNotice, setDeleteNotice] = useState(false);
   const [noticeList, setNoticeList] = useState([
     {
       noticeId: 1,
@@ -26,31 +24,29 @@ const NoticeList = () => {
       lectureId: 1,
     },
   ]);
-  
-  const [deleteList, setDeleteList] = useState([]);
-  const handleChange = (event) => {
-    const value = event.target.value;
-    if(deleteList.includes(value)){
-      setDeleteList(prev=>prev.filter(i=>i!==value));
-    }else{
-      setDeleteList(prev=>[...prev, value]);
-    }
-  };
-  useEffect(()=>{
-    console.log(deleteList);
-  },[deleteList]);
 
+  const loadNotices = () => {
+    try{
+      axios.get('/lecture/notice/list?id=2').then((response)=>console.log(response));
+    } catch (error) {
+      console.error(error);
+    };
+  }
+
+  useEffect(()=>{
+    loadNotices();
+  },[]);
+
+//공지사항 상세로 페이지 넘어갈 때 배열에서 해당 공지 내용 navigate에 전달하기
   return (
     <Content>
       <NList>
-      <NoticeHeader setDeleteNotice={setDeleteNotice}/>
+      <NoticeHeader/>
         {<List style={{maxHeight: 600, overflow: "auto"}}>
             {noticeList?.sort((a,b)=>b.noticeId-a.noticeId)?.map((item) => {
               return (
-              <Box>
-                {deleteNotice && <Checkbox onChange={handleChange} value={item?.noticeId} style={{marginRight:'20px'}}/>}
                 <Notice key={item?.noticeId}>
-                    <Left onClick={()=>navigate(`${item.noticeId}`)}>
+                    <Left onClick={()=>navigate(`${item.noticeId}`,{state:{item}})}>
                       <NoticeTitle>{item.title}</NoticeTitle>
                       <NoticeContent>새 공지사항 입니다.</NoticeContent>
                     </Left>
@@ -59,7 +55,6 @@ const NoticeList = () => {
                     <Date>2023년 9월 9일 오후 4:02</Date>
                   </Right>
                 </Notice>
-              </Box>
               );
             })}
           </List>}
@@ -79,11 +74,6 @@ const NList = styled.div`
   background-color: white;
   padding: 2%;
   `;
-
-const Box = styled.div`
-  display: flex;
-  align-items: center;
-`;
 
 const Notice = styled.div`
   display: flex;
