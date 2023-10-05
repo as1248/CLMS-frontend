@@ -11,8 +11,8 @@ const CreateInstanceButtons = ({data, validate}) => {
       if(validate){
         try{
         axios.post('/instances/creation', data).then(setTimeout(()=>{
-        redirect('/dashboard');
-        navigate('/dashboard');
+        redirect(`/${lectureId}/instanceDetail`);
+        navigate(`/${lectureId}/instanceDetail`);
         },1000));
       } catch (error) {
         console.error(error);
