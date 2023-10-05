@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import styled from "styled-components";
 
-const LectureIntroduction = () => {
+const LectureIntroduction = ({data, setData}) => {
   const [validate, setValidate] = useState(true);
   //유효성 검사
   const validation = (str) => {
@@ -11,6 +11,7 @@ const LectureIntroduction = () => {
   };
   const nameHandler = (event) => {
     const value = event.target.value;
+    setData({...data,introducing: value})
     if (value.length >= 2 && value.length <= 50) {
       for (let i = 0; i < value.length; i++) {
         if (validation(value[i])) {

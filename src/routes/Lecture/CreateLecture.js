@@ -4,18 +4,22 @@ import SelectServer from "../../components/Lecture/CreateLecture/SelectServer";
 import LectureName from "../../components/Lecture/CreateLecture/LectureName";
 import LectureIntroduction from "../../components/Lecture/CreateLecture/LectureIntroduction";
 import CreateLectureBtn from "../../components/Lecture/CreateLecture/CreateLectureBtn";
+import { useState } from "react";
 
 const CreateLecture = () => {
+  const [data, setData] = useState({
+    serverId: 1,
+  });
   return (
     <>
       <Header />
       <Content>
         <Title>강좌 생성</Title>
         <Box>
-          <SelectServer />
-          <LectureName />
-          <LectureIntroduction />
-          <CreateLectureBtn/>
+          <SelectServer data={data} setData={setData}/>
+          <LectureName data={data} setData={setData}/>
+          <LectureIntroduction data={data} setData={setData}/>
+          <CreateLectureBtn data={data}/>
         </Box>
       </Content>
     </>
