@@ -1,16 +1,33 @@
 import styled from "styled-components";
 import NoticeButton from "./NoticeButton";
+import { Button } from "@mui/material";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const Notice = () => {
+  const { state } = useLocation();
+  console.log(state.item);
+
+  const deleteNotice = () => {
+    if(window.confirm('해당 공지사항을 삭제하시겠습니까?')){
+      axios.delete('/lecture/notice?id=213').then((response)=>console.log(response));
+    }else{
+      return;
+    }
+  }
+
   return (
     <Content>
       <Box>
-        <NoticeButton/>
+        <Btns>
+          <NoticeButton/>
+          <Button variant="outlined" color="error" onClick={deleteNotice}>삭제</Button>
+        </Btns>
         <Container>
           <ManageBar/>
           <Detail>
-            <Title>공지 1</Title>
-            <div>첫 번째 공지사항입니다.</div>
+            <Title>{state.item.title}</Title>
+            <div>공지사항입니다.</div>
           </Detail>
         </Container>
       </Box>
@@ -28,6 +45,13 @@ const Content = styled.div`
 const Box = styled.div`
   background-color: white;
   padding: 3%;
+`;
+
+const Btns = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 `;
 
 const Container = styled.div`
