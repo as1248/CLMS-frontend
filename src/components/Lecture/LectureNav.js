@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const LectureNav = () => {
+  const userRole = localStorage.getItem('userRole');
   const navigate = useNavigate();
   const [fold, setFold] = useState(false);
   const { lectureId } = useParams();
@@ -21,9 +22,16 @@ const LectureNav = () => {
             <NavItem onClick={() => navigate(`/${lectureId}/notice`)}>
               <FaBullhorn size={24} />
             </NavItem>
-            <NavItem onClick={() => navigate(`/${lectureId}/instances`)}>
-              <GoContainer size={24} />
-            </NavItem>
+            {userRole === 'ROLE_MANAGER' ? (
+              <NavItem onClick={() => navigate(`/${lectureId}/instances`)}>
+                <GoContainer size={24} />
+              </NavItem>
+            ) : (
+              <NavItem onClick={() => navigate(`/${lectureId}/instanceDetail`)}>
+                <GoContainer size={24} />
+              </NavItem>
+            )}
+            
           </div>
           <LastNavItem onClick={() => setFold(false)}>
             <BsArrowRight size={32} />
@@ -41,10 +49,17 @@ const LectureNav = () => {
               <FaBullhorn size={32} />
               <div>공지사항</div>
             </NavItem>
-            <NavItem onClick={() => navigate(`/${lectureId}/instances`)}>
-              <GoContainer size={32} />
-              <div>인스턴스</div>
-            </NavItem>
+            {userRole === 'ROLE_MANAGER' ? (
+              <NavItem onClick={() => navigate(`/${lectureId}/instances`)}>
+                <GoContainer size={32} />
+                <div>인스턴스</div>
+              </NavItem>
+            ) : (
+              <NavItem onClick={() => navigate(`/${lectureId}/instanceDetail`)}>
+                <GoContainer size={32} />
+                <div>인스턴스</div>
+              </NavItem>
+            )}
           </div>
           <LastNavItem onClick={() => setFold(true)}>
             <BsArrowLeft size={32} />
