@@ -4,18 +4,13 @@ import axios from 'axios';
 
 const SelectDept = ({ universityId = 1, setDeptStu}) => {
   const [departments, setDepartments] = useState([]);
-  
-  const fetchDepartments = async () => {
+
+  useEffect(() => {
     try {
-      const response = await axios.get(`/register/departments?universityId=${universityId}`);
-      setDepartments(response.data.departments);
+      axios.get(`/register/departments?universityId=${universityId}`).then(response=>setDepartments(response.data.departments));
     } catch (error) {
       console.error(error);
     }
-  };
-
-  useEffect(() => {
-    fetchDepartments();
   }, [universityId]); 
 
   const handleDepartmentChange = (event) => {

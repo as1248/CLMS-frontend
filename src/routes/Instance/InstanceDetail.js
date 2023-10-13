@@ -16,7 +16,7 @@ const InstanceDetail = () => {
 //인스턴스 id
   useEffect(()=>{
     try {
-      axios.get(`/instances/id?lectureId=${lectureId}`).then((response)=> console.log(response.data));
+      axios.get(`/instances/id?lectureId=${lectureId}`).then((response)=> setInstanceId(response.data.instanceId));
     } catch (error) {
       console.error(error);
     }

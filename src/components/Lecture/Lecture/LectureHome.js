@@ -3,12 +3,11 @@ import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const LectureHome = () => {
-  const [lectureDetail, setLectureDetail] = useState({
-    lectureName: "Web Programing",
-    introducing:"웹프 강의 입니다. "
-  });
+  const { lectureId } = useParams();
+  const [lectureDetail, setLectureDetail] = useState({});
 
   const [studentList, setStudentList] = useState([
     {
@@ -23,17 +22,21 @@ const LectureHome = () => {
     },
   ]);
 
-  const loadLectureDetail = () => {
+  useEffect(()=>{
     try{
-      axios.get('/lecture/detail?id=1').then((response)=>console.log(response));
+      axios.get(`/lecture/detail?id=${lectureId}`).then((response)=>setLectureDetail(response.data));
     } catch (error) {
       console.error(error);
     };
-  }
+  },[lectureId]);
 
   useEffect(()=>{
-    loadLectureDetail();
-  },[]);
+    try{
+      axios.get(`/lecture/student?id=${lectureId}`).then((response)=>console.log(response.data.studentList));
+    } catch (error) {
+      console.error(error);
+    };
+  },[lectureId]);
 
   return (
     <Content>
@@ -54,7 +57,7 @@ const LectureHome = () => {
             return (
               <Student key={item.id}>
                 <StudentName>{item?.name}</StudentName>
-                <StudentID>{item?.studentId}</StudentID>
+                <StudentID>{item?.studentId.toString().slice(0,4)+'******'}</StudentID>
               </Student>
             );
           })}

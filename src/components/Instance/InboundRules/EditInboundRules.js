@@ -44,14 +44,6 @@ const EditInboundRules = () => {
         alert('올바른 포트를 입력해 주세요.');
       }
     };
-    //인바운드 규칙 리스트 불러오기
-    const loadInboundRules = () => {
-        try {
-          axios.get(`/instances/inbounds/list?instanceId=${state?.instanceId}`).then((response)=> setData(response?.data?.inbounds));
-        } catch (error) {
-          console.error(error);
-        }
-    }
     //포트 입력에 대한 유효성 검사
     useEffect(()=>{
       const newArr = newData?.map((i)=>{
@@ -76,7 +68,11 @@ const EditInboundRules = () => {
 
 
     useEffect(()=>{
-      loadInboundRules();
+      try {
+        axios.get(`/instances/inbounds/list?instanceId=${state?.instanceId}`).then((response)=> setData(response?.data?.inbounds));
+      } catch (error) {
+        console.error(error);
+      }
     },[]);
 
     return (
