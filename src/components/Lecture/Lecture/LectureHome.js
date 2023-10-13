@@ -3,12 +3,13 @@ import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 const LectureHome = () => {
   const { lectureId } = useParams();
   const [lectureDetail, setLectureDetail] = useState({});
-
+  const navigate = useNavigate();
   const [studentList, setStudentList] = useState([
     {
       id: 1,
@@ -47,7 +48,10 @@ const LectureHome = () => {
         </Info>
       </Top>
       <Bottom>
-        <Title>학생 목록</Title>
+        <Header>
+          <Title>학생 목록</Title>
+          <Button variant="contained" onClick={()=>navigate('approveEnrolment')} style={{height:'35px'}}>수강신청 목록</Button>
+        </Header>
         <StudentHeader>
           <StudentName>이름</StudentName>
           <StudentID>학번</StudentID>
@@ -94,11 +98,17 @@ const Bottom = styled.div`
   padding: 2%;
 `;
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const Student = styled.div`
   display: flex;
   height: 50px;
   justify-content: space-between;
 `;
+
 const StudentHeader = styled(Student)`
   border-bottom: 1px solid black;
   margin-bottom: 30px;
