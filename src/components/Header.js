@@ -18,24 +18,26 @@ const Header = () => {
   
   return (
     <HeaderContent>
-      <HeaderLogo src={mainlogo} onClick={() => navigate('/')}/>
+      <HeaderLogo>
+        <Logo src={mainlogo} onClick={() => navigate('/')}/>
+        <div>CLMS</div>
+      </HeaderLogo>
       <div style={{marginRight:'50px'}}>
-      
-      {(userRole === null) ? (
-        /* 비로그인 상태 */
-        <HeaderBtn onClick={() => navigate('/login')}>로그인</HeaderBtn>
-        ) : (userRole === 'ROLE_ADMIN') ? (
-        /* 어드민 */
-        <AdminHeader handleLogout={handleLogout}/>
-        ) : 
-        (userRole === 'ROLE_MANAGER') ? (
-        /* 관리자 */
-        <ManagerHeader handleLogout={handleLogout}/>
-        ) : (
-        /* 학생 */
-        <StudentHeader handleLogout={handleLogout}/>
-        )
-      }
+        {(userRole === null) ? (
+          /* 비로그인 상태 */
+          <HeaderBtn onClick={() => navigate('/login')}>로그인</HeaderBtn>
+          ) : (userRole === 'ROLE_ADMIN') ? (
+          /* 어드민 */
+          <AdminHeader handleLogout={handleLogout}/>
+          ) : 
+          (userRole === 'ROLE_MANAGER') ? (
+          /* 관리자 */
+          <ManagerHeader handleLogout={handleLogout}/>
+          ) : (
+          /* 학생 */
+          <StudentHeader handleLogout={handleLogout}/>
+          )
+        }
       </div>
     </HeaderContent>
   );
@@ -55,10 +57,16 @@ const HeaderContent = styled.header`
   color: white;
 `;
 
-const HeaderLogo = styled.img`
+const HeaderLogo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Logo = styled.img`
   cursor: pointer;
   width: 100px;
   height: 50px;
+  object-fit: contain;
 `;
 
 const HeaderBtn = styled.button`
