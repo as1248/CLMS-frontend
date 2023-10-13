@@ -52,6 +52,7 @@ const DeleteRule = styled.td`
   border: 3px solid #3eb5c4;
   border-radius: 20px;
   text-align: center;
+  width: 80px;
   padding: 0 8px;
   font-weight: 600;
   &:hover{
