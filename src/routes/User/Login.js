@@ -14,6 +14,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../Atoms"
 import axios from 'axios';
 import Header from'../../components/Header';
+import { Cookies } from "react-cookie";
 
 const Login = () => {
   const [, setUserState] = useRecoilState(userState);
@@ -27,6 +28,8 @@ const Login = () => {
     type: 'password',
     visible: false
   })
+
+  const cookies = new Cookies();
 
   useEffect(() => {
     if (emailValid && pwValid) {
@@ -61,9 +64,11 @@ const Login = () => {
           const accessToken = response.headers.authorization;
           const userRole = response.data.role;
           const deptId = response.data.departmentId;
+          const refreshToken = response.data.refreshToken;
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('userRole', userRole);
           localStorage.setItem('departmentId', deptId);
+          cookies.set('refreshToken', refreshToken);
           setUserState(userRole);
           navigate('/');
         } else {
@@ -116,7 +121,7 @@ const Login = () => {
         alignItems: 'center',
       }}>
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-        <div>CSWS</div>
+        <div>CLMS</div>
         <TextField 
           value={email} 
           onChange={handleEmail} 
