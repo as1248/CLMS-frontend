@@ -6,15 +6,14 @@ import styled from "styled-components";
 const CreateNoticeButtons = ({data, setData}) => {
   const navigate = useNavigate();
   const {lectureId} = useParams();
+
   const postNotice = () => {
-    setData({...data, createdAt: Date.now()});
     try{
       axios.post('/lecture/notice', data).then(()=>navigate(`/${lectureId}/notice`));
     } catch (error) {
       console.error(error);
       console.log(data);
     }
-    
   }
 
   return (

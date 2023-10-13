@@ -7,9 +7,13 @@ import { useParams } from "react-router-dom";
 
 const CreateNoticeContent = () => {
   const { lectureId } = useParams();
+  const time = new Date();
+  const createdAt = `${time.getFullYear()}-${time.getMonth()+1}-${time.getDate()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
   const [data, setData] = useState({
-    lectureId
+    lectureId,
+    createdAt
   });
+
   return (
     <Content>
       <Box>
