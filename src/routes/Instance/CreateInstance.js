@@ -6,19 +6,17 @@ import SetKeyPair from "../../components/Instance/CreateInstance/SetKeyPair";
 import MachineImage from "../../components/Instance/CreateInstance/MachineImage";
 import Storage from "../../components/Instance/CreateInstance/Storage";
 import CreateInstanceButtons from "../../components/Instance/CreateInstance/CreateInstanceButtons";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const CreateInstance = () => {
-  const {state} = useLocation();
   //서버ID 없앨지 값 받아서 전달할지
+  const { lectureId } = useParams();
   const [data,setData] = useState({
     name: '',
     storage: '1G',
     os: '',
     keyName: '',
-    serverId: '',
-    userId: state.userId,
-    address: state.address,
+    lectureId,
   });
   const [nameValidate,setNameValidate] = useState(false);
   const [keyPairValidate,setKeyPairValidate] = useState(false);
