@@ -16,17 +16,6 @@ const TabsContent = ({data, domainName, setDomainName, instanceId=1}) => {
     return reg.test(str);
   };
  
-
-  const loadInboundRules = () => {
-    if(instanceId){
-      try {
-        axios.get(`/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setInboundRules(response.data.inbounds));
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-  
   const domainHandler = (event) => {
     const value = event.target.value;
     setNewDomain(value);
@@ -42,7 +31,7 @@ const TabsContent = ({data, domainName, setDomainName, instanceId=1}) => {
     }
   };
 
-  //요청 보낸 다음 기능 추가하기
+
   //도메인 변경
   const saveDomain = () => {
       if(domainValidate){
@@ -77,7 +66,13 @@ const TabsContent = ({data, domainName, setDomainName, instanceId=1}) => {
 
   //인바운드 규칙 리스트 불러오기
   useEffect(()=>{
-    loadInboundRules();
+    if(instanceId > 0){
+      try {
+        axios.get(`/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setInboundRules(response.data.inbounds));
+      } catch (error) {
+        console.error(error);
+      }
+    }
   },[instanceId]);
     return (
         <>
