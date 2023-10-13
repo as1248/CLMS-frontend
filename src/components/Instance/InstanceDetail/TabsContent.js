@@ -5,22 +5,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const TabsContent = ({data, domainName, setDomainName}) => {
-  const userRole = localStorage.getItem('userRole');
   const navigate = useNavigate();
   const [list,setList] = useState('detail');
   const [inboundRules, setInboundRules] = useState([]);
   const [newDomain,setNewDomain] = useState('');
-  const [owner,setOwner] = useState('');
   const {instanceId} = useParams();
   const [domainValidate,setDomainValidate] = useState(false);
-  const [ownerValidate,setOwnerValidate] = useState(false);
 
   const domainValidation = (str) => {
     const reg = /([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi;
-    return reg.test(str);
-  };
-  const ownerValidation = (str) => {
-    const reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     return reg.test(str);
   };
  
@@ -45,21 +38,6 @@ const TabsContent = ({data, domainName, setDomainName}) => {
       }
     }else {
       setDomainValidate(false);
-    }
-  };
-
-  const ownerHandler = (event) => {
-    const value = event.target.value;
-    setOwner(value);
-    if(ownerValidation(value)){
-      //정규표현식 만족하면
-      setOwnerValidate(true);
-      if(value.length < 8 || value.length > 253){
-        //글자수 만족 못하면
-        setOwnerValidate(false);
-      }
-    }else {
-      setOwnerValidate(false);
     }
   };
 
@@ -95,20 +73,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
       console.error(error);
     }
   };
-//소유자 변경 API
-  const changeOwner = () => {
-      if(ownerValidate){
-        try {
-        axios.patch(`/instances/owner`,{
-          data: {username: owner, instanceId}
-          }).then((response)=> console.log(response));
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      alert('사용자 이름(이메일)을 입력해 주세요.');
-    }
-  };
+
   //인바운드 규칙 리스트 불러오기
   useEffect(()=>{
     loadInboundRules();
@@ -124,9 +89,6 @@ const TabsContent = ({data, domainName, setDomainName}) => {
           {list === 'domain' ? 
           <SelectedTab onClick={()=>setList('domain')}>도메인 적용</SelectedTab> : 
           <DetailTab onClick={()=>setList('domain')}>도메인 적용</DetailTab>}
-          {userRole === 'ROLE_MANAGER' ? ((list === 'owner') ? 
-          <SelectedTab onClick={()=>setList('owner')}>인스턴스 소유자 변경</SelectedTab> : 
-          <DetailTab onClick={()=>setList('owner')}>인스턴스 소유자 변경</DetailTab>) : (<></>)}
 
             <DetailContent>
                 {(list === 'detail') ? 
@@ -189,7 +151,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
                     </tbody>
                   </Rules>
                 </Box>
-                : (list === 'domain') ? 
+                : (
                 <> 
                   <DetailGrid> 
                     <GridTitle>도메인</GridTitle>
@@ -209,17 +171,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
                     </InputGrid>
                       ) }
                 </>
-                :
-                <>
-                  <DetailGrid>
-                    <GridTitle>소유자</GridTitle>
-                    <GridContent>{data?.userId}</GridContent>
-                  </DetailGrid>
-                  <InputGrid>
-                    <TextField label="인스턴스 소유자 변경" onChange={(i)=>ownerHandler(i)} error={!ownerValidate} size="small" style={{marginRight:'5%'}}/>
-                    <Button onClick={()=>changeOwner()} variant="outlined">소유자 변경</Button>
-                  </InputGrid>
-                </>
+                )
                 }
             </DetailContent>
         </>
