@@ -127,7 +127,7 @@ const SignUp = () => {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <div>CSWS</div>
+          <div>회원가입</div>
           <Grid container spacing={2}>
             <Grid item xs={9}>
               <TextField

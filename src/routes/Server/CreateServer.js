@@ -77,8 +77,8 @@ const CreateServer = () => {
       try {
         axios.post("/servers/register/new", serverData).then(
           setTimeout(() => {
-            redirect("/lectureHome");
-            navigate("/lectureHome");
+            redirect("/lecturesHome");
+            navigate("/lecturesHome");
           })
         );
       } catch (error) {

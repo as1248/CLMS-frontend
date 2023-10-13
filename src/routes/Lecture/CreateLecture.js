@@ -14,7 +14,7 @@ const CreateLecture = () => {
     <>
       <Header />
       <Content>
-        <Title>강좌 생성</Title>
+        <Title>강의 생성</Title>
         <Box>
           <SelectServer data={data} setData={setData}/>
           <LectureName data={data} setData={setData}/>

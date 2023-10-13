@@ -5,7 +5,7 @@ const StudentHeader = ({ handleLogout }) => {
   const navigate = useNavigate();
   return (
     <ButtonGroup>
-      <HeaderBtn onClick={() => navigate("/lecturesHome")}>강의 홈</HeaderBtn>
+      <HeaderBtn onClick={() => navigate("/lecturesHome")}>강의 목록</HeaderBtn>
       <HeaderBtn>설명서</HeaderBtn>
       <LogoutBtn onClick={() => handleLogout()}>로그아웃</LogoutBtn>
     </ButtonGroup>

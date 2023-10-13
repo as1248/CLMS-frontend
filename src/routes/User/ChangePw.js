@@ -81,7 +81,7 @@ const ChangePw = () => {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <div>CSWS</div>
+          <div>CLMS</div>
           <TextField
             value={pw}
             onChange={handlePw}

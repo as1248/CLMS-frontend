@@ -37,8 +37,8 @@ const EditInboundRules = () => {
         } catch (error) {
           console.error(error);
         }
-        redirect(`/dashboard/${instanceId}`);
-        navigate(`/dashboard/${instanceId}`);
+        redirect(`/${instanceId}/instanceDetail`);
+        navigate(`/${instanceId}/instanceDetail`);
       } else {
         alert('올바른 포트를 입력해 주세요.');
       }
@@ -103,7 +103,7 @@ const EditInboundRules = () => {
             <BtnSection>
             <AddRule onClick={()=>addData()}>규칙 추가</AddRule>
             <div style={{display: 'flex'}}>
-                <Cancel onClick={() => navigate(`/dashboard/${instanceId}`)}>취소</Cancel>
+                <Cancel onClick={() => navigate(`/${instanceId}/instanceDetail`)}>취소</Cancel>
                 <SaveRules onClick={()=>saveInboundRules()}>인바운드 규칙 저장</SaveRules>
             </div>
           </BtnSection>
@@ -125,6 +125,7 @@ background-color: #ffffff;
 const Title = styled.div`
   font-size: 20px;
   font-weight: 600;
+  margin-top: 40px;
 `;
 const Rules = styled.table`
   width: 100%;

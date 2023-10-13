@@ -15,7 +15,7 @@ const Footer = () => {
             <Logo src={logo}/>
             <Contents>
                 <Content>
-                    <Title>CSWS</Title>
+                    <Title>CLMS</Title>
                     <List>Email : donghyeon009@gmail.com</List>
                     <List>
                         <a href='https://github.com/DonghyeonKang/CSWS' target="_blank" style={{color:'#b2bec3', textDecoration:'none'}}>Github : https://github.com/DonghyeonKang/CSWS</a>
