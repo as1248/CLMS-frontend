@@ -5,8 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 
-const LectureList = () => {
-  const userRole = localStorage.getItem('userRole');
+const ManagerLectureList = () => {
   const departmentId = localStorage.getItem('departmentId');
   
   const navigate = useNavigate();
@@ -28,13 +27,14 @@ const LectureList = () => {
     },
   ]);
 
-  useEffect(()=>{
+useEffect(()=>{
     try{
       axios.get(`/lecture?departmentId=${departmentId}`).then((response)=>console.log(response.data));
     } catch (error) {
       console.error(error);
     };
   },[]);
+  
 
   return (
     <List>
@@ -54,16 +54,12 @@ const LectureList = () => {
           </Lecture>
         )
       })}
-      {userRole === 'ROLE_MANAGER' ? (
-        <CreateLectureBtn onClick={()=>navigate('/createLecture')}>강의 생성하기 +</CreateLectureBtn>
-      ):(
-        <CreateLectureBtn onClick={()=>navigate('/enrolment')}>수강신청하기 +</CreateLectureBtn>
-        )}
+      <CreateLectureBtn onClick={()=>navigate('/createLecture')}>강의 생성하기 +</CreateLectureBtn>
     </List>
   );
 };
 
-export default LectureList;
+export default ManagerLectureList;
 
 const List = styled.div`
   margin: 2%;

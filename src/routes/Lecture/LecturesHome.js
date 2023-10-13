@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import LectureList from "../../components/Lecture/LecturesHome/LectureList";
+import ManagerLectureList from "../../components/Lecture/LecturesHome/ManagerLectureList";
+import StudentLectureList from "../../components/Lecture/LecturesHome/StudentLectureList";
 import ServerList from "../../components/Lecture/LecturesHome/ServerList";
 
 //학생, 관리자 구분해서 만들기
@@ -14,14 +15,14 @@ const LecturesHome = () => {
       {userRole === 'ROLE_MANAGER' ? (
         <Content>
           <Title>진행중인 강의</Title>
-          <LectureList />
+          <ManagerLectureList />
           <Title>서버</Title>
           <ServerList />
         </Content>
       ) : (
         <Content>
           <Title>수강중인 강의</Title>
-          <LectureList />
+          <StudentLectureList />
         </Content>
       )}
       <Footer />
