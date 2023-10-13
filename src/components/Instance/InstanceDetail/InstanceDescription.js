@@ -3,12 +3,11 @@ import { useState } from "react";
 import { useParams, useNavigate, redirect } from "react-router-dom";
 import styled from "styled-components";
 
-//userId, address(ip주소) 받아오는 기능 추가하기
-const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, address=1}) => {
+
+const InstanceDescription = ({data, domainName, setInstanceDetail, instanceId}) => {
   const navigate = useNavigate();
   const [IOption, setIOption] = useState(false);
-  //URL 바뀌어서 instanceId 다른데서 받기
-  const {instanceId} = useParams();
+  const {lectureId} = useParams();
   //인스턴스 시작
   const instanceStart = () => {
     try{
@@ -39,55 +38,62 @@ const InstanceDescription = ({data, domainName, setInstanceDetail, userId=1, add
   //인스턴스 종료
   const instanceDelete = () => {
     try{
-      axios.post('/instances/delete', {instanceId}).then(redirect('/dashboard'));
+      axios.post('/instances/delete', {instanceId}).then(redirect(`/${lectureId}/instanceDetail`));
     } catch (error) {
       console.error(error);
     };
     setIOption((prev)=>!prev);
-    navigate('/dashboard');
+    navigate(`/${lectureId}/instanceDetail`);
   };
 
     return (
         <>
-            <DetailHeader>
-              <Title>인스턴스 요약</Title>
-              <InstanceState>
-                <State onClick={()=>{setIOption((prev)=>!prev)}}>{IOption ? '인스턴스 상태 ▲' : '인스턴스 상태 ▼'}</State>
-                {IOption ? (
-                  <SetStates>
-                    <SetState onClick={()=>instanceStart()}>인스턴스 시작</SetState>
-                    <SetState onClick={()=>instanceStop()}>인스턴스 중지</SetState>
-                    <SetState onClick={()=>instanceRestart()}>인스턴스 재부팅</SetState>
-                    <SetState onClick={()=>instanceDelete()}>인스턴스 종료</SetState>
-                  </SetStates>) : (<></>)}
-              </InstanceState>
-              <InstanceCreate onClick={() => navigate('createInstance',{state: {userId, address}})}>인스턴스 생성</InstanceCreate>
-            </DetailHeader>
-            
-            <DescriptionContent>
-                <DescriptionGrid>
-                  <GridTitle>인스턴스 ID</GridTitle>
-                  <GridContent>{data?.instanceId}</GridContent>
-                </DescriptionGrid>
-                <DescriptionGrid>
-                  <GridTitle>퍼블릭 IPv4 주소</GridTitle>
-                  <GridContent>{data?.address}</GridContent>
-                </DescriptionGrid>
-                <DescriptionGrid>
-                  <GridTitle>인스턴스 상태</GridTitle>
-                  <GridContent>{data?.state}</GridContent>
-                </DescriptionGrid>
-                <DescriptionGrid>
-                  <GridTitle>퍼블릭 IPv4 DNS</GridTitle>
-                  <GridContent>{domainName}</GridContent>
-                </DescriptionGrid>
-                <DescriptionGrid>
-                  <GridTitle>자동 할당 IP 주소(퍼블릭 IP)</GridTitle>
-                  <GridContent>{data?.address}</GridContent>
-                </DescriptionGrid>
-            </DescriptionContent>
+        {instanceId > 0 ? (
+          <>
+          <DetailHeader>
+            <Title>인스턴스 요약</Title>
+            <InstanceState>
+              <State onClick={()=>{setIOption((prev)=>!prev)}}>{IOption ? '인스턴스 상태 ▲' : '인스턴스 상태 ▼'}</State>
+              {IOption ? (
+                <SetStates>
+                  <SetState onClick={()=>instanceStart()}>인스턴스 시작</SetState>
+                  <SetState onClick={()=>instanceStop()}>인스턴스 중지</SetState>
+                  <SetState onClick={()=>instanceRestart()}>인스턴스 재부팅</SetState>
+                  <SetState onClick={()=>instanceDelete()}>인스턴스 종료</SetState>
+                </SetStates>) : (<></>)}
+            </InstanceState>
+          </DetailHeader>
+          
+          <DescriptionContent>
+              <DescriptionGrid>
+                <GridTitle>인스턴스 ID</GridTitle>
+                <GridContent>{data?.instanceId}</GridContent>
+              </DescriptionGrid>
+              <DescriptionGrid>
+                <GridTitle>퍼블릭 IPv4 주소</GridTitle>
+                <GridContent>{data?.address}</GridContent>
+              </DescriptionGrid>
+              <DescriptionGrid>
+                <GridTitle>인스턴스 상태</GridTitle>
+                <GridContent>{data?.state}</GridContent>
+              </DescriptionGrid>
+              <DescriptionGrid>
+                <GridTitle>퍼블릭 IPv4 DNS</GridTitle>
+                <GridContent>{domainName}</GridContent>
+              </DescriptionGrid>
+              <DescriptionGrid>
+                <GridTitle>자동 할당 IP 주소(퍼블릭 IP)</GridTitle>
+                <GridContent>{data?.address}</GridContent>
+              </DescriptionGrid>
+          </DescriptionContent>
         </>
-        
+        ) : (
+          <DetailHeader>
+            <Title>인스턴스 요약</Title>
+            <InstanceCreate onClick={() => navigate('createInstance')}>인스턴스 생성</InstanceCreate>
+          </DetailHeader> 
+        )}
+      </>
     );
 };
 
