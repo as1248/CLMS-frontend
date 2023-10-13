@@ -1,15 +1,14 @@
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const TabsContent = ({data, domainName, setDomainName}) => {
+const TabsContent = ({data, domainName, setDomainName, instanceId=1}) => {
   const navigate = useNavigate();
   const [list,setList] = useState('detail');
   const [inboundRules, setInboundRules] = useState([]);
   const [newDomain,setNewDomain] = useState('');
-  const {instanceId} = useParams();
   const [domainValidate,setDomainValidate] = useState(false);
 
   const domainValidation = (str) => {
@@ -19,10 +18,12 @@ const TabsContent = ({data, domainName, setDomainName}) => {
  
 
   const loadInboundRules = () => {
+    if(instanceId){
       try {
         axios.get(`/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setInboundRules(response.data.inbounds));
-    } catch (error) {
-      console.error(error);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
   
@@ -114,7 +115,7 @@ const TabsContent = ({data, domainName, setDomainName}) => {
                 <Box>
                   <Stripe>
                     <Title>인바운드 규칙</Title>
-                    <EditRules onClick={() => navigate('inboundRules')}>인바운드 규칙 편집</EditRules>
+                    <EditRules onClick={() => navigate('inboundRules',{state: {instanceId}})}>인바운드 규칙 편집</EditRules>
                   </Stripe>
                   
                   <Rules> 

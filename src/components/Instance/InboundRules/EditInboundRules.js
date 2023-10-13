@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { redirect, useNavigate, useParams } from "react-router-dom";
+import { redirect, useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import InboundRule from "./InboundRule";
 import axios from "axios";
@@ -7,7 +7,8 @@ import NewInboundRule from "./NewInboundRule";
 
 const EditInboundRules = () => {
     const navigate = useNavigate();
-    const {instanceId} = useParams();
+    const {state} = useLocation();
+    const {lectureId} = useParams();
     const [number,setNumber] = useState(1);
     const [data,setData] = useState([]);
     const [newData,setNewData] = useState([]);
@@ -24,7 +25,7 @@ const EditInboundRules = () => {
         id: -1,
         hostPort: null,
         instancePort: null,
-        instanceId: Number(instanceId),
+        instanceId: Number(state?.instanceId),
         number: number
         }]);
         setNumber((prev)=>prev+1);
@@ -37,8 +38,8 @@ const EditInboundRules = () => {
         } catch (error) {
           console.error(error);
         }
-        redirect(`/${instanceId}/instanceDetail`);
-        navigate(`/${instanceId}/instanceDetail`);
+        redirect(`/${state?.instanceId}/instanceDetail`);
+        navigate(`/${state?.instanceId}/instanceDetail`);
       } else {
         alert('올바른 포트를 입력해 주세요.');
       }
@@ -46,7 +47,7 @@ const EditInboundRules = () => {
     //인바운드 규칙 리스트 불러오기
     const loadInboundRules = () => {
         try {
-          axios.get(`/instances/inbounds/list?instanceId=${instanceId}`).then((response)=> setData(response?.data?.inbounds));
+          axios.get(`/instances/inbounds/list?instanceId=${state?.instanceId}`).then((response)=> setData(response?.data?.inbounds));
         } catch (error) {
           console.error(error);
         }
@@ -76,7 +77,7 @@ const EditInboundRules = () => {
 
     useEffect(()=>{
       loadInboundRules();
-    },[instanceId]);
+    },[]);
 
     return (
         <>
@@ -103,7 +104,7 @@ const EditInboundRules = () => {
             <BtnSection>
             <AddRule onClick={()=>addData()}>규칙 추가</AddRule>
             <div style={{display: 'flex'}}>
-                <Cancel onClick={() => navigate(`/${instanceId}/instanceDetail`)}>취소</Cancel>
+                <Cancel onClick={() => navigate(`/${lectureId}/instanceDetail`)}>취소</Cancel>
                 <SaveRules onClick={()=>saveInboundRules()}>인바운드 규칙 저장</SaveRules>
             </div>
           </BtnSection>
