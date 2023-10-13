@@ -29,8 +29,8 @@ const ServerList = () => {
       <Grid>
         <Server>
           <div>
-            <Title>웹프 서버</Title>
-            <IPAddress>203.233.22.1</IPAddress>
+            <Title>소프 서버</Title>
+            <IPAddress>203.233.22.2</IPAddress>
           </div>
           <AiOutlineLaptop size={56} />
         </Server>
@@ -38,17 +38,8 @@ const ServerList = () => {
       <Grid>
         <Server>
           <div>
-            <Title>웹프 서버</Title>
-            <IPAddress>203.233.22.1</IPAddress>
-          </div>
-          <AiOutlineLaptop size={56} />
-        </Server>
-      </Grid>
-      <Grid>
-        <Server>
-          <div>
-            <Title>웹프 서버</Title>
-            <IPAddress>203.233.22.1</IPAddress>
+            <Title>종설프 서버</Title>
+            <IPAddress>203.233.22.3</IPAddress>
           </div>
           <AiOutlineLaptop size={56} />
         </Server>

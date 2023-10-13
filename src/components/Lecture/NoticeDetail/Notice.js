@@ -9,7 +9,6 @@ const Notice = () => {
   const navigate = useNavigate();
   const { lectureId ,noticeId } = useParams();
   const { state } = useLocation();
-  console.log(state.item);
 
   const deleteNotice = () => {
     if(window.confirm('해당 공지사항을 삭제하시겠습니까?')){
@@ -32,7 +31,7 @@ const Notice = () => {
           <ManageBar/>
           <Detail>
             <Title>{state.item.title}</Title>
-            <div>공지사항입니다.</div>
+            <div>{state.item.content}</div>
           </Detail>
         </Container>
       </Box>

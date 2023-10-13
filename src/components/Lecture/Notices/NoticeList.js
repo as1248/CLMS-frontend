@@ -33,7 +33,7 @@ const NoticeList = () => {
                     </Left>
                   <Right>
                     <Date>게시일시 : </Date>
-                    <Date>{item?.createdAt}</Date>
+                    <Date>{item?.createAt}</Date>
                   </Right>
                 </Notice>
               );

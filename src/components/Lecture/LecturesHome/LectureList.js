@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const LectureList = () => {
   const userRole = localStorage.getItem('userRole');
-  const departmentId = localStorage.getItem('departmentId')
+  const departmentId = localStorage.getItem('departmentId');
   
   const navigate = useNavigate();
   const [lectureList,setLectureList] = useState([
