@@ -8,34 +8,14 @@ import axios from 'axios';
 const NoticeList = () => {
   const navigate = useNavigate();
   const { lectureId } = useParams();
-  const [noticeList, setNoticeList] = useState([
-    {
-      noticeId: 1,
-      title: "공지사항 입니당",
-      lectureId: 1,
-    },
-    {
-      noticeId: 2,
-      title: "공지사항 입니다22",
-      lectureId: 1,
-    },
-    {
-      noticeId: 3,
-      title: "공지사항 입니당33",
-      lectureId: 1,
-    },
-  ]);
+  const [noticeList, setNoticeList] = useState([]);
 
-  const loadNotices = () => {
+  useEffect(()=>{
     try{
       axios.get(`/lecture/notice/list?id=${lectureId}`).then((response)=>setNoticeList(response.data.notices));
     } catch (error) {
       console.error(error);
     };
-  }
-
-  useEffect(()=>{
-    loadNotices();
   },[]);
 
 //공지사항 상세로 페이지 넘어갈 때 배열에서 해당 공지 내용 navigate에 전달하기
