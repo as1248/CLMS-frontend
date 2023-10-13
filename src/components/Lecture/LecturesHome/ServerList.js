@@ -1,9 +1,24 @@
 import styled from "styled-components";
 import { AiOutlineLaptop } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
 
 const ServerList = () => {
   const navigate = useNavigate();
+
+  const loadServers = () => {
+    try{
+      axios.get('/servers/management/list?departmentId=1').then((response)=>console.log(response));
+    } catch (error) {
+      console.error(error);
+    };
+  }
+
+  useEffect(()=>{
+    loadServers();
+  },[]);
+  
   return (
     <List>
       <Grid>

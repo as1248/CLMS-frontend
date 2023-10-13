@@ -6,15 +6,24 @@ import ServerList from "../../components/Lecture/LecturesHome/ServerList";
 
 //학생, 관리자 구분해서 만들기
 const LecturesHome = () => {
+  const userRole = localStorage.getItem('userRole');
+
   return (
     <>
       <Header />
-      <Content>
-        <Title>진행중인 강의</Title>
-        <LectureList />
-        <Title>서버</Title>
-        <ServerList />
-      </Content>
+      {userRole === 'ROLE_MANAGER' ? (
+        <Content>
+          <Title>진행중인 강의</Title>
+          <LectureList />
+          <Title>서버</Title>
+          <ServerList />
+        </Content>
+      ) : (
+        <Content>
+          <Title>수강중인 강의</Title>
+          <LectureList />
+        </Content>
+      )}
       <Footer />
     </>
   );
