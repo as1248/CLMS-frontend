@@ -163,7 +163,7 @@ const Login = () => {
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link sx={{ fontSize: '1rem' }} href="/login/findPw">비밀번호 찾기</Link>
+            <Link sx={{ fontSize: '1rem' }} href="/login/findPw">비밀번호 변경</Link>
           </Grid>
           <Grid item xs>
             <Link sx={{ fontSize: '1rem' }} href="/login/signUp">회원가입(학생)</Link>

@@ -28,16 +28,12 @@ const LectureList = () => {
     },
   ]);
 
-  const loadLectures = () => {
+  useEffect(()=>{
     try{
       axios.get(`/lecture?departmentId=${departmentId}`).then((response)=>console.log(response.data));
     } catch (error) {
       console.error(error);
     };
-  }
-
-  useEffect(()=>{
-    loadLectures();
   },[]);
 
   return (

@@ -26,7 +26,6 @@ const Footer = () => {
                     <List>강동현</List>
                     <List>이건호</List>
                     <List>임채준</List>
-                    <List>장우혁</List>
                     <List>정수진</List>
                 </Content>
                 <Content>

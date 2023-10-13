@@ -6,13 +6,13 @@ const LectureIntroduction = ({data, setData}) => {
   const [validate, setValidate] = useState(true);
   //유효성 검사
   const validation = (str) => {
-    const reg = /[a-zA-Zㄱ-ㅎ가-힣0-9\s]+/gim;
+    const reg = /[a-zA-Zㄱ-ㅎ가-힣0-9\s.]+/gim;
     return reg.test(str);
   };
   const nameHandler = (event) => {
     const value = event.target.value;
     setData({...data,introducing: value})
-    if (value.length >= 2 && value.length <= 50) {
+    if (value.length >= 2 && value.length <= 500) {
       for (let i = 0; i < value.length; i++) {
         if (validation(value[i])) {
           setValidate(true);

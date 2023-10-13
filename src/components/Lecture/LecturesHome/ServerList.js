@@ -7,16 +7,12 @@ import { useEffect } from "react";
 const ServerList = () => {
   const navigate = useNavigate();
 
-  const loadServers = () => {
+  useEffect(()=>{
     try{
       axios.get('/servers/management/list?departmentId=1').then((response)=>console.log(response));
     } catch (error) {
       console.error(error);
     };
-  }
-
-  useEffect(()=>{
-    loadServers();
   },[]);
   
   return (
