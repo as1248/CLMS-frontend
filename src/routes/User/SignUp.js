@@ -27,6 +27,8 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   const [pw2, setPw2] = useState('');
+  const [name, setName] = useState('');
+  const [no, setNo] = useState();
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [pw2Valid, setPw2Valid] = useState(false);
@@ -68,12 +70,20 @@ const SignUp = () => {
     }
   }
 
+  const handleName = (e) => {
+    setName(e.target.value);
+  }
+
+  const handleNo = (e) => {
+    setNo(e.target.value);
+  }
+
 
   const onClickConfirmButton = () => {
     if(pw !== pw2){
       alert('비밀번호를 다시 확인해주세요.');
     } else {
-      axios.post('/register/student', { username: email, password: pw, universityId: UnivStu , departmentId: DeptStu,  })
+      axios.post('/register/student', { username: email, password: pw, name, no, universityId: UnivStu , departmentId: DeptStu })
         .then(response => {
           navigate('/login');
         })
@@ -90,12 +100,12 @@ const SignUp = () => {
   }
 
   useEffect(() => {
-    if(NumberValid && pwValid && pw2Valid && UnivStu && DeptStu ){
+    if(NumberValid && pwValid && pw2Valid && name && no && UnivStu && DeptStu ){
       setNotAllow(false);
     } else {
       setNotAllow(true);
     }
-  }, [NumberValid, pwValid, pw2Valid, UnivStu , DeptStu]);
+  }, [NumberValid, pwValid, pw2Valid, name, no, UnivStu , DeptStu]);
 
     const handleButtonClick = () => {
       if (email === User.email) {
@@ -195,6 +205,26 @@ const SignUp = () => {
               <StyledText>비밀번호가 일치하지 않습니다</StyledText>
             )
           }
+          <TextField
+            value={name}
+            onChange={handleName}
+            onKeyDown={handleKeyDown}
+            margin="normal"
+            label="이름"
+            name="name"
+            required
+            fullWidth
+          />
+          <TextField
+            value={no}
+            onChange={handleNo}
+            onKeyDown={handleKeyDown}
+            margin="normal"
+            label="학번"
+            name="no"
+            required
+            fullWidth
+          />
           <SelectUniv setUnivStu={setUnivStu}/>
           <SelectDept universityId={UnivStu} setDeptStu={setDeptStu}/>
           <Button

@@ -24,6 +24,7 @@ const SignUpAd = () => {
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState('');
     const [pw2, setPw2] = useState('');
+    const [name, setName] = useState('');
     const [emailValid, setEmailValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
     const [pw2Valid, setPw2Valid] = useState(false);
@@ -70,6 +71,10 @@ const SignUpAd = () => {
       }
     }
 
+    const handleName = (e) => {
+      setName(e.target.value);
+    }
+
     //회원가입 버튼 눌렀을 시 메세지
     const onClickConfirmButton =() =>{
       if(pw!==pw2){
@@ -77,7 +82,7 @@ const SignUpAd = () => {
       }
       else {
       console.log("실행됨");
-        axios.post('/register/manager', { username: email, password: pw, universityId: UnivStu , departmentId: DeptStu, phone: Tel})
+        axios.post('/register/manager', { username: email, password: pw, name, universityId: UnivStu , departmentId: DeptStu, phone: Tel})
         .then(response => {
           navigate('/login');
         })
@@ -96,12 +101,12 @@ const SignUpAd = () => {
 
     //버튼 활성화 실시간으로
     useEffect(() =>{
-      if(NumberValid && pwValid && pw2Valid && UnivStu && DeptStu && TelValid ){
+      if(NumberValid && pwValid && pw2Valid && name && UnivStu && DeptStu && TelValid ){
         setNotAllow(false);
         return;
       }
       setNotAllow(true);
-    },[NumberValid,pwValid,pw2Valid,UnivStu,DeptStu,TelValid]);
+    },[NumberValid,pwValid,pw2Valid,name,UnivStu,DeptStu,TelValid]);
 
     //
     const handleButtonClick = () => {
@@ -210,7 +215,17 @@ const SignUpAd = () => {
           !pw2Valid && pw2.length > 0 && (
             <StyledText>비밀번호가 일치하지 않습니다</StyledText>
           )
-        }    
+        }
+        <TextField
+            value={name}
+            onChange={handleName}
+            onKeyDown={handleKeyDown}
+            margin="normal"
+            label="이름"
+            name="name"
+            required
+            fullWidth
+          />
           <SelectUniv setUnivStu={setUnivStu}/>
           <SelectDept universityId={UnivStu} setDeptStu={setDeptStu}/>
           <TextField
