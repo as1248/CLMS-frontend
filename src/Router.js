@@ -19,6 +19,7 @@ import Notices from "./routes/Lecture/Notices";
 import Instances from "./routes/Lecture/Instances";
 import NoticeDetail from "./routes/Lecture/NoticeDetail";
 import CreateNotice from "./routes/Lecture/CreateNotice";
+import Enrolment from "./routes/Lecture/Enrolment";
 
 const Router = () => {
   return (
@@ -37,6 +38,7 @@ const Router = () => {
         <Route path="/createServer" exact element={<CreateServer />} />
         <Route path="/createLecture" exact element={<CreateLecture />} />
         <Route path="/lecturesHome" exact element={<LecturesHome />} />
+        <Route path="/enrolment" exact element={<Enrolment />} />
         <Route path="/:lectureId" exact element={<Lecture />} />
         <Route path="/:lectureId/notice" exact element={<Notices />} />
         <Route path="/:lectureId/notice/createNotice" exact element={<CreateNotice />} />

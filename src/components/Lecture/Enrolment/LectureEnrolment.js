@@ -1,15 +1,10 @@
-import styled from "styled-components";
-import { BsArrowRight } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
+import styled from "styled-components";
 
-const LectureList = () => {
-  const userRole = localStorage.getItem('userRole');
+const LectureEnrolment = () => {
   const departmentId = localStorage.getItem('departmentId');
-  
-  const navigate = useNavigate();
   const [lectureList,setLectureList] = useState([
     {
       lectureId: 1,
@@ -28,6 +23,14 @@ const LectureList = () => {
     },
   ]);
 
+  const enrolment = (lectureId,lectureName) => {
+    if(window.confirm(`${lectureName} 강의를 수강신청 하시겠습니까?`)){
+      axios.post(`/lecture/student`,{lectureId}).then(response=>console.log(response));
+    }else{
+      return;
+    }
+  }
+
   useEffect(()=>{
     try{
       axios.get(`/lecture?departmentId=${departmentId}`).then((response)=>console.log(response.data));
@@ -42,28 +45,14 @@ const LectureList = () => {
         return(
           <Lecture key={i?.lectureId}>
             <Title>{i.lectureName}</Title>
-            <Todos>
-              <Todo>
-                <div>공지</div>
-                <div style={{color:'silver'}}>{i?.noticeCount}</div>
-              </Todo>
-            </Todos>
-            <LectureBtn onClick={()=>navigate(`/${i?.lectureId}`)}>
-              과목 홈 바로가기 <BsArrowRight size={24} />
-            </LectureBtn>
+            <LectureBtn onClick={()=>enrolment(i?.lectureId,i?.lectureName)}>수강신청하기</LectureBtn>
           </Lecture>
         )
       })}
-      {userRole === 'ROLE_MANAGER' ? (
-        <CreateLectureBtn onClick={()=>navigate('/createLecture')}>강의 생성하기 +</CreateLectureBtn>
-      ):(
-        <CreateLectureBtn onClick={()=>navigate('/enrolment')}>수강신청하기 +</CreateLectureBtn>
-        )}
     </List>
   );
-};
-
-export default LectureList;
+}
+export default LectureEnrolment;
 
 const List = styled.div`
   margin: 2%;
@@ -78,6 +67,7 @@ const List = styled.div`
 
 const Lecture = styled.div`
   display: flex;
+  justify-content: space-between;
   width: 100%;
   margin: 1%;
   padding: 1%;
@@ -94,37 +84,16 @@ const Title = styled.div`
   border-right: 1px solid black;
 `;
 
-const Todos = styled.div`
-  display: flex;
-  width: 60%;
-  margin-left: 30px;
-`;
-
-const Todo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 18px;
-`;
-
 const LectureBtn = styled.div`
   float: right;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 12%;
   height: 45px;
   border-radius: 25px;
   color: white;
   background-color: #6967c7;
   font-size: 16px;
-`;
-
-const CreateLectureBtn = styled(Lecture)`
-  cursor: pointer;
-  width: 20%;
-  border-radius: 40px;
-  justify-content: center;
-  align-items: center;
 `;
