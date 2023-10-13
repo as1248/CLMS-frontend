@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 
 const LectureHome = () => {
+  const userRole = localStorage.getItem('userRole');
   const { lectureId } = useParams();
   const [lectureDetail, setLectureDetail] = useState({});
   const navigate = useNavigate();
@@ -50,7 +51,9 @@ const LectureHome = () => {
       <Bottom>
         <Header>
           <Title>학생 목록</Title>
-          <Button variant="contained" onClick={()=>navigate('approveEnrolment')} style={{height:'35px'}}>수강신청 목록</Button>
+          {userRole === 'ROLE_MANAGER' ? (
+            <Button variant="contained" onClick={()=>navigate('approveEnrolment')} style={{height:'35px'}}>수강신청 목록</Button>
+          ):(<></>)}
         </Header>
         <StudentHeader>
           <StudentName>이름</StudentName>
