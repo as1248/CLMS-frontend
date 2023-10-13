@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { List } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NoticeHeader from "./NoticeHeader";
 import axios from 'axios';
 
 const NoticeList = () => {
   const navigate = useNavigate();
+  const { lectureId } = useParams();
   const [noticeList, setNoticeList] = useState([
     {
       noticeId: 1,
@@ -27,7 +28,7 @@ const NoticeList = () => {
 
   const loadNotices = () => {
     try{
-      axios.get('/lecture/notice/list?id=2').then((response)=>console.log(response));
+      axios.get(`/lecture/notice/list?id=${lectureId}`).then((response)=>setNoticeList(response.data.notices));
     } catch (error) {
       console.error(error);
     };
@@ -46,13 +47,13 @@ const NoticeList = () => {
             {noticeList?.sort((a,b)=>b.noticeId-a.noticeId)?.map((item) => {
               return (
                 <Notice key={item?.noticeId}>
-                    <Left onClick={()=>navigate(`${item.noticeId}`,{state:{item}})}>
-                      <NoticeTitle>{item.title}</NoticeTitle>
-                      <NoticeContent>새 공지사항 입니다.</NoticeContent>
+                    <Left onClick={()=>navigate(`${item?.noticeId}`,{state:{item}})}>
+                      <NoticeTitle>{item?.title}</NoticeTitle>
+                      <NoticeContent>{item?.content}</NoticeContent>
                     </Left>
                   <Right>
                     <Date>게시일시 : </Date>
-                    <Date>2023년 9월 9일 오후 4:02</Date>
+                    <Date>{item?.createdAt}</Date>
                   </Right>
                 </Notice>
               );

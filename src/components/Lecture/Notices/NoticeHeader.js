@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const NoticeHeader = ({setDeleteNotice}) => {
+  const userRole = localStorage.getItem('userRole');
   const navigate = useNavigate();
     return (
     <Content>
       <Title>공지사항</Title>
+      {userRole === 'ROLE_MANAGER' ? (
       <Button variant='contained' onClick={()=>navigate('createNotice')} style={{width:'80px' ,height:'40px'}}>글쓰기</Button>
+      ):(<></>)}
     </Content>
   );
 };
