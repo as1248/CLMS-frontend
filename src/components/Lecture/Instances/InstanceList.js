@@ -1,49 +1,22 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { List } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const InstanceList = () => {
   const { lectureId } = useParams();
   const navigate = useNavigate();
-  const [instanceList, setInstanceList] = useState([
-    {
-      userName: "asd",
-      instanceName: "123asdf",
-    },
-    {
-      userName: "asdf",
-      instanceName: "123asdfa",
-    },
-    {
-      userName: "as",
-      instanceName: "123ascdf",
-    },
-    {
-      userName: "asd",
-      instanceName: "123asdf",
-    },
-    {
-      userName: "asdf",
-      instanceName: "123asdfa",
-    },
-    {
-      userName: "as",
-      instanceName: "123ascdf",
-    },
-    {
-      userName: "asd",
-      instanceName: "123asdf",
-    },
-    {
-      userName: "asdf",
-      instanceName: "123asdfa",
-    },
-    {
-      userName: "as",
-      instanceName: "123ascdf",
-    },
-  ]);
+  const [instanceList, setInstanceList] = useState([]);
+
+  useEffect(()=>{
+    try{
+      axios.get(`/instances/list?lectureId=${lectureId}`).then((response)=>setInstanceList(response.data.instances));
+    } catch (error) {
+      console.error(error);
+    };
+  },[]);
+
   return (
     <Content>
       <IList>
@@ -65,13 +38,24 @@ const InstanceList = () => {
                 <StudentName component="div" key={item?.userName}>
                   {item?.userName}
                 </StudentName>
-                <InstanceName
+                {item?.instanceId > 0 ? (
+                  <InstanceName
                   component="div"
-                  key={item?.instanceName}
+                  key={item?.instanceId}
                   onClick={() => navigate(`/${lectureId}/instanceDetail`)}
                 >
-                  {item?.instanceName}
+                  {item?.name}
                 </InstanceName>
+                ) : (
+                  <InstanceName
+                  component="div"
+                  key={item?.instanceId}
+                  onClick={() => navigate(`/${lectureId}/instanceDetail`)}
+                >
+                  인스턴스 없음
+                </InstanceName>
+                )}
+                
               </Instance>
             );
           })}
