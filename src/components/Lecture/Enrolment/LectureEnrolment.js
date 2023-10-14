@@ -5,23 +5,7 @@ import styled from "styled-components";
 
 const LectureEnrolment = () => {
   const departmentId = localStorage.getItem('departmentId');
-  const [lectureList,setLectureList] = useState([
-    {
-      lectureId: 1,
-      lectureName: "Web Programming",
-      noticeCount: 0
-    },
-    {
-      lectureId: 2,
-      lectureName: "Comprehensive Design",
-      noticeCount: 2
-    },
-    {
-      lectureId: 3,
-      lectureName: "Software Programming",
-      noticeCount: 1
-    },
-  ]);
+  const [lectureList,setLectureList] = useState([]);
 
   const enrolment = (lectureId,lectureName) => {
     if(window.confirm(`${lectureName} 강의를 수강신청 하시겠습니까?`)){
@@ -33,7 +17,7 @@ const LectureEnrolment = () => {
 
   useEffect(()=>{
     try{
-      axios.get(`/lecture?departmentId=${departmentId}`).then((response)=>console.log(response.data));
+      axios.get(`/lecture?departmentId=${departmentId}`).then((response)=>setLectureList(response.data.lectureList));
     } catch (error) {
       console.error(error);
     };
@@ -43,9 +27,9 @@ const LectureEnrolment = () => {
     <List>
       {lectureList.map((i)=>{
         return(
-          <Lecture key={i?.lectureId}>
+          <Lecture key={i?.id}>
             <Title>{i.lectureName}</Title>
-            <LectureBtn onClick={()=>enrolment(i?.lectureId,i?.lectureName)}>수강신청하기</LectureBtn>
+            <LectureBtn onClick={()=>enrolment(i?.id,i?.lectureName)}>수강신청하기</LectureBtn>
           </Lecture>
         )
       })}
