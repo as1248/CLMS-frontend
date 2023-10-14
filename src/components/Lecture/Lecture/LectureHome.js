@@ -11,18 +11,7 @@ const LectureHome = () => {
   const { lectureId } = useParams();
   const [lectureDetail, setLectureDetail] = useState({});
   const navigate = useNavigate();
-  const [studentList, setStudentList] = useState([
-    {
-      id: 1,
-      name: '강동현',
-      studentId: 2018010837,
-    },
-    {
-      id: 2,
-      name: '이건호',
-      studentId: 2018010836,
-    },
-  ]);
+  const [studentList, setStudentList] = useState([]);
 
   useEffect(()=>{
     try{
@@ -34,7 +23,7 @@ const LectureHome = () => {
 
   useEffect(()=>{
     try{
-      axios.get(`/lecture/student?id=${lectureId}`).then((response)=>console.log(response.data.studentList));
+      axios.get(`/lecture/student?id=${lectureId}`).then((response)=>setStudentList(response.data.studentList));
     } catch (error) {
       console.error(error);
     };
@@ -64,7 +53,7 @@ const LectureHome = () => {
             return (
               <Student key={item.id}>
                 <StudentName>{item?.name}</StudentName>
-                <StudentID>{item?.studentId.toString().slice(0,4)+'******'}</StudentID>
+                <StudentID>{item?.studentId}</StudentID>
               </Student>
             );
           })}
