@@ -7,8 +7,9 @@ import CreateLectureBtn from "../../components/Lecture/CreateLecture/CreateLectu
 import { useState } from "react";
 
 const CreateLecture = () => {
+  const departmentId = localStorage.getItem('departmentId');
   const [data, setData] = useState({
-    serverId: 1,
+    departmentId,
   });
   return (
     <>

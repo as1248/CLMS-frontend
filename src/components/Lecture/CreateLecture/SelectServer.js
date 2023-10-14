@@ -1,23 +1,25 @@
 import { MenuItem, Select } from "@mui/material";
+import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
 //서버리스트 API 추가해야함
 const SelectServer = ({data, setData}) => {
-  const [serverList, setServerList] = useState([{
-    serverId: 1,
-    name: '123'
-  },{
-    serverId: 2,
-    name: '1234'
-  },{
-    serverId: 3,
-    name: '1235'
-  }]);
+  const departmentId = localStorage.getItem('departmentId');
+  const [serverList, setServerList] = useState([]);
 
   const handleServer = (e) => {
     setData({...data,serverId: e.target.value});
   }
+
+  useEffect(()=>{
+    try{
+      axios.get(`/servers/management/list?departmentId=${departmentId}`).then((response)=>setServerList(response.data.servers));
+    } catch (error) {
+      console.error(error);
+    };
+  },[]);
 
   return (
     <Content>

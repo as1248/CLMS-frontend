@@ -1,13 +1,17 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const CreateLectureBtn = ({ data }) => {
   const navigate = useNavigate();
   const createLecture = () => {
-    console.log(data);
     try {
-      axios.post("/lecture", data).then(response=>console.log(response));
+      axios.post("/lecture", data).then(
+        setTimeout(() => {
+          redirect("/lecturesHome");
+          navigate("/lecturesHome");
+        },2000)
+      );
     } catch (error) {
       console.error(error);
     }
