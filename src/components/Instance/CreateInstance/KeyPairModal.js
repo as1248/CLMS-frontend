@@ -4,7 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 //키페어 생성 요청 보내고 나서 수행할 기능 만들기
-const KeyPairModal = ({setModalOpen, data, setData, setKeyPairName,setKeyPairValidate, hostname}) => {
+const KeyPairModal = ({setModalOpen, data, setData, setKeyPairName,setKeyPairValidate}) => {
     const [keyPairData, setKeyPairData] = useState({});
     const [, setKeyPairType] = useState('RSA');
     const [, setPrivateKeyFileFormat] = useState('.pem');
@@ -17,7 +17,7 @@ const KeyPairModal = ({setModalOpen, data, setData, setKeyPairName,setKeyPairVal
     const keyPairNameHandler = (e) => {
         const value = e.target.value;
         setKeyPairData({
-            hostname: hostname,
+            hostname: 'gugu',
             name: value
         });
         if(value.length >= 1 && value.length <= 250){

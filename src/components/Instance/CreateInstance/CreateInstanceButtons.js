@@ -13,7 +13,7 @@ const CreateInstanceButtons = ({data, validate}) => {
         axios.post('/instances/creation', data).then(setTimeout(()=>{
         redirect(`/${lectureId}/instanceDetail`);
         navigate(`/${lectureId}/instanceDetail`);
-        },1000));
+        },2000));
       } catch (error) {
         console.error(error);
       };
