@@ -7,38 +7,21 @@ import { useState } from "react";
 
 const StudentLectureList = () => {
   const navigate = useNavigate();
-  const [lectureList,setLectureList] = useState([
-    {
-      lectureId: 1,
-      lectureName: "Web Programming",
-      noticeCount: 0
-    },
-    {
-      lectureId: 2,
-      lectureName: "Comprehensive Design",
-      noticeCount: 2
-    },
-    {
-      lectureId: 3,
-      lectureName: "Software Programming",
-      noticeCount: 1
-    },
-  ]);
+  const [lectureList,setLectureList] = useState([]);
 
 useEffect(()=>{
     try{
-      axios.get(`/lecture/my`).then((response)=>console.log(response.data));
+      axios.get(`/lecture/my`).then((response)=>setLectureList(response.data.lectureList));
     } catch (error) {
       console.error(error);
     };
   },[]);
   
-
   return (
     <List>
       {lectureList.map((i)=>{
         return(
-          <Lecture key={i?.lectureId}>
+          <Lecture key={i?.id}>
             <Title>{i.lectureName}</Title>
             <Todos>
               <Todo>
@@ -46,7 +29,7 @@ useEffect(()=>{
                 <div style={{color:'silver'}}>{i?.noticeCount}</div>
               </Todo>
             </Todos>
-            <LectureBtn onClick={()=>navigate(`/${i?.lectureId}`)}>
+            <LectureBtn onClick={()=>navigate(`/${i?.id}`)}>
               과목 홈 바로가기 <BsArrowRight size={24} />
             </LectureBtn>
           </Lecture>
