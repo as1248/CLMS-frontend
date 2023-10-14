@@ -7,21 +7,13 @@ import styled from "styled-components";
 
 const EnrolmentList = () => {
   const { lectureId } = useParams();
-  const [list,setList] = useState([
-    {
-      name:'강동현',
-      studentId:2018010837,
-    },
-    {
-      name:'이건호',
-      studentId:2018010836,
-    },
-  ]);
+  const [list,setList] = useState([]);
 
-  const approve = (studentId) => {
+  const approve = (id) => {
+
     if(window.confirm('승인하시겠습니까?')){
       try{
-        axios.post(`lecture/student/registration`,{lectureId, id:studentId}).then(response=>console.log(response));
+        axios.post(`lecture/student/registration`,{lectureId, id}).then(response=>console.log(response));
       } catch (error) {
         console.error(error);
       };
@@ -31,10 +23,10 @@ const EnrolmentList = () => {
     
   }
 
-  const refuse = (studentId) => {
+  const refuse = (id) => {
     if(window.confirm('거절하시겠습니까?')){
       try{
-        axios.post(`lecture/student/refusal`,{lectureId, id:studentId}).then(response=>console.log(response));
+        axios.post(`lecture/student/refusal`,{lectureId, id}).then(response=>console.log(response));
       } catch (error) {
         console.error(error);
       };
@@ -46,7 +38,7 @@ const EnrolmentList = () => {
 
   useEffect(()=>{
     try{
-      axios.get(`/lecture/student?id=${lectureId}`).then((response)=>console.log(response.data));
+      axios.get(`/lecture/student/register?id=${lectureId}`).then((response)=>setList(response.data.studentList));
     } catch (error) {
       console.error(error);
     };
@@ -64,14 +56,14 @@ const EnrolmentList = () => {
         </StudentHeader>
         {list?.map((item)=>{
           return (
-            <Student key={item.id}>
+            <Student key={item?.id}>
               <StudentName>{item?.name}</StudentName>
               <StudentID>{item?.studentId}</StudentID>
               <Approve>
-                <Button onClick={()=>approve(item?.studentId)} variant="contained" style={{height:'35px'}}>승인</Button>
+                <Button onClick={()=>approve(item?.id)} variant="contained" style={{height:'35px'}}>승인</Button>
               </Approve>
               <Approve>
-                <Button onClick={()=>refuse(item?.studentId)} variant="outlined" color="error" style={{height:'35px'}}>거절</Button>
+                <Button onClick={()=>refuse(item?.id)} variant="outlined" color="error" style={{height:'35px'}}>거절</Button>
               </Approve>
             </Student>
           );
