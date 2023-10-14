@@ -16,11 +16,17 @@ const InstanceDetail = () => {
 //인스턴스 id
   useEffect(()=>{
     try {
-      axios.get(`/instances/id?lectureId=${lectureId}`).then((response)=> setInstanceId(response.data.instanceId));
+      axios.get(`/instances/id?lectureId=${lectureId}`).then((response)=> {setInstanceId(response.data.instanceId);});
     } catch (error) {
       console.error(error);
     }
 },[]);
+  useEffect(()=>{
+    if(instanceId>0){
+      localStorage.setItem('instanceId', instanceId);
+    }
+    setInstanceId(localStorage.getItem('instanceId'));
+  },[instanceId]);
 
   //인스턴스 상세
   useEffect(()=>{
