@@ -3,13 +3,16 @@ import { AiOutlineLaptop } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const ServerList = () => {
   const navigate = useNavigate();
+  const [list,setList] = useState([]);
+  const departmentId = localStorage.getItem('departmentId');
 
   useEffect(()=>{
     try{
-      axios.get('/servers/management/list?departmentId=1').then((response)=>console.log(response));
+      axios.get(`/servers/management/list?departmentId=${departmentId}`).then((response)=>setList(response.data.servers));
     } catch (error) {
       console.error(error);
     };
@@ -17,33 +20,19 @@ const ServerList = () => {
   
   return (
     <List>
-      <Grid>
-        <Server>
-          <div>
-            <Title>웹프 서버</Title>
-            <IPAddress>203.233.22.1</IPAddress>
-          </div>
-          <AiOutlineLaptop size={56} />
-        </Server>
-      </Grid>
-      <Grid>
-        <Server>
-          <div>
-            <Title>소프 서버</Title>
-            <IPAddress>203.233.22.2</IPAddress>
-          </div>
-          <AiOutlineLaptop size={56} />
-        </Server>
-      </Grid>
-      <Grid>
-        <Server>
-          <div>
-            <Title>종설프 서버</Title>
-            <IPAddress>203.233.22.3</IPAddress>
-          </div>
-          <AiOutlineLaptop size={56} />
-        </Server>
-      </Grid>
+      {list?.map((item)=>{
+        return(
+          <Grid key={item?.ipv4}>
+            <Server>
+              <div>
+                <Title>{item?.name}</Title>
+                <IPAddress>{item?.ipv4}</IPAddress>
+              </div>
+              <AiOutlineLaptop size={56} />
+            </Server>
+          </Grid>
+        )
+      })}
       <Grid>
         <CreateServerBtn onClick={()=>navigate('/createServer')}>서버 생성하기 +</CreateServerBtn>
       </Grid>
