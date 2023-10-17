@@ -50,7 +50,6 @@ const InstanceList = () => {
                   <InstanceName
                   component="div"
                   key={item?.instanceId}
-                  onClick={() => navigate(`/${lectureId}/instanceDetail`)}
                 >
                   인스턴스 없음
                 </InstanceName>
