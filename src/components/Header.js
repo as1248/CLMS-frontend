@@ -10,9 +10,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('departmentId');
+    localStorage.clear();
     navigate('/login');
   };
   

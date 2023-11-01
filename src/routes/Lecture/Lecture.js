@@ -3,8 +3,8 @@ import Header from "../../components/Header";
 import LectureHome from "../../components/Lecture/Lecture/LectureHome";
 import LectureNav from "../../components/Lecture/LectureNav";
 
-//관리자일때와 학생일때 구분해서 만들기
 const Lecture = () => {
+  localStorage.removeItem('instanceId');
   return (
     <>
       <Header />

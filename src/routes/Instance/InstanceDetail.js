@@ -5,27 +5,37 @@ import TabsContent from "../../components/Instance/InstanceDetail/TabsContent";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const InstanceDetail = () => {
+  const userRole = localStorage.getItem('userRole');
   const [instanceDetail,setInstanceDetail] = useState();
   const [domainName,setDomainName] = useState('');
   const [instanceId, setInstanceId] = useState(-1);
   const { lectureId } = useParams();
-
+  const { state } = useLocation();
+  
+  if(state?.instanceId){
+    setInstanceId(state?.instanceId);
+  }
+  
 //인스턴스 id
   useEffect(()=>{
-    try {
-      axios.get(`/instances/id?lectureId=${lectureId}`).then((response)=> {setInstanceId(response.data.instanceId);});
-    } catch (error) {
-      console.error(error);
+    if(userRole !== 'ROLE_MANAGER'){
+      try {
+        axios.get(`/instances/id?lectureId=${lectureId}`).then((response)=> {setInstanceId(response.data.instanceId);});
+      } catch (error) {
+        console.error(error);
+      }
     }
 },[]);
   useEffect(()=>{
-    if(instanceId>0){
+    if(instanceId > 0){
       localStorage.setItem('instanceId', instanceId);
     }
-    setInstanceId(localStorage.getItem('instanceId'));
+    if(localStorage.getItem('instanceId')){
+      setInstanceId(localStorage.getItem('instanceId'));
+    }
   },[instanceId]);
 
   //인스턴스 상세

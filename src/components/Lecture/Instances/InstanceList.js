@@ -42,7 +42,7 @@ const InstanceList = () => {
                   <InstanceName
                   component="div"
                   key={item?.instanceId}
-                  onClick={() => navigate(`/${lectureId}/instanceDetail`)}
+                  onClick={() => navigate(`/${lectureId}/instanceDetail`,{state:{instanceId: item?.instanceId}})}
                 >
                   {item?.name}
                 </InstanceName>

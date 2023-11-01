@@ -4,6 +4,7 @@ import LectureNav from "../../components/Lecture/LectureNav";
 import NoticeList from "../../components/Lecture/Notices/NoticeList";
 
 const Notices = () => {
+  localStorage.removeItem('instanceId');
   return (
     <>
       <Header />
