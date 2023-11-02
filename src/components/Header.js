@@ -16,8 +16,8 @@ const Header = () => {
   
   return (
     <HeaderContent>
-      <HeaderLogo>
-        <Logo src={mainlogo} onClick={() => navigate('/')}/>
+      <HeaderLogo onClick={() => navigate('/')}>
+        <Logo src={mainlogo}/>
         <div>CLMS</div>
       </HeaderLogo>
       <div style={{marginRight:'50px'}}>
@@ -56,12 +56,12 @@ const HeaderContent = styled.header`
 `;
 
 const HeaderLogo = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
 `;
 
 const Logo = styled.img`
-  cursor: pointer;
   width: 100px;
   height: 50px;
   object-fit: contain;
