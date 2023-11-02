@@ -4,6 +4,7 @@ import { List } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeHeader from "./NoticeHeader";
 import axios from 'axios';
+import LectureNav from "../LectureNav";
 
 const NoticeList = () => {
   const navigate = useNavigate();
@@ -21,24 +22,29 @@ const NoticeList = () => {
 //공지사항 상세로 페이지 넘어갈 때 배열에서 해당 공지 내용 navigate에 전달하기
   return (
     <Content>
+      <LectureNav/>
       <NList>
       <NoticeHeader/>
-        {<List style={{maxHeight: 600, overflow: "auto"}}>
-            {noticeList?.sort((a,b)=>b.noticeId-a.noticeId)?.map((item) => {
-              return (
-                <Notice key={item?.noticeId}>
-                    <Left onClick={()=>navigate(`${item?.noticeId}`,{state:{item}})}>
-                      <NoticeTitle>{item?.title}</NoticeTitle>
-                      <NoticeContent>{item?.content}</NoticeContent>
-                    </Left>
-                  <Right>
-                    <Date>게시일시 : </Date>
-                    <Date>{item?.createAt}</Date>
-                  </Right>
-                </Notice>
-              );
-            })}
-          </List>}
+        {noticeList.length === 0 ? (
+          <NoNotice>공지사항이 없습니다.</NoNotice>
+        ) : (
+          <List style={{maxHeight: 600, overflow: "auto"}}>
+          {noticeList?.sort((a,b)=>b.noticeId-a.noticeId)?.map((item) => {
+            return (
+              <Notice key={item?.noticeId}>
+                  <Left onClick={()=>navigate(`${item?.noticeId}`,{state:{item}})}>
+                    <NoticeTitle>{item?.title}</NoticeTitle>
+                    <NoticeContent>{item?.content}</NoticeContent>
+                  </Left>
+                <Right>
+                  <Date>게시일시 : </Date>
+                  <Date>{item?.createAt}</Date>
+                </Right>
+              </Notice>
+            );
+          })}
+        </List>
+        )}
       </NList>
     </Content>
   );
@@ -48,13 +54,25 @@ export default NoticeList;
 
 const Content = styled.div`
   width: 100%;
-  padding: 3%;
+  height: 96.5vh;
+  padding: 2% 0;
 `;
 
 const NList = styled.div`
   background-color: white;
   padding: 2%;
-  `;
+  height: 100%;
+`;
+
+const NoNotice = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  margin-top: 50px;
+  font-weight: bold;
+  color: gray;
+`;
 
 const Notice = styled.div`
   display: flex;

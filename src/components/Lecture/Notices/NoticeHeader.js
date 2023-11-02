@@ -23,7 +23,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 600;
   margin-bottom: 30px;
 `;
