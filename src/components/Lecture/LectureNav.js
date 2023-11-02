@@ -1,101 +1,44 @@
-import styled from "styled-components";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { FaBook, FaBullhorn } from "react-icons/fa";
-import { GoContainer } from "react-icons/go";
+import axios from "axios";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 
 const LectureNav = () => {
-  const userRole = localStorage.getItem('userRole');
-  const navigate = useNavigate();
-  const [fold, setFold] = useState(false);
   const { lectureId } = useParams();
-  return (
-    <>
-      {fold ? (
-        //접혔을 때
-        <FoldNav>
-          <div>
-            <NavItem onClick={() => navigate(`/${lectureId}`)}>
-              <FaBook size={24} />
-            </NavItem>
-            <NavItem onClick={() => navigate(`/${lectureId}/notice`)}>
-              <FaBullhorn size={24} />
-            </NavItem>
-            {userRole === 'ROLE_MANAGER' ? (
-              <NavItem onClick={() => navigate(`/${lectureId}/instances`)}>
-                <GoContainer size={24} />
-              </NavItem>
-            ) : (
-              <NavItem onClick={() => navigate(`/${lectureId}/instanceDetail`)}>
-                <GoContainer size={24} />
-              </NavItem>
-            )}
-            
-          </div>
-          <LastNavItem onClick={() => setFold(false)}>
-            <BsArrowRight size={32} />
-          </LastNavItem>
-        </FoldNav>
-      ) : (
-        //펼쳤을 때
-        <Nav>
-          <div>
-            <NavItem onClick={() => navigate(`/${lectureId}`)}>
-              <FaBook size={32} />
-              <div>강의 홈</div>
-            </NavItem>
-            <NavItem onClick={() => navigate(`/${lectureId}/notice`)}>
-              <FaBullhorn size={32} />
-              <div>공지사항</div>
-            </NavItem>
-            {userRole === 'ROLE_MANAGER' ? (
-              <NavItem onClick={() => navigate(`/${lectureId}/instances`)}>
-                <GoContainer size={32} />
-                <div>인스턴스</div>
-              </NavItem>
-            ) : (
-              <NavItem onClick={() => navigate(`/${lectureId}/instanceDetail`)}>
-                <GoContainer size={32} />
-                <div>인스턴스</div>
-              </NavItem>
-            )}
-          </div>
-          <LastNavItem onClick={() => setFold(true)}>
-            <BsArrowLeft size={32} />
-          </LastNavItem>
-        </Nav>
-      )}
-    </>
+  const [lectureName, setLectureName] = useState();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    try{
+      axios.get(`/lecture/detail?id=${lectureId}`).then((response)=>setLectureName(response.data.lectureName));
+    } catch (error) {
+      console.error(error);
+    };
+  },[lectureId]);
+
+  return(
+    <Nav>
+      <LectureHome onClick={()=>navigate(`/${lectureId}`)}>{lectureName}</LectureHome>
+      {pathname.split('/')[2] === 'notice' ? (' > 공지사항') : pathname.split('/')[2] === 'instances' ? (' > 인스턴스 목록') : ''}
+
+    </Nav>
   );
-};
+}
 
 export default LectureNav;
 
 const Nav = styled.nav`
-  background-color: #4b6586;
-  width: 120px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const FoldNav = styled(Nav)`
-  width: 60px;
-`;
-
-const NavItem = styled.div`
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 120px;
-  color: white;
+  margin-bottom: 30px;
+  padding-left: 2%;
+  font-size: 24px;
 `;
 
-const LastNavItem = styled(NavItem)`
-  height: 30px;
-  margin-bottom: 20px;
-`;
+const LectureHome = styled.div`
+  cursor: pointer;
+  padding: 2px;
+  margin-right: 10px;
+`
