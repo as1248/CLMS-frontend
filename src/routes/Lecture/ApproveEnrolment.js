@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
-import LectureNav from "../../components/Lecture/LectureNav";
+import LectureNavBar from "../../components/Lecture/LectureNavBar";
 import EnrolmentList from "../../components/Lecture/ApproveEnrolment/EnrolmentList";
 
 const ApproveEnrolment = () => {
@@ -8,7 +8,7 @@ const ApproveEnrolment = () => {
     <>
       <Header/>
       <Content>
-        <LectureNav/>
+        <LectureNavBar/>
         <EnrolmentList/>
       </Content>
     </>
