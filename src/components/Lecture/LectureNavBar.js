@@ -75,6 +75,7 @@ export default LectureNavBar;
 const Nav = styled.nav`
   background-color: #4b6586;
   width: 120px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
