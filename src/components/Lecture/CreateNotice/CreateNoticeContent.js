@@ -4,6 +4,7 @@ import CreateNoticeButtons from "./CreateNoticeButtons";
 import CreateNoticeContainer from "./CreateNoticeContainer";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import LectureNav from "../LectureNav";
 
 const CreateNoticeContent = () => {
   const { lectureId } = useParams();
@@ -16,6 +17,7 @@ const CreateNoticeContent = () => {
 
   return (
     <Content>
+      <LectureNav/>
       <Box>
         <CreateNoticeHeader/>
         <CreateNoticeContainer data={data} setData={setData}/>
@@ -29,10 +31,12 @@ export default CreateNoticeContent;
 
 const Content = styled.div`
   width: 100%;
-  padding: 3%;
+  height: 96.5vh;
+  padding: 2% 0;
 `;
 
 const Box = styled.div`
   background-color: white;
-  padding: 3%;
+  padding: 2%;
+  height: 100%;
 `;

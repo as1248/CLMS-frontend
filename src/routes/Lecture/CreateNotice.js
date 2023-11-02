@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
-import LectureNav from "../../components/Lecture/LectureNav";
+import LectureNavBar from "../../components/Lecture/LectureNavBar";
 import CreateNoticeContent from "../../components/Lecture/CreateNotice/CreateNoticeContent";
 
 const CreateNotice = () => {
@@ -8,7 +8,7 @@ const CreateNotice = () => {
     <>
       <Header />
       <Content>
-        <LectureNav />
+        <LectureNavBar />
         <CreateNoticeContent/>
       </Content>
     </>
@@ -19,6 +19,5 @@ export default CreateNotice;
 
 const Content = styled.div`
   width: 100%;
-  min-height: 95vh;
   display: flex;
 `;
