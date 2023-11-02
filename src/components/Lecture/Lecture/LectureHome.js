@@ -44,20 +44,29 @@ const LectureHome = () => {
             <Button variant="contained" onClick={()=>navigate('approveEnrolment')} style={{height:'35px'}}>수강신청 목록</Button>
           ):(<></>)}
         </Header>
-        <StudentHeader>
-          <StudentName>이름</StudentName>
-          <StudentID>학번</StudentID>
-        </StudentHeader>
-        <List sx={{ overflow: "auto", maxHeight: 300 }}>
-          {studentList?.map((item) => {
-            return (
-              <Student key={item.id}>
-                <StudentName>{item?.name}</StudentName>
-                <StudentID>{item?.studentId}</StudentID>
-              </Student>
-            );
-          })}
-        </List>
+        {studentList.length === 0 ? (
+          <NoStudent>해당 강의에 등록된 학생이 없습니다.</NoStudent>
+        ) : (
+          <>
+            <StudentHeader>
+              <StudentCount> </StudentCount>
+              <StudentName>이름</StudentName>
+              <StudentID>학번</StudentID>
+            </StudentHeader>
+            <List sx={{ overflow: "auto", maxHeight: 300 }}>
+              {studentList?.map((item) => {
+                return (
+                  <Student key={item?.studentId}>
+                    <StudentCount>{studentList.indexOf(item)+1}</StudentCount>
+                    <StudentName>{item?.name}</StudentName>
+                    <StudentID>{item?.studentId}</StudentID>
+                  </Student>
+                );
+              })}
+            </List>
+          </>
+        )}
+        
       </Bottom>
     </Content>
   );
@@ -70,7 +79,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 600;
   margin-bottom: 20px;
 `;
@@ -95,6 +104,16 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
+const NoStudent = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  margin-top: 50px;
+  font-weight: bold;
+  color: gray;
+`;
+
 const Student = styled.div`
   display: flex;
   height: 50px;
@@ -106,11 +125,16 @@ const StudentHeader = styled(Student)`
   margin-bottom: 30px;
 `;
 
+const StudentCount = styled.div`
+  width: 10%;
+  text-align: center;
+`;
+
 const StudentName = styled.div`
-  width: 50%;
+  width: 45%;
   text-align: center;
 `;
 const StudentID = styled.div`
-  width: 50%;
+  width: 45%;
   text-align: center;
 `;
