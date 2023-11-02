@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
-import LectureNav from "../../components/Lecture/LectureNav";
+import LectureNavBar from "../../components/Lecture/LectureNavBar";
 import Notice from "../../components/Lecture/NoticeDetail/Notice";
 
 const NoticeDetail = () => {
@@ -8,7 +8,7 @@ const NoticeDetail = () => {
     <>
       <Header />
       <Content>
-        <LectureNav />
+        <LectureNavBar />
         <Notice />
       </Content>
     </>
@@ -19,6 +19,5 @@ export default NoticeDetail;
 
 const Content = styled.div`
   width: 100%;
-  min-height: 95vh;
   display: flex;
 `;

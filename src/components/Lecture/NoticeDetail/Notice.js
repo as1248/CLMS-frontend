@@ -3,6 +3,7 @@ import NoticeButton from "./NoticeButton";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import LectureNav from "../LectureNav";
 
 const Notice = () => {
   const userRole = localStorage.getItem('userRole');
@@ -20,6 +21,7 @@ const Notice = () => {
 
   return (
     <Content>
+      <LectureNav/>
       <Box>
         <Btns>
           <NoticeButton/>
@@ -43,12 +45,14 @@ export default Notice;
 
 const Content = styled.div`
   width: 100%;
-  padding: 3%;
+  height: 96.5vh;
+  padding: 2% 0;
 `;
 
 const Box = styled.div`
   background-color: white;
-  padding: 3%;
+  padding: 2%;
+  height: 100%;
 `;
 
 const Btns = styled.div`
