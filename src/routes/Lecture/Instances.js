@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
-import LectureNav from "../../components/Lecture/LectureNav";
+import LectureNavBar from "../../components/Lecture/LectureNavBar";
 import InstanceList from "../../components/Lecture/Instances/InstanceList";
 
 const Instances = () => {
@@ -9,7 +9,7 @@ const Instances = () => {
     <>
       <Header />
       <Content>
-        <LectureNav />
+        <LectureNavBar />
         <InstanceList />
       </Content>
     </>
