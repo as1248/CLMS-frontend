@@ -7,9 +7,14 @@ const LectureEnrolment = () => {
   const departmentId = localStorage.getItem('departmentId');
   const [lectureList,setLectureList] = useState([]);
 
-  const enrolment = (lectureId,lectureName) => {
+  const enrolment = (lectureId,lectureName,index) => {
+    const btn = document.querySelectorAll('.button');
     if(window.confirm(`${lectureName} 강의를 수강신청 하시겠습니까?`)){
-      axios.post(`/lecture/student`,{lectureId}).then(response=>console.log(response));
+      axios.post(`/lecture/student`,{lectureId}).then(response=>{
+        if(response.status === 200){
+          btn[index].style.pointerEvents = "none";
+        }
+      });
     }else{
       return;
     }
@@ -25,14 +30,18 @@ const LectureEnrolment = () => {
 
   return (
     <List>
-      {lectureList.map((i)=>{
-        return(
-          <Lecture key={i?.id}>
-            <Title>{i.lectureName}</Title>
-            <LectureBtn onClick={()=>enrolment(i?.id,i?.lectureName)}>수강신청하기</LectureBtn>
-          </Lecture>
-        )
-      })}
+      {lectureList.length === 0 ? (
+        <NoLecture>진행중인 강의가 없습니다.</NoLecture>
+      ) : (
+        lectureList.map((i)=>{
+          return(
+            <Lecture key={i?.id}>
+              <Title>{i.lectureName}</Title>
+              <LectureBtn className="button" onClick={()=>enrolment(i?.id,i?.lectureName,lectureList.indexOf(i))}>수강신청하기</LectureBtn>
+            </Lecture>
+          )
+        }))
+      }
     </List>
   );
 }
@@ -48,6 +57,16 @@ const List = styled.div`
   padding-bottom: 30px;
   border-bottom: 1px solid black;
 `;
+
+const NoLecture = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  margin-top: 50px;
+  font-weight: bold;
+  color: gray;
+`
 
 const Lecture = styled.div`
   display: flex;
@@ -68,7 +87,7 @@ const Title = styled.div`
   border-right: 1px solid black;
 `;
 
-const LectureBtn = styled.div`
+const LectureBtn = styled.button`
   float: right;
   cursor: pointer;
   display: flex;
@@ -80,4 +99,5 @@ const LectureBtn = styled.div`
   color: white;
   background-color: #6967c7;
   font-size: 16px;
+  border: none;
 `;
