@@ -48,8 +48,8 @@ const HeaderContent = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-width: 900px;
-  height: 40px;
+  min-width: 600px;
+  height: 60px;
   padding: 2%;
   background-color: #232f3e;
   color: white;
@@ -59,6 +59,7 @@ const HeaderLogo = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  height: 50px;
 `;
 
 const Logo = styled.img`

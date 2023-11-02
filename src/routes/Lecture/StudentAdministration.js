@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
 import { useState } from "react";
+import Footer from "../../components/Footer";
 
 const StudentAdministration = () => {
-  const [studentList,setStudentList] = useState([{}]);
+  const [studentList,setStudentList] = useState([]);
   return (
     <>
       <Header />
@@ -30,24 +31,10 @@ const StudentAdministration = () => {
               <DeleteBtn>삭제</DeleteBtn>
             </StudentContent>
           </Student>
-          <Student>
-            <StudentContent>********11</StudentContent>
-            <StudentContent>asd</StudentContent>
-            <StudentContent>2023/02/23</StudentContent>
-            <StudentContent>
-              <DeleteBtn>삭제</DeleteBtn>
-            </StudentContent>
-          </Student>
-          <Student>
-            <StudentContent>********12</StudentContent>
-            <StudentContent>asd</StudentContent>
-            <StudentContent>2023/02/23</StudentContent>
-            <StudentContent>
-              <DeleteBtn>삭제</DeleteBtn>
-            </StudentContent>
-          </Student>
+         
         </StudentList>
       </Content>
+      <Footer/>
     </>
   );
 };

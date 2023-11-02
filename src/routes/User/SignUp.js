@@ -12,6 +12,7 @@ import VerifyEmail from '../../components/User/VerifyEmail';
 import SelectUniv from '../../components/User/SelectUniv';
 import SelectDept from '../../components/User/SelectDept';
 import axios from 'axios';
+import Footer from "../../components/Footer";
 
 
 
@@ -238,6 +239,7 @@ const SignUp = () => {
           </Button>
         </Box>
       </Container>
+      <Footer/>
     </>
   );
 };

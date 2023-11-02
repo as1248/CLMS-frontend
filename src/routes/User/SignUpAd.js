@@ -12,6 +12,7 @@ import axios from 'axios';
 import VerifyEmail from '../../components/User/VerifyEmail';
 import SelectUniv from '../../components/User/SelectUniv';
 import SelectDept from '../../components/User/SelectDept';
+import Footer from "../../components/Footer";
 
 const User = {
     email: 'wkdroal11@gmail.com',
@@ -247,7 +248,9 @@ const SignUpAd = () => {
             가입하기
           </Button>
         </Box>
-      </Container></>
+      </Container>
+      <Footer/>
+      </>
     );
 }
 

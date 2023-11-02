@@ -6,6 +6,8 @@ import Grid from "@mui/material/Grid";
 import RejectBtn from "../components/Admin/RejectBtn";
 import ConfirmBtn from "../components/Admin/ConfirmBtn";
 import VerificationList from "../components/Admin/VerificationList";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const Admin = () => {
   const [arrIds, setArrIds] = useState([]);
@@ -17,28 +19,33 @@ const Admin = () => {
 
 
   return (
-    <Container component="main" maxWidth="md">
-      <Box 
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-        <div>인증요청 목록</div>
-        <VerificationList onRowSelectionModelChange={setArrIds} />
-        <Grid container justifyContent="space-between">
-          <Grid item xs={5}>
-            <RejectBtn onClick={handleClick} arrIds={arrIds} />
+    <>
+      <Header/>
+      <Container component="main" maxWidth="md">
+        <Box 
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+          <div>인증요청 목록</div>
+          <VerificationList onRowSelectionModelChange={setArrIds} />
+          <Grid container justifyContent="space-between">
+            <Grid item xs={5}>
+              <RejectBtn onClick={handleClick} arrIds={arrIds} />
+            </Grid>
+            <Grid item xs={5}>
+              <ConfirmBtn onClick={handleClick} arrIds={arrIds} />
+            </Grid>
           </Grid>
-          <Grid item xs={5}>
-            <ConfirmBtn onClick={handleClick} arrIds={arrIds} />
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+      <Footer/>
+    </>
+    
   );
 };
 

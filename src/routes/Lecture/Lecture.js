@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import LectureHome from "../../components/Lecture/Lecture/LectureHome";
 import LectureNavBar from "../../components/Lecture/LectureNavBar";
+import Footer from "../../components/Footer";
 
 const Lecture = () => {
   localStorage.removeItem('instanceId');
@@ -12,6 +13,7 @@ const Lecture = () => {
         <LectureNavBar />
         <LectureHome />
       </Content>
+      <Footer />
     </>
   );
 };

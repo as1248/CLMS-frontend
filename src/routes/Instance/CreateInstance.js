@@ -7,6 +7,7 @@ import MachineImage from "../../components/Instance/CreateInstance/MachineImage"
 import Storage from "../../components/Instance/CreateInstance/Storage";
 import CreateInstanceButtons from "../../components/Instance/CreateInstance/CreateInstanceButtons";
 import { useParams } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const CreateInstance = () => {
   //서버ID 없앨지 값 받아서 전달할지
@@ -31,7 +32,8 @@ const CreateInstance = () => {
             <SetKeyPair setData={setData} data={data} validate={keyPairValidate} setValidate={setKeyPairValidate}/>
             <CreateInstanceButtons data={data} validate={nameValidate&&keyPairValidate}/>
           </Box>
-        </Content>  
+        </Content>
+        <Footer/>
       </>
     );
 };

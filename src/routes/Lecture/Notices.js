@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import LectureNavBar from "../../components/Lecture/LectureNavBar";
 import NoticeList from "../../components/Lecture/Notices/NoticeList";
+import Footer from "../../components/Footer";
 
 const Notices = () => {
   localStorage.removeItem('instanceId');
@@ -12,6 +13,7 @@ const Notices = () => {
         <LectureNavBar />
         <NoticeList />
       </Content>
+      <Footer/>
     </>
   );
 };

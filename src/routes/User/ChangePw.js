@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
-import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import styled from 'styled-components'
 import Header from'../../components/Header';
+import Footer from "../../components/Footer";
 
 const ChangePw = () => {
     const navigate = useNavigate(); 
@@ -71,17 +70,8 @@ const ChangePw = () => {
     return (
       <>
         <Header/>
-        <Container component="main" maxWidth="xs">
-        <Box 
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <div>CLMS</div>
+        <Container>
+        <Box>
           <TextField
             value={pw}
             onChange={handlePw}
@@ -128,6 +118,7 @@ const ChangePw = () => {
           </Button>
         </Box>
       </Container>
+      <Footer/>
     </>
   ); 
 };
@@ -137,4 +128,16 @@ export default ChangePw;
 const StyledText = styled.div`
 color:red;
 font-size:0.8rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 700px;
+  padding-top: 10%;
+`;
+
+const Box = styled.div`
+  width: 400px;
 `;

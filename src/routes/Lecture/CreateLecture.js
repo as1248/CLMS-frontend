@@ -5,6 +5,7 @@ import LectureName from "../../components/Lecture/CreateLecture/LectureName";
 import LectureIntroduction from "../../components/Lecture/CreateLecture/LectureIntroduction";
 import CreateLectureBtn from "../../components/Lecture/CreateLecture/CreateLectureBtn";
 import { useState } from "react";
+import Footer from "../../components/Footer";
 
 const CreateLecture = () => {
   const departmentId = localStorage.getItem('departmentId');
@@ -23,6 +24,7 @@ const CreateLecture = () => {
           <CreateLectureBtn data={data}/>
         </Box>
       </Content>
+      <Footer/>
     </>
   );
 };

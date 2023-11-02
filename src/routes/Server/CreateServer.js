@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import axios from "axios";
 import { useState } from "react";
+import Footer from "../../components/Footer";
 
 //post 요청 구현하고 페이지 전환 기능 추가하기
 const CreateServer = () => {
@@ -129,6 +130,7 @@ const CreateServer = () => {
           </Button>
         </ContentBody>
       </Content>
+      <Footer/>
     </>
   );
 };

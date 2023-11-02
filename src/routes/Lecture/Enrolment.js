@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
 import LectureEnrolment from "../../components/Lecture/Enrolment/LectureEnrolment";
+import Footer from "../../components/Footer";
 
 const Enrolment = () => {
   return (
@@ -10,6 +11,7 @@ const Enrolment = () => {
         <Title>수강 신청</Title>
         <LectureEnrolment/>
       </Content>
+      <Footer/>
     </>
   );
 }

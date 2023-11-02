@@ -4,14 +4,18 @@ import { useParams, useNavigate, redirect } from "react-router-dom";
 import styled from "styled-components";
 
 
-const InstanceDescription = ({data, domainName, setInstanceDetail, instanceId}) => {
+const InstanceDescription = ({data, domainName, instanceDetail, setInstanceDetail, instanceId}) => {
   const navigate = useNavigate();
   const [IOption, setIOption] = useState(false);
   const {lectureId} = useParams();
   //인스턴스 시작
   const instanceStart = () => {
     try{
-      axios.post('/instances/start', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'running'})));
+      axios.post('/instances/start', {instanceId}).then(response=>{
+        if(response.success){
+          setInstanceDetail(prev=>({...prev, state: response.status}));
+        }
+      });
     } catch (error) {
       console.error(error);
     };
@@ -20,7 +24,11 @@ const InstanceDescription = ({data, domainName, setInstanceDetail, instanceId}) 
   //인스턴스 중지
   const instanceStop = () => {
     try{
-      axios.post('/instances/stop', {instanceId}).then(setInstanceDetail(prev=>({...prev, state: 'stopped'})));
+      axios.post('/instances/stop', {instanceId}).then(response=>{
+        if(response.success){
+          setInstanceDetail(prev=>({...prev, state: response.status}));
+        }
+      });
     } catch (error) {
       console.error(error);
     };
@@ -53,7 +61,7 @@ const InstanceDescription = ({data, domainName, setInstanceDetail, instanceId}) 
           <DetailHeader>
             <Title>인스턴스 요약</Title>
             <InstanceState>
-              <State onClick={()=>{setIOption((prev)=>!prev)}}>{IOption ? '인스턴스 상태 ▲' : '인스턴스 상태 ▼'}</State>
+              <State onClick={()=>{setIOption((prev)=>!prev)}}>{IOption ? `${instanceDetail.state} ▲` : `${instanceDetail.state} ▼`}</State>
               {IOption ? (
                 <SetStates>
                   <SetState onClick={()=>instanceStart()}>인스턴스 시작</SetState>
@@ -105,13 +113,13 @@ const DetailHeader = styled.div`
   justify-content: space-between;
   border-radius: 20px;
   width: 100%;
-  min-width: 900px;
+  min-width: 400px;
   margin: 20px 0;
 `;
 
 const Title = styled.div`
   width: 70%;
-  min-width: 500px;
+  min-width: 200px;
   padding: 1%;
   font-size: 20px;
   font-weight: 600;

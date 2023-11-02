@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import LectureNavBar from "../../components/Lecture/LectureNavBar";
 import EnrolmentList from "../../components/Lecture/ApproveEnrolment/EnrolmentList";
+import Footer from "../../components/Footer";
 
 const ApproveEnrolment = () => {
   return (
@@ -11,6 +12,7 @@ const ApproveEnrolment = () => {
         <LectureNavBar/>
         <EnrolmentList/>
       </Content>
+      <Footer/>
     </>
   );
 }

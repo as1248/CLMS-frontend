@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
@@ -15,6 +13,8 @@ import { userState } from "../../Atoms"
 import axios from 'axios';
 import Header from'../../components/Header';
 import { Cookies } from "react-cookie";
+import Footer from "../../components/Footer";
+import styled from "styled-components";
 
 const Login = () => {
   const [, setUserState] = useRecoilState(userState);
@@ -112,16 +112,10 @@ const Login = () => {
   );
 
   return (
-    <><Header/>
-    <Container component="main" maxWidth="xs">
-    <Box sx={{
-        marginTop: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}>
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-        <div>CLMS</div>
+    <>
+      <Header/>
+      <Container>
+      <Box>
         <TextField 
           value={email} 
           onChange={handleEmail} 
@@ -163,19 +157,32 @@ const Login = () => {
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link sx={{ fontSize: '1rem' }} href="/login/findPw">비밀번호 변경</Link>
+            <Link sx={{ fontSize: '1rem' }} underline="hover" href="/login/findPw">비밀번호 변경</Link>
           </Grid>
           <Grid item xs>
-            <Link sx={{ fontSize: '1rem' }} href="/login/signUp">회원가입(학생)</Link>
+            <Link sx={{ fontSize: '1rem' }} underline="hover" href="/login/signUp">회원가입(학생)</Link>
           </Grid>
           <Grid item>
-            <Link sx={{ fontSize: '1rem' }} href="/login/signUpAd">회원가입(관리자)</Link>
+            <Link sx={{ fontSize: '1rem' }} underline="hover" href="/login/signUpAd">회원가입(관리자)</Link>
           </Grid>
         </Grid>
       </Box>
-    </Container>
+      </Container>
+      <Footer/>
     </>
   );
 }
 
 export default Login;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 700px;
+  padding-top: 10%;
+`;
+
+const Box = styled.div`
+  width: 500px;
+`;

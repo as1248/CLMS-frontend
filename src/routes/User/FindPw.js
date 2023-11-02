@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import VerifyEmail from '../../components/User/VerifyEmail';
 import Header from'../../components/Header';
+import Footer from "../../components/Footer";
+import styled from "styled-components";
 
 // 더미데이터
 const User = {
-  email: 'wkdroal11@gmail.com',
+  email: 'a@a.com',
   pw: '12341234'
 };
 
@@ -71,17 +71,8 @@ const FindPw = () => {
   return (
     <>
       <Header/>
-      <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <div>CSWS</div>
+      <Container>
+        <Box>
           <Grid container spacing={2}>
             <Grid item xs={9}>
               <TextField
@@ -120,8 +111,21 @@ const FindPw = () => {
           </Button>
         </Box>
       </Container>
+      <Footer/>
     </>
   );
 };
 
 export default FindPw;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 700px;
+  padding-top: 10%;
+`;
+
+const Box = styled.div`
+  width: 400px;
+`;

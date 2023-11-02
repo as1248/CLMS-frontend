@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
 import EditInboundRules from "../../components/Instance/InboundRules/EditInboundRules";
+import Footer from "../../components/Footer";
 
 const InboundRules = () => {
   
@@ -10,6 +11,7 @@ const InboundRules = () => {
       <Content>
         <EditInboundRules/>
       </Content>
+      <Footer/>
     </>
   );
 };

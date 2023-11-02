@@ -32,7 +32,7 @@ export default Slide;
 
 const SlideImage = styled.img`
   width: 100%;
-  height: auto;
+  min-width: 1200px;
 `;
 
 const SliderWrapper = styled.div`

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const InstanceDetail = () => {
   const userRole = localStorage.getItem('userRole');
@@ -64,15 +65,16 @@ const InstanceDetail = () => {
         <Header/>
         {instanceId > 0 ? (
           <Content>
-            <InstanceDescription data={instanceDetail} domainName={domainName} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
+            <InstanceDescription data={instanceDetail} domainName={domainName} instanceDetail={instanceDetail} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
             <TabsContent data={instanceDetail} domainName={domainName} setDomainName={setDomainName} instanceId={instanceId}/>
           </Content>
         ) : (
           <Content>
-            <InstanceDescription data={instanceDetail} domainName={domainName} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
+            <InstanceDescription data={instanceDetail} domainName={domainName} instanceDetail={instanceDetail} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
             <NoInstance>인스턴스가 존재하지 않습니다.</NoInstance>
           </Content>
         )}
+        <Footer/>
       </>
     );
 };

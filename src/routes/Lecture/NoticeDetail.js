@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import LectureNavBar from "../../components/Lecture/LectureNavBar";
 import Notice from "../../components/Lecture/NoticeDetail/Notice";
+import Footer from "../../components/Footer";
 
 const NoticeDetail = () => {
   return (
@@ -11,6 +12,7 @@ const NoticeDetail = () => {
         <LectureNavBar />
         <Notice />
       </Content>
+      <Footer/>
     </>
   );
 };
