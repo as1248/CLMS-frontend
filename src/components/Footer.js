@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import logo from '../img/Logo.png'
-import icons from '../img/icons.png';
 import { useNavigate } from "react-router-dom";
+import emailIcon from "../img/emailIcon.png"
+import githubIcon from "../img/githubIcon.png"
 
 const Footer = () => {
     const userRole = localStorage.getItem('userRole');
@@ -34,7 +35,10 @@ const Footer = () => {
                     ) : (
                         <Login onClick={logOut}>로그아웃</Login>
                     )}
-                    <Icons src={icons}/>
+                    <Icons>
+                      <Icon src={emailIcon} />
+                      <Icon src={githubIcon} />
+                    </Icons>
                 </Content>
             </Contents>
         </FooterContent>
@@ -93,6 +97,11 @@ const Login = styled.div`
   }
 `;
 
-const Icons = styled.img`
-    width: 250px;
+const Icons = styled.div`
+  margin-top: 10px;
+  width: 200px;
+`;
+
+const Icon = styled.img`
+  width: 50px;
 `;
