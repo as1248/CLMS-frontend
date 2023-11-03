@@ -46,6 +46,7 @@ const List = styled.div`
   margin: 2%;
   margin-left: 100px;
   width: 90%;
+  min-width: 650px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -59,6 +60,7 @@ const Grid = styled.div`
 
 const Server = styled.div`
   width: 80%;
+  min-width: 180px;
   height: 100px;
   margin-bottom: 50px;
   border-radius: 20px;
@@ -80,6 +82,7 @@ const IPAddress = styled.div`
 const CreateServerBtn = styled(Server)`
   cursor: pointer;
   width: 60%;
+  min-width: 160px;
   height: 60px;
   border-radius: 30px;
 `;

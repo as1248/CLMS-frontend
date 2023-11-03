@@ -30,8 +30,8 @@ export default CreateLectureBtn;
 const Content = styled.div`
   display: flex;
   justify-content: end;
-  align-items: end;
-  width: 40%;
+  align-items: center;
+  width: 100%;
   min-width: 400px;
   margin-bottom: 5%;
 `;
@@ -50,7 +50,7 @@ const CancelBtn = styled.div`
 
 const CreateBtn = styled.div`
   cursor: pointer;
-  width: 25%;
+  width: 10%;
   height: 40px;
   display: flex;
   justify-content: center;

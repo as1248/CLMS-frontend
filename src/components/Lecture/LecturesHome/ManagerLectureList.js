@@ -58,7 +58,9 @@ const List = styled.div`
 
 const Lecture = styled.div`
   display: flex;
-  width: 100%;
+  justify-content: center;
+  width: 90%;
+  min-width: 650px;
   margin: 1%;
   padding: 1%;
   border-radius: 20px;
@@ -69,6 +71,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   width: 25%;
+  min-width: 250px;
   padding-left: 20px;
   font-size: 24px;
   border-right: 1px solid black;
@@ -77,6 +80,7 @@ const Title = styled.div`
 const Todos = styled.div`
   display: flex;
   width: 60%;
+  min-width: 150px;
   margin-left: 30px;
 `;
 
@@ -94,6 +98,7 @@ const LectureBtn = styled.div`
   justify-content: center;
   align-items: center;
   width: 15%;
+  min-width: 180px;
   height: 45px;
   border-radius: 25px;
   color: white;
@@ -104,6 +109,7 @@ const LectureBtn = styled.div`
 const CreateLectureBtn = styled(Lecture)`
   cursor: pointer;
   width: 20%;
+  min-width: 200px;
   border-radius: 40px;
   justify-content: center;
   align-items: center;

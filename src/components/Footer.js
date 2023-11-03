@@ -47,7 +47,7 @@ export default Footer;
 
 const FooterContent = styled.footer`
     width: 100%;
-    min-width: 600px;
+    min-width: 900px;
     height: 100%;
     background-color: #232f3e;
     padding: 2%;
