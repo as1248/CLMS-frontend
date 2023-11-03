@@ -34,7 +34,7 @@ const NoticeList = () => {
               <Notice key={item?.noticeId}>
                   <Left onClick={()=>navigate(`${item?.noticeId}`,{state:{item}})}>
                     <NoticeTitle>{item?.title}</NoticeTitle>
-                    <NoticeContent>{item?.content}</NoticeContent>
+                    <NoticeContent>{item?.content.length >= 60 ? item?.content.slice(0,60)+'...' : item?.content}</NoticeContent>
                   </Left>
                 <Right>
                   <Date>게시일시 : </Date>
@@ -54,8 +54,9 @@ export default NoticeList;
 
 const Content = styled.div`
   width: 100%;
-  height: 96.5vh;
-  padding: 2% 0;
+  min-width: 800px;
+  height: 90vh;
+  padding-top: 2%;
 `;
 
 const NList = styled.div`
