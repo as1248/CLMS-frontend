@@ -21,7 +21,7 @@ const Notice = () => {
 
   return (
     <Content>
-      <LectureNav/>
+      <LectureNav title={state.item.title}/>
       <Box>
         <Btns>
           <NoticeButton/>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const LectureNav = () => {
+const LectureNav = ({title=''}) => {
   const { lectureId } = useParams();
   const [lectureName, setLectureName] = useState();
   const { pathname } = useLocation();
@@ -20,9 +20,13 @@ const LectureNav = () => {
 
   return(
     <Nav>
-      <LectureHome onClick={()=>navigate(`/${lectureId}`)}>{lectureName}</LectureHome>
-      {pathname.split('/')[2] === 'notice' ? (' > 공지사항') : pathname.split('/')[2] === 'instances' ? (' > 인스턴스 목록') : ''}
-
+      <Navigater onClick={()=>navigate(`/${lectureId}`)}>{lectureName}</Navigater>
+      {pathname.split('/')[2] ? (' > ') : ''}
+      {pathname.split('/')[2] === 'notice' ? (
+      <Navigater onClick={()=>navigate(`/${lectureId}/notice`)}>공지사항</Navigater>
+      ) : pathname.split('/')[2] === 'instances' ? (
+      <Navigater onClick={()=>navigate(`/${lectureId}/instances`)}>인스턴스 목록</Navigater>) : ''}
+      {pathname.split('/')[3] === undefined ? '' : pathname.split('/')[3] === 'createNotice' ? (` > 공지사항 작성`) : ` > ${title}`}
     </Nav>
   );
 }
@@ -37,8 +41,10 @@ const Nav = styled.nav`
   font-size: 24px;
 `;
 
-const LectureHome = styled.div`
+const Navigater = styled.div`
   cursor: pointer;
-  padding: 2px;
-  margin-right: 10px;
+  margin: 0 10px;
+  &:hover{
+    text-decoration: underline;
+  }
 `
