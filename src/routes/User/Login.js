@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -15,6 +14,7 @@ import Header from'../../components/Header';
 import { Cookies } from "react-cookie";
 import Footer from "../../components/Footer";
 import styled from "styled-components";
+import { BiLogIn } from "react-icons/bi";
 
 const Login = () => {
   const [, setUserState] = useRecoilState(userState);
@@ -115,58 +115,61 @@ const Login = () => {
     <>
       <Header/>
       <Container>
-      <Box>
-        <TextField 
-          value={email} 
-          onChange={handleEmail} 
-          onKeyDown={handleKeyDown} 
-          label="이메일" 
-          placeholder="이메일을 입력해주세요." 
-          margin="normal" 
-          required 
-          fullWidth
-        />
-        <TextField
-          margin="normal"
-          label="비밀번호"
-          name="password"
-          placeholder="특수문자 제외, 영문, 숫자 포함 8자 이상"
-          required
-          fullWidth
-          autoComplete="current-password"
-          type={passwordType.type}
-          value={pw}
-          onChange={handlePw}
-          onKeyDown={handleKeyDown}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <PasswordIcon onClick={handlePasswordType} />
-              </InputAdornment>
-            )
-          }} 
-        />
-        <Button
-          disabled={notAllow}
-          onClick={onClickConfirmButton}
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}>
-            로그인
-        </Button>
-        <Grid container>
-          <Grid item xs>
-            <Link sx={{ fontSize: '1rem' }} underline="hover" href="/login/findPw">비밀번호 변경</Link>
+        <LoginHeader>
+          <BiLogIn/> 로그인
+        </LoginHeader>
+        <Box>
+          <TextField 
+            value={email} 
+            onChange={handleEmail} 
+            onKeyDown={handleKeyDown} 
+            label="이메일" 
+            placeholder="이메일을 입력해주세요." 
+            margin="normal" 
+            required 
+            fullWidth
+          />
+          <TextField
+            margin="normal"
+            label="비밀번호"
+            name="password"
+            placeholder="특수문자 제외, 영문, 숫자 포함 8자 이상"
+            required
+            fullWidth
+            autoComplete="current-password"
+            type={passwordType.type}
+            value={pw}
+            onChange={handlePw}
+            onKeyDown={handleKeyDown}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <PasswordIcon onClick={handlePasswordType} />
+                </InputAdornment>
+              )
+            }} 
+          />
+          <Button
+            disabled={notAllow}
+            onClick={onClickConfirmButton}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}>
+              로그인
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/findPw")} style={{cursor:'pointer'}}>비밀번호 변경</Link>
+            </Grid>
+            <Grid item xs>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUp")} style={{cursor:'pointer'}}>회원가입(학생)</Link>
+            </Grid>
+            <Grid item>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUpAd")} style={{cursor:'pointer'}}>회원가입(관리자)</Link>
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <Link sx={{ fontSize: '1rem' }} underline="hover" href="/login/signUp">회원가입(학생)</Link>
-          </Grid>
-          <Grid item>
-            <Link sx={{ fontSize: '1rem' }} underline="hover" href="/login/signUpAd">회원가입(관리자)</Link>
-          </Grid>
-        </Grid>
-      </Box>
+        </Box>
       </Container>
       <Footer/>
     </>
@@ -177,10 +180,16 @@ export default Login;
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 700px;
-  padding-top: 10%;
+  padding-top: 8%;
+`;
+
+const LoginHeader = styled.div`
+  font-size: 48px;
+  margin-bottom: 30px;
 `;
 
 const Box = styled.div`

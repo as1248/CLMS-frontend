@@ -75,6 +75,7 @@ export default LectureNavBar;
 const Nav = styled.nav`
   background-color: #4b6586;
   width: 120px;
+  min-width: 90px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -83,6 +84,7 @@ const Nav = styled.nav`
 
 const FoldNav = styled(Nav)`
   width: 60px;
+  min-width: 40px;
 `;
 
 const NavItem = styled.div`

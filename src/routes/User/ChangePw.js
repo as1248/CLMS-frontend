@@ -72,6 +72,7 @@ const ChangePw = () => {
         <Header/>
         <Container>
         <Box>
+          <Title>비밀번호 변경</Title>
           <TextField
             value={pw}
             onChange={handlePw}
@@ -135,9 +136,15 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 700px;
-  padding-top: 10%;
+  padding-top: 8%;
 `;
 
 const Box = styled.div`
   width: 400px;
+`;
+
+const Title = styled.div`
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
 `;

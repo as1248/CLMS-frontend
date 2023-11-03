@@ -14,7 +14,6 @@ const Footer = () => {
     return (
         <FooterContent>
             <Logo src={logo}/>
-            <Contents>
                 <Content>
                     <Title>CLMS</Title>
                     <List>Email : donghyeon009@gmail.com</List>
@@ -40,7 +39,6 @@ const Footer = () => {
                       <Icon src={githubIcon} />
                     </Icons>
                 </Content>
-            </Contents>
         </FooterContent>
     );
 }
@@ -49,26 +47,25 @@ export default Footer;
 
 const FooterContent = styled.footer`
     width: 100%;
-    height: 200px;
+    min-width: 600px;
+    height: 100%;
     background-color: #232f3e;
     padding: 2%;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     font-family: Malgun Gothic,sans-serif;
 `;
 
 const Logo = styled.img`
     height: 130px;
     margin-left: 20px;
-`;
-
-const Contents = styled.div`
-    display: flex;
-    width: 100%;
+    margin-right: 100px;
 `;
 
 const Content = styled.div`
-    margin-left: 100px;
+    margin-right: 60px;
+    margin-top: 20px;
 `;
 
 const Title = styled.div`

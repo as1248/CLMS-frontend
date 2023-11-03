@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Header from'../../components/Header';
 import styled from 'styled-components'
 import Grid from '@mui/material/Grid';
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -128,7 +127,7 @@ const SignUp = () => {
   return (
     <>
       <Header/>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" style={{marginBottom:'40px'}}>
         <Box 
           sx={{
               marginTop: 8,
@@ -137,8 +136,7 @@ const SignUp = () => {
               alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <div>회원가입</div>
+          <Title>회원가입</Title>
           <Grid container spacing={2}>
             <Grid item xs={9}>
               <TextField
@@ -249,4 +247,8 @@ export default SignUp;
 const StyledText = styled.div`
   color:red;
   font-size:0.8rem;
+`;
+
+const Title = styled.div`
+  font-size: 32px;
 `;
