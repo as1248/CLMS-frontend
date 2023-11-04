@@ -18,7 +18,7 @@ const Footer = () => {
                     <Title>CLMS</Title>
                     <List>Email : donghyeon009@gmail.com</List>
                     <List>
-                        <a href='https://github.com/DonghyeonKang/CSWS' target="_blank" style={{color:'#b2bec3', textDecoration:'none'}}>Github : https://github.com/DonghyeonKang/CSWS</a>
+                        <a href='https://github.com/DonghyeonKang/CLMS-backend' target="_blank" style={{color:'#b2bec3', textDecoration:'none'}}>Github : https://github.com/DonghyeonKang/CLMS-backend</a>
                     </List>
                 </Content>
                 <Content>
@@ -46,9 +46,9 @@ const Footer = () => {
 export default Footer;
 
 const FooterContent = styled.footer`
+    position: absolute;
     width: 100%;
     min-width: 900px;
-    height: 100%;
     background-color: #232f3e;
     padding: 2%;
     display: flex;
