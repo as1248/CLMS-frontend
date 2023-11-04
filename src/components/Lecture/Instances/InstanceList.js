@@ -67,7 +67,6 @@ export default InstanceList;
 
 const Content = styled.div`
   width: 100%;
-  min-width: 700px;
   padding-top: 2%;
 `;
 
@@ -81,6 +80,8 @@ const IList = styled.div`
   background-color: white;
   height: 85vh;
   padding: 2%;
+  min-width: 800px;
+  min-height: 600px;
 `;
 
 const NoInstance = styled.div`

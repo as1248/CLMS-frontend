@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { BiEdit } from "react-icons/bi";
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 const LectureIntroduction = () => {
   const userRole = localStorage.getItem('userRole');
   const { lectureId } = useParams();
+  const navigate = useNavigate();
   const [lectureDetail, setLectureDetail] = useState({});
   const [editIntro, setEditIntro] = useState(false);
   const [name,setName] = useState();
@@ -24,16 +25,24 @@ const LectureIntroduction = () => {
     setIntro(e.target.value);
   };
 
-  const saveChanges = () => {
-
-  }
-
-  const EditLecture = () => {
+  const editLecture = () => {
     
   }
 
-  const DeleteLecture = () => {
-    axios.delete(`/lecture?id=${lectureId}`).then(response=>console.log(response));
+  const deleteLecture = () => {
+    if(window.confirm('강의를 삭제하시겠습니까?')){
+      try{
+        axios.delete(`/lecture?id=${lectureId}`).then(response=>{
+          if(response.status === 200){
+            navigate('/lecturesHome');
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      };
+    }else{
+      return;
+    }
   };
 
   useEffect(()=>{
@@ -78,7 +87,7 @@ const LectureIntroduction = () => {
           ) : (
           <BtnsContainer>
             <Button variant="outlined" onClick={()=>setEditIntro(prev=>!prev)}><BiEdit size={36}/></Button>
-            <Button variant="outlined" color="error" onClick={()=>console.log(name, intro)}><MdOutlineDeleteForever size={36}/></Button>
+            <Button variant="outlined" color="error" onClick={()=>deleteLecture()}><MdOutlineDeleteForever size={36}/></Button>
           </BtnsContainer>
         )) : (<></>)}
         </>

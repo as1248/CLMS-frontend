@@ -48,9 +48,5 @@ const Content = styled.div`
 
 const Name = styled.div`
   width: 10%;
-`;
-
-const Input = styled.input`
-  word-wrap: normal;
-  width: 80%;
+  min-width: 50px;
 `;

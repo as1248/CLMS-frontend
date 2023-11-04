@@ -12,7 +12,6 @@ const CreateNoticeButtons = ({data, setData}) => {
       axios.post('/lecture/notice', data).then(()=>navigate(`/${lectureId}/notice`));
     } catch (error) {
       console.error(error);
-      console.log(data);
     }
   }
 
@@ -29,5 +28,5 @@ export default CreateNoticeButtons;
 const Content = styled.div`
   display: flex;
   justify-content: end;
-  margin-top: 25px;
+  margin: 25px 0;
 `;

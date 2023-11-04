@@ -53,6 +53,8 @@ const Box = styled.div`
   background-color: white;
   padding: 2%;
   height: 100%;
+  min-width: 800px;
+  min-height: 600px;
 `;
 
 const Btns = styled.div`

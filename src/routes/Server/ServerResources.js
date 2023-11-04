@@ -14,24 +14,13 @@ const ServerResources = () => {
     const [server,setServer] = useState('');
     const [studentList,setStudentList] = useState([]);
     const [serverId,setServerId] = useState('');
-    //서버 리스트 (학과 ID값 받아와야 함)
-    const loadServerList = () => {
-            try {
-                axios.get(`/servers/management/list?departmentId=${departmentId}`).then((response)=> setData(response.data.servers));
-              } catch (error) {
-                console.error(error);
-              }
-    }
-    //학생 리스트 (serverId 쿼리로)
-    const loadStudentList = () => {
-            try {
-                axios.get(`/user/student/list`).then((response)=> setStudentList(response.data.students));
+    
+    useEffect(()=>{
+        try {
+            axios.get(`/servers/management/list?departmentId=${departmentId}`).then((response)=> setData(response.data.servers));
           } catch (error) {
             console.error(error);
-          }        
-    }
-    useEffect(()=>{
-        loadServerList();
+          }
       },[]);
 
     useEffect(()=>{
@@ -43,7 +32,11 @@ const ServerResources = () => {
         const switchServer = data?.filter((i)=>i?.name===server);
         setServerId(switchServer[0]?.serverId);
         if(switchServer[0]?.serverId !== undefined){
-            loadStudentList();
+            try {
+                axios.get(`/user/student/list`).then((response)=> setStudentList(response.data.students));
+            } catch (error) {
+                console.error(error);
+            }  
         }
     },[data,server]);
     return (

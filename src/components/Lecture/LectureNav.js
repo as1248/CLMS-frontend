@@ -39,12 +39,14 @@ const Nav = styled.nav`
   margin-bottom: 30px;
   padding-left: 2%;
   font-size: 24px;
+  min-width: 600px;
 `;
 
 const Navigater = styled.div`
   cursor: pointer;
   margin: 0 10px;
+  min-width: 100px;
   &:hover{
     text-decoration: underline;
   }
-`
+`;

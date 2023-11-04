@@ -77,6 +77,7 @@ const Nav = styled.nav`
   width: 120px;
   min-width: 90px;
   height: 100vh;
+  min-height: 720px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

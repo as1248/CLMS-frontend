@@ -21,5 +21,6 @@ export default ApproveEnrolment;
 const Content = styled.div`
   width: 100%;
   min-height: 95vh;
+  min-height: 600px;
   display: flex;
 `;

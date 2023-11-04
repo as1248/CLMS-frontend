@@ -6,6 +6,7 @@ import LectureIntroduction from "../../components/Lecture/CreateLecture/LectureI
 import CreateLectureBtn from "../../components/Lecture/CreateLecture/CreateLectureBtn";
 import { useState } from "react";
 import Footer from "../../components/Footer";
+import ManagerName from "../../components/Lecture/CreateLecture/ManagerName";
 
 const CreateLecture = () => {
   const departmentId = localStorage.getItem('departmentId');
@@ -34,7 +35,7 @@ export default CreateLecture;
 const Content = styled.div`
   box-sizing: border-box;
   width: 100%;
-  min-height: 85vh;
+  min-height: 600px;
   padding: 2% 5%;
 `;
 

@@ -63,6 +63,7 @@ const NList = styled.div`
   background-color: white;
   padding: 2%;
   height: 100%;
+  min-height: 600px;
 `;
 
 const NoNotice = styled.div`

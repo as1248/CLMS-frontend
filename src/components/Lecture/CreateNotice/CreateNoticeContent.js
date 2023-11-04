@@ -31,7 +31,6 @@ export default CreateNoticeContent;
 
 const Content = styled.div`
   width: 100%;
-  height: 96.5vh;
   padding: 2% 0;
 `;
 
@@ -39,4 +38,5 @@ const Box = styled.div`
   background-color: white;
   padding: 2%;
   height: 100%;
+  min-width: 800px;
 `;
