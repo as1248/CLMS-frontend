@@ -9,7 +9,7 @@ const LectureEnrolment = () => {
 
   const enrolment = (lectureId,lectureName,index) => {
     const btn = document.querySelectorAll('.button');
-    if(window.confirm(`${lectureName} 강의를 수강신청 하시겠습니까?`)){
+    if(window.confirm(`${lectureName} 강의의 수강신청을 하시겠습니까?`)){
       axios.post(`/lecture/student`,{lectureId}).then(response=>{
         if(response.status === 200){
           btn[index].style.pointerEvents = "none";

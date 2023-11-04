@@ -5,7 +5,7 @@ const AdminHeader = ({handleLogout}) => {
   const navigate = useNavigate();
   return (
     <ButtonGroup>
-      <HeaderBtn onClick={() => navigate("/admin")}>관리자 인증</HeaderBtn>
+      <HeaderBtn onClick={() => navigate("/admin")}>교수자 인증</HeaderBtn>
       <LogoutBtn onClick={() => handleLogout()}>로그아웃</LogoutBtn>
     </ButtonGroup>
   );

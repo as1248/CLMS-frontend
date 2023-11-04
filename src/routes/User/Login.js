@@ -163,10 +163,10 @@ const Login = () => {
               <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/findPw")} style={{cursor:'pointer'}}>비밀번호 변경</Link>
             </Grid>
             <Grid item xs>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUp")} style={{cursor:'pointer'}}>회원가입(학생)</Link>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUp")} style={{cursor:'pointer'}}>회원가입(학습자)</Link>
             </Grid>
             <Grid item>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUpAd")} style={{cursor:'pointer'}}>회원가입(관리자)</Link>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUpAd")} style={{cursor:'pointer'}}>회원가입(교수자)</Link>
             </Grid>
           </Grid>
         </Box>

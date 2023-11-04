@@ -49,7 +49,7 @@ const EnrolmentList = () => {
       <List>
         <Title>수강신청 승인</Title>
         {list.length === 0 ? (
-          <NoStudent>해당 강의에 수강신청 한 학생이 없습니다.</NoStudent>
+          <NoStudent>해당 강의에 수강신청 한 학습자가 없습니다.</NoStudent>
         ) : (
           <>
             <StudentHeader>

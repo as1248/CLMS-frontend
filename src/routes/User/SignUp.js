@@ -136,7 +136,7 @@ const SignUp = () => {
               alignItems: 'center',
           }}
         >
-          <Title>회원가입</Title>
+          <Title>학습자 회원가입</Title>
           <Grid container spacing={2}>
             <Grid item xs={9}>
               <TextField
