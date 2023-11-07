@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -13,6 +14,7 @@ const LectureEnrolment = () => {
       axios.post(`/lecture/student`,{lectureId}).then(response=>{
         if(response.status === 200){
           btn[index].style.pointerEvents = "none";
+          btn[index].style.backgroundColor = 'gray';
         }
       });
     }else{
@@ -37,7 +39,7 @@ const LectureEnrolment = () => {
           return(
             <Lecture key={i?.id}>
               <Title>{i.lectureName}</Title>
-              <LectureBtn className="button" onClick={()=>enrolment(i?.id,i?.lectureName,lectureList.indexOf(i))}>수강신청하기</LectureBtn>
+              <Button className="button" onClick={()=>enrolment(i?.id,i?.lectureName,lectureList.indexOf(i))} variant="contained" style={{backgroundColor:'#6967c7', color:'white', cursor:'pointer', fontSize:'16px', width:'12%', minWidth:'180px', borderRadius:'25px'}}>수강신청하기</Button>
             </Lecture>
           )
         }))
