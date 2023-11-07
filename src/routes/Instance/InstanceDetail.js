@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
+import LectureNavBar from "../../components/Lecture/LectureNavBar";
 
 const InstanceDetail = () => {
   const userRole = localStorage.getItem('userRole');
@@ -64,15 +65,21 @@ const InstanceDetail = () => {
       <>
         <Header/>
         {instanceId > 0 ? (
-          <Content>
-            <InstanceDescription data={instanceDetail} domainName={domainName} instanceDetail={instanceDetail} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
-            <TabsContent data={instanceDetail} domainName={domainName} setDomainName={setDomainName} instanceId={instanceId}/>
-          </Content>
+          <Body>
+            <LectureNavBar/>
+            <Content>
+              <InstanceDescription data={instanceDetail} domainName={domainName} instanceDetail={instanceDetail} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
+              <TabsContent data={instanceDetail} domainName={domainName} setDomainName={setDomainName} instanceId={instanceId}/>
+            </Content>
+          </Body>
         ) : (
-          <Content>
-            <InstanceDescription data={instanceDetail} domainName={domainName} instanceDetail={instanceDetail} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
-            <NoInstance>인스턴스가 존재하지 않습니다.</NoInstance>
-          </Content>
+          <Body>
+            <LectureNavBar/>
+            <Content>
+              <InstanceDescription data={instanceDetail} domainName={domainName} instanceDetail={instanceDetail} setInstanceDetail={setInstanceDetail} instanceId={instanceId}/>
+              <NoInstance>인스턴스가 존재하지 않습니다.</NoInstance>
+            </Content>
+          </Body>
         )}
         <Footer/>
       </>
@@ -81,10 +88,16 @@ const InstanceDetail = () => {
 
 export default InstanceDetail;
 
+const Body = styled.div`
+  display: flex;
+  min-width: 800px;
+  height: 90vh;
+`;
+
 const Content = styled.div`
-  padding: 0 5%;
-  min-height: 80vh;
-  margin-bottom: 120px;
+  padding: 0 2%;
+  width: 100%;
+  height: 100vh;
 `;
 
 const NoInstance = styled.div`

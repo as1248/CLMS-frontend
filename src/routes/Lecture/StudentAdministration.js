@@ -43,7 +43,7 @@ export default StudentAdministration;
 
 const Content = styled.div`
   width: 100%;
-  min-height: 85vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   padding: 2%;

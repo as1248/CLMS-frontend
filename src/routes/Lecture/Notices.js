@@ -23,4 +23,5 @@ export default Notices;
 const Content = styled.div`
   width: 100%;
   display: flex;
+  height: 90vh;
 `;

@@ -35,7 +35,8 @@ export default LecturesHome;
 const Content = styled.div`
   padding-top: 30px;
   width: 100%;
-  min-height: 80vh;
+  height: 90vh;
+  min-height: 700px;
   margin-bottom: 120px;
 `;
 

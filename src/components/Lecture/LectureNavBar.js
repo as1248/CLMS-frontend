@@ -76,8 +76,7 @@ const Nav = styled.nav`
   background-color: #4b6586;
   width: 120px;
   min-width: 90px;
-  height: 100vh;
-  min-height: 720px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

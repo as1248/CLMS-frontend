@@ -19,7 +19,7 @@ export default Enrolment;
 
 const Content = styled.div`
   width: 100%;
-  min-height: 95vh;
+  height: 90vh;
 `;
 
 const Title = styled.div`

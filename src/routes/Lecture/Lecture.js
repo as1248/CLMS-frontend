@@ -21,6 +21,6 @@ const Lecture = () => {
 export default Lecture;
 
 const Content = styled.div`
-  min-height: 95vh;
   display: flex;
+  height: 90vh;
 `;
