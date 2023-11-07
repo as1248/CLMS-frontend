@@ -25,8 +25,9 @@ const SelectDept = ({ universityId = 1, setDeptStu}) => {
       required
       select
       fullWidth
-      onChange={handleDepartmentChange}
       margin="normal"
+      label={'학과 선택'}
+      onChange={handleDepartmentChange}
     >
       {departments?.map((department) => (
         <MenuItem key={department?.id} value={department?.name}>

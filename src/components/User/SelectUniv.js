@@ -25,6 +25,7 @@ const SelectUniv = ({setUnivStu}) => {
       select
       fullWidth
       margin="normal"
+      label={'학교 선택'}
       onChange={handleUniversityChange} 
     >
       {universities?.map((university) => (
