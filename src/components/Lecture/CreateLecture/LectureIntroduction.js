@@ -6,7 +6,7 @@ const LectureIntroduction = ({data, setData}) => {
   const [validate, setValidate] = useState(true);
   //유효성 검사
   const validation = (str) => {
-    const reg = /[a-zA-Zㄱ-ㅎ가-힣0-9\s.]+/gim;
+    const reg = /[a-zA-Zㄱ-ㅎ가-힣0-9\s.,]+/gim;
     return reg.test(str);
   };
   const nameHandler = (event) => {
