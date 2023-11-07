@@ -59,7 +59,7 @@ const KeyPairModal = ({setModalOpen, data, setData, setKeyPairName,setKeyPairVal
                 console.error(error);
               };
             setKeyPairName(keyPairData?.name);
-            setData({...data, keyPair: keyPairData?.name});
+            setData({...data, keyName: keyPairData?.name});
             setModalOpen(false);
         } else {
             alert('올바른 키 페어 이름을 입력해 주세요.');
