@@ -13,7 +13,7 @@ const EnrolmentList = () => {
 
     if(window.confirm('승인하시겠습니까?')){
       try{
-        axios.post(`lecture/student/registration`,{lectureId, id}).then(response=>console.log(response));
+        axios.post(`lecture/student/registration`,{lectureId, id}).then(response=>setList(response.data.lectureList));
       } catch (error) {
         console.error(error);
       };
@@ -26,7 +26,7 @@ const EnrolmentList = () => {
   const refuse = (id) => {
     if(window.confirm('거절하시겠습니까?')){
       try{
-        axios.post(`lecture/student/refusal`,{lectureId, id}).then(response=>console.log(response));
+        axios.post(`lecture/student/refusal`,{lectureId, id}).then(response=>setList(response.data.lectureList));
       } catch (error) {
         console.error(error);
       };
@@ -52,13 +52,19 @@ const EnrolmentList = () => {
           <NoStudent>해당 강의에 수강신청 한 학습자가 없습니다.</NoStudent>
         ) : (
           <>
-            <StudentHeader>
+          <StudentHeader>
               <StudentCount> </StudentCount>
               <StudentName>이름</StudentName>
               <StudentID>학번</StudentID>
               <Approve> </Approve>
               <Approve> </Approve>
             </StudentHeader>
+          
+          <div style={{
+            maxHeight: '45vh',
+            overflow: "auto",
+            border: "1px solid #eaeded",
+          }}>
             {list?.map((item)=>{
               return (
                 <Student key={item?.id}>
@@ -74,6 +80,7 @@ const EnrolmentList = () => {
                 </Student>
               );
             })}
+          </div>
           </>
         )}
       </List>
