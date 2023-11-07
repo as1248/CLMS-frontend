@@ -34,7 +34,7 @@ const InstanceList = () => {
             </InstanceHeader>
             <List
               style={{
-                maxHeight: 380,
+                maxHeight: '45vh',
                 overflow: "auto",
                 border: "1px solid #eaeded",
               }}
