@@ -82,6 +82,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   width: 25%;
+  min-width: 250px;
   padding-left: 20px;
   font-size: 24px;
   border-right: 1px solid black;
@@ -94,6 +95,7 @@ const LectureBtn = styled.button`
   justify-content: center;
   align-items: center;
   width: 12%;
+  min-width: 180px;
   height: 45px;
   border-radius: 25px;
   color: white;

@@ -55,7 +55,8 @@ const List = styled.div`
 
 const Lecture = styled.div`
   display: flex;
-  width: 100%;
+  justify-content: center;
+  width: 90%;
   min-width: 650px;
   margin: 1%;
   padding: 1%;
