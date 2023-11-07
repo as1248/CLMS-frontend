@@ -76,7 +76,11 @@ const Login = () => {
         }
       })
       .catch(error => {
-        alert('로그인 실패: ' + error.message);
+        if(error.response.status === 400){
+          alert('로그인 실패: 올바른 ID와 비밀번호를 입력해주세요.');
+        }else{
+          alert('로그인 실패: ' + error.message);
+        }
       });
   };
 
