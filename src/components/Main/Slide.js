@@ -19,9 +19,6 @@ const Slide = () => {
     <SliderWrapper>
       <Slider {...settings}>
         <div>
-          <SlideImage src={Image4} alt="광고4" />
-        </div>
-        <div>
           <SlideImage src={Image5} alt="광고5" />
         </div>
       </Slider>
