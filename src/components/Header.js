@@ -4,6 +4,7 @@ import mainlogo from "../img/Logo.png";
 import AdminHeader from "./Header/AdminHeader";
 import ManagerHeader from "./Header/ManagerHeader";
 import StudentHeader from "./Header/StudentHeader";
+import { removeCookieToken } from "../routes/Cookie";
 
 const Header = () => {
   const userRole = localStorage.getItem('userRole');
@@ -11,6 +12,7 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    removeCookieToken();
     navigate('/login');
   };
   

@@ -68,7 +68,7 @@ const Login = () => {
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('userRole', userRole);
           localStorage.setItem('departmentId', deptId);
-          //cookies.set('refreshToken', refreshToken);
+          cookies.set('refreshToken', refreshToken);
           setUserState(userRole);
           navigate('/');
         } else {

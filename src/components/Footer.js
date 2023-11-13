@@ -3,12 +3,14 @@ import logo from '../img/Logo.png'
 import { useNavigate } from "react-router-dom";
 import emailIcon from "../img/emailIcon.png"
 import githubIcon from "../img/githubIcon.png"
+import { removeCookieToken } from "../routes/Cookie";
 
 const Footer = () => {
     const userRole = localStorage.getItem('userRole');
     const navigate = useNavigate();
     const logOut = () => {
         localStorage.clear();
+        removeCookieToken();
         navigate('/');
     }
     return (
