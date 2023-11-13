@@ -8,7 +8,7 @@ const Footer = () => {
     const userRole = localStorage.getItem('userRole');
     const navigate = useNavigate();
     const logOut = () => {
-        localStorage.setItem('userRole',null);
+        localStorage.clear();
         navigate('/');
     }
     return (
