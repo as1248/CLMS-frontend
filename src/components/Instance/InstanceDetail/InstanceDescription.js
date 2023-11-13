@@ -61,7 +61,7 @@ const InstanceDescription = ({data, domainName, instanceDetail, setInstanceDetai
           <DetailHeader>
             <Title>인스턴스 요약</Title>
             <InstanceState>
-              <State onClick={()=>{setIOption((prev)=>!prev)}}>{IOption ? `${instanceDetail.state} ▲` : `${instanceDetail.state} ▼`}</State>
+              <State onClick={()=>{setIOption((prev)=>!prev)}}>{IOption ? `${instanceDetail?.state} ▲` : `${instanceDetail?.state} ▼`}</State>
               {IOption ? (
                 <SetStates>
                   <SetState onClick={()=>instanceStart()}>인스턴스 시작</SetState>
@@ -98,7 +98,7 @@ const InstanceDescription = ({data, domainName, instanceDetail, setInstanceDetai
         ) : (
           <DetailHeader>
             <Title>인스턴스 요약</Title>
-            <InstanceCreate onClick={() => navigate('createInstance')}>인스턴스 생성</InstanceCreate>
+            <InstanceCreateBtn onClick={() => navigate('createInstance')}>인스턴스 생성</InstanceCreateBtn>
           </DetailHeader> 
         )}
       </>
@@ -160,7 +160,7 @@ const SetState = styled.div`
   }
 `;
 
-const InstanceCreate = styled.div`
+const InstanceCreateBtn = styled.div`
   cursor: pointer;
   padding: 6px 15px;
   min-width: 160px;
@@ -169,6 +169,7 @@ const InstanceCreate = styled.div`
   border-radius: 20px;
   color: white;
   font-weight: 600;
+  text-align: center;
   &:hover{
     background-color: #2da4b3;
   }
