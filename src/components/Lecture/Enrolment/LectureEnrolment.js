@@ -32,13 +32,13 @@ const LectureEnrolment = () => {
 
   return (
     <List>
-      {lectureList.length === 0 ? (
+      {lectureList?.length === 0 ? (
         <NoLecture>진행중인 강의가 없습니다.</NoLecture>
       ) : (
         lectureList.map((i)=>{
           return(
             <Lecture key={i?.id}>
-              <Title>{i.lectureName}</Title>
+              <Title>{i?.lectureName}</Title>
               <Button className="button" onClick={()=>enrolment(i?.id,i?.lectureName,lectureList.indexOf(i))} variant="contained" style={{backgroundColor:'#6967c7', color:'white', cursor:'pointer', fontSize:'16px', width:'12%', minWidth:'180px', borderRadius:'25px'}}>수강신청하기</Button>
             </Lecture>
           )
