@@ -11,7 +11,7 @@ const Footer = () => {
     const logOut = () => {
         localStorage.clear();
         removeCookieToken();
-        navigate('/');
+        navigate('/login');
     }
     return (
         <FooterContent>
