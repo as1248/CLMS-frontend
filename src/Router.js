@@ -21,12 +21,14 @@ import NoticeDetail from "./routes/Lecture/NoticeDetail";
 import CreateNotice from "./routes/Lecture/CreateNotice";
 import Enrolment from "./routes/Lecture/Enrolment";
 import ApproveEnrolment from "./routes/Lecture/ApproveEnrolment";
+import Documents from "./routes/Documents";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<Main />} />
+        <Route path="/documents" exact element={<Documents />} />
         <Route path="/admin" exact element={<Admin />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/login/signUp" exact element={<SignUp />} />
