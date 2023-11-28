@@ -4,12 +4,17 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { List } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DocumentsNav = () => {
+  const navigate = useNavigate();
+  const {pathname} = useLocation();
+  console.log(pathname.split('/'));
   return (
     <List
       style={{
-            maxHeight: '80vh',
+            minHeight: '80vh',
+            height: 'auto',
             overflow: "auto",
             width: '20%',
             minWidth: '200px',
@@ -22,11 +27,10 @@ const DocumentsNav = () => {
           <div>About CLMS</div>
         </AccordionSummary>
         <AccordionDetails>
-          <Item>CLMS란?</Item>
-          <Item>버전관리</Item>
-          <Item>활동</Item>
-          <Item>개발진, 도움을 준 사람들</Item>
-          <Item>GitHub</Item>
+          <Item onClick={()=>navigate("/documents/")}>CLMS란?</Item>
+          <Item onClick={()=>navigate("/documents/versions")}>버전관리</Item>
+          <Item onClick={()=>navigate("/documents/contributors")}>개발진, 도움을 준 사람들</Item>
+          <Item onClick={()=>navigate("/documents/github")}>GitHub</Item>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -34,10 +38,10 @@ const DocumentsNav = () => {
           <div>학습자</div>
         </AccordionSummary>
         <AccordionDetails>
-          <Item>인스턴스 생성</Item>
-          <Item>인스턴스 접속</Item>
-          <Item>도메인 연결</Item>
-          <Item>수강 신청</Item>
+          <Item onClick={()=>navigate("/documents/createInstance")}>인스턴스 생성</Item>
+          <Item onClick={()=>navigate("/documents/connectInstance")}>인스턴스 접속</Item>
+          <Item onClick={()=>navigate("/documents/connectDomain")}>도메인 연결</Item>
+          <Item onClick={()=>navigate("/documents/enrolment")}>수강 신청</Item>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -45,8 +49,8 @@ const DocumentsNav = () => {
           <div>교수자</div>
         </AccordionSummary>
         <AccordionDetails>
-          <Item>서버 등록</Item>
-          <Item>강의 등록</Item>
+          <Item onClick={()=>navigate("/documents/createServer")}>서버 등록</Item>
+          <Item onClick={()=>navigate("/documents/createLecture")}>강의 등록</Item>
         </AccordionDetails>
       </Accordion>
     </List>
