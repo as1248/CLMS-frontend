@@ -22,5 +22,6 @@ export default Lecture;
 
 const Content = styled.div`
   display: flex;
-  height: 90vh;
+  height: auto;
+  min-height: 100%;
 `;

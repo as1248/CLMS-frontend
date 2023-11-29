@@ -19,7 +19,7 @@ const ApproveEnrolment = () => {
 export default ApproveEnrolment;
 
 const Content = styled.div`
-  width: 100%;
-  height: 90vh;
   display: flex;
+  height: auto;
+  min-height: 100%;
 `;

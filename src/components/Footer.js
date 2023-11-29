@@ -48,37 +48,38 @@ const Footer = () => {
 export default Footer;
 
 const FooterContent = styled.footer`
-    position: absolute;
-    width: 100%;
-    min-width: 900px;
-    background-color: #232f3e;
-    padding: 2%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    font-family: Malgun Gothic,sans-serif;
+  position : relative;
+  width: 100%;
+  min-width: 900px;
+  height: 250px;
+  background-color: #232f3e;
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: Malgun Gothic,sans-serif;
 `;
 
 const Logo = styled.img`
-    height: 130px;
-    margin-left: 20px;
-    margin-right: 100px;
+  height: 130px;
+  margin-left: 20px;
+  margin-right: 100px;
 `;
 
 const Content = styled.div`
-    margin-right: 60px;
-    margin-top: 20px;
+  margin-right: 60px;
+  margin-top: 20px;
 `;
 
 const Title = styled.div`
-    margin-bottom: 20px;
-    font-size: 32px;
-    font-weight: 600;
-    color: white;
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 600;
+  color: white;
 `;
 
 const List = styled.div`
-    color: #b2bec3;
+  color: #b2bec3;
 `;
 
 const Login = styled.div`
