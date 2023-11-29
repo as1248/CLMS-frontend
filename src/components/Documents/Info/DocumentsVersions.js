@@ -37,6 +37,7 @@ export default DocumentsVersions;
 const Content = styled.div`
   width: 100%;
   padding: 20px 40px;
+  background-color: white;
 `;
 
 const Title = styled.div`

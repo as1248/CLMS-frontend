@@ -72,6 +72,7 @@ export default DocumentsHome;
 const Content = styled.div`
   width: 100%;
   padding: 20px 40px;
+  background-color: white;
 `;
 
 const Title = styled.div`
@@ -115,4 +116,6 @@ const Detail = styled(SubContent)`
 const DetailTitle = styled.div`
   margin-bottom: 20px;
   margin-left: -10px;
+  font-size: 24px;
+  font-weight: 400;
 `;
