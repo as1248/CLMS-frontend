@@ -20,7 +20,7 @@ const Footer = () => {
                     <Title>CLMS</Title>
                     <List>Email : donghyeon009@gmail.com</List>
                     <List>
-                        <a href='https://github.com/DonghyeonKang/CLMS-backend' target="_blank" style={{color:'#b2bec3', textDecoration:'none'}}>Github : https://github.com/DonghyeonKang/CLMS-backend</a>
+                        <a href='https://github.com/DonghyeonKang/CLMS-backend' target="_blank" rel="noreferrer noopener" style={{color:'#b2bec3', textDecoration:'none'}}>Github : https://github.com/DonghyeonKang/CLMS-backend</a>
                     </List>
                 </Content>
                 <Content>
