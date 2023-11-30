@@ -24,7 +24,10 @@ const Header = () => {
       <div style={{marginRight:'50px'}}>
         {(userRole === null) ? (
           /* 비로그인 상태 */
-          <HeaderBtn onClick={() => navigate('/login')}>로그인</HeaderBtn>
+          <>
+            <DocsBtn onClick={() => navigate("/documents/")}>설명서</DocsBtn>
+            <HeaderBtn onClick={() => navigate('/login')}>로그인</HeaderBtn>
+          </>
           ) : (userRole === 'ROLE_ADMIN') ? (
           /* 어드민 */
           <AdminHeader handleLogout={handleLogout}/>
@@ -83,4 +86,16 @@ const HeaderBtn = styled.button`
   &:hover{
     background-color: #2da4b3;
   }
+`;
+
+const DocsBtn = styled.button`
+cursor: pointer;
+width: 100px;
+height: 35px;
+font-size: 16px;
+font-weight: 600;
+color: white;
+background-color: rgba(0,0,0,0);
+margin-left: 10px;
+border: none;
 `;
