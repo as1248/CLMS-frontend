@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import logo from '../img/Logo.png'
 import { useNavigate } from "react-router-dom";
-import emailIcon from "../img/emailIcon.png"
-import githubIcon from "../img/githubIcon.png"
 import { removeCookieToken } from "../routes/Cookie";
 
 const Footer = () => {
@@ -15,12 +12,15 @@ const Footer = () => {
     }
     return (
         <FooterContent>
-            <Logo src={logo}/>
+            <Logo src={process.env.PUBLIC_URL+'/CLMS_icon.png'}/>
                 <Content>
                     <Title>CLMS</Title>
                     <List>Email : donghyeon009@gmail.com</List>
                     <List>
                         <a href='https://github.com/DonghyeonKang/CLMS-backend' target="_blank" rel="noreferrer noopener" style={{color:'#b2bec3', textDecoration:'none'}}>Github : https://github.com/DonghyeonKang/CLMS-backend</a>
+                    </List>
+                    <List>
+                        <a href='https://github.com/as1248/CLMS-frontend' target="_blank" rel="noreferrer noopener" style={{color:'#b2bec3', textDecoration:'none'}}>Github : https://github.com/as1248/CLMS-frontend</a>
                     </List>
                 </Content>
                 <Content>
@@ -37,8 +37,10 @@ const Footer = () => {
                         <Login onClick={logOut}>로그아웃</Login>
                     )}
                     <Icons>
-                      <Icon src={emailIcon} />
-                      <Icon src={githubIcon} />
+                      <Icon src={process.env.PUBLIC_URL + '/emailIcon.png'} />
+                      <a href="https://github.com/DonghyeonKang/CLMS-backend" target="_blank" rel="noreferrer noopener">
+                        <Icon src={process.env.PUBLIC_URL + '/githubIcon.png'} />
+                      </a>
                     </Icons>
                 </Content>
         </FooterContent>
@@ -90,6 +92,7 @@ const Login = styled.div`
   text-align: center;
   border-radius: 20px;
   margin-top: 50px;
+  margin-bottom: 5px;
   color: white;
   font-weight: 600;
   &:hover{
@@ -98,6 +101,7 @@ const Login = styled.div`
 `;
 
 const Icons = styled.div`
+  cursor: pointer;
   margin-top: 10px;
   width: 200px;
 `;

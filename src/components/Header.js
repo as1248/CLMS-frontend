@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import mainlogo from "../img/Logo.png";
 import AdminHeader from "./Header/AdminHeader";
 import ManagerHeader from "./Header/ManagerHeader";
 import StudentHeader from "./Header/StudentHeader";
@@ -15,11 +14,11 @@ const Header = () => {
     removeCookieToken();
     navigate('/login');
   };
-  
+
   return (
     <HeaderContent>
       <HeaderLogo onClick={() => navigate('/')}>
-        <Logo src={mainlogo}/>
+        <Logo src={process.env.PUBLIC_URL + '/CLMS_icon.png'}/>
         <div>CLMS</div>
       </HeaderLogo>
       <div style={{marginRight:'50px'}}>
