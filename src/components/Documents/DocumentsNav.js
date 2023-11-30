@@ -1,15 +1,9 @@
-import styled from "styled-components";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { List } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import AboutCLMS from "./DocumentsNav/AboutCLMS";
+import RoleUser from "./DocumentsNav/RoleUser";
+import RoleManager from "./DocumentsNav/RoleManager";
 
 const DocumentsNav = () => {
-  const navigate = useNavigate();
-  const {pathname} = useLocation();
-  console.log(pathname.split('/'));
   return (
     <List
       style={{
@@ -22,49 +16,11 @@ const DocumentsNav = () => {
             backgroundColor: 'white'
           }}
         >
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <div>About CLMS</div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Item onClick={()=>navigate("/documents/")}>CLMS란?</Item>
-          <Item onClick={()=>navigate("/documents/versions")}>버전관리</Item>
-          <Item onClick={()=>navigate("/documents/contributors")}>개발진, 도움을 준 사람들</Item>
-          <Item onClick={()=>navigate("/documents/github")}>GitHub</Item>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <div>학습자</div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Item onClick={()=>navigate("/documents/createInstance")}>인스턴스 생성</Item>
-          <Item onClick={()=>navigate("/documents/connectInstance")}>인스턴스 접속</Item>
-          <Item onClick={()=>navigate("/documents/connectDomain")}>도메인 연결</Item>
-          <Item onClick={()=>navigate("/documents/enrolment")}>수강 신청</Item>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <div>교수자</div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Item onClick={()=>navigate("/documents/createServer")}>서버 등록</Item>
-          <Item onClick={()=>navigate("/documents/createLecture")}>강의 등록</Item>
-        </AccordionDetails>
-      </Accordion>
+      <AboutCLMS/>
+      <RoleUser/>
+      <RoleManager/>
     </List>
   );
 }
 
 export default DocumentsNav;
-
-const Item = styled.div`
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 5px;
-  &:hover{
-    background-color: #f2f4f7;
-  }
-`;
