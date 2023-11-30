@@ -22,19 +22,39 @@ import CreateNotice from "./routes/Lecture/CreateNotice";
 import Enrolment from "./routes/Lecture/Enrolment";
 import ApproveEnrolment from "./routes/Lecture/ApproveEnrolment";
 import Documents from "./routes/Documents";
+import DocsVersions from "./routes/Documents/Info/DocsVersions";
+import DocsGithub from "./routes/Documents/Info/DocsGithub";
+import DocsContributors from "./routes/Documents/Info/DocsContributors";
+import DocsCreateLecture from "./routes/Documents/Role_Manager/DocsCreateLecture";
+import DocsCreateServer from "./routes/Documents/Role_Manager/DocsCreateServer";
+import DocsConnectDomain from "./routes/Documents/Role_User/DocsConnectDomain";
+import DocsConnectInstance from "./routes/Documents/Role_User/DocsConnectInstance";
+import DocsCreateInstance from "./routes/Documents/Role_User/DocsCreateInstance";
+import DocsEnrolment from "./routes/Documents/Role_User/DocsEnrolment";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<Main />} />
-        <Route path="/documents" exact element={<Documents />} />
         <Route path="/admin" exact element={<Admin />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/login/signUp" exact element={<SignUp />} />
         <Route path="/login/signUpAd" exact element={<SignUpAd />} />
         <Route path="/login/findPw" exact element={<FindPw />} />
         <Route path="/login/findPw/changePw" exact element={<ChangePw />} />
+
+        <Route path="/documents/" exact element={<Documents />} />
+        <Route path="/documents/versions" exact element={<DocsVersions />} />
+        <Route path="/documents/github" exact element={<DocsGithub />} />
+        <Route path="/documents/contributors" exact element={<DocsContributors/>} />
+        <Route path="/documents/createLecture" exact element={<DocsCreateLecture />} />
+        <Route path="/documents/createServer" exact element={<DocsCreateServer />} />
+        <Route path="/documents/connectDomain" exact element={<DocsConnectDomain />} />
+        <Route path="/documents/connectInstance" exact element={<DocsConnectInstance />} />
+        <Route path="/documents/createInstance" exact element={<DocsCreateInstance/>} />
+        <Route path="/documents/enrolment" exact element={<DocsEnrolment />} />
+
 
         <Route path="/studentAdministration" exact element={<StudentAdministration />} />
         <Route path="/serverResources" exact element={<ServerResources />} />
