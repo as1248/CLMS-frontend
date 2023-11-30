@@ -61,6 +61,7 @@ export default DocumentsCreateInstance;
 
 const Content = styled.div`
   width: 100%;
+  min-width: 700px;
   padding: 20px 40px;
   background-color: white;
 `;
@@ -68,7 +69,6 @@ const Content = styled.div`
 const Title = styled.div`
   font-size: 32px;
   font-weight: 600;
-  
 `;
 
 const List = styled.div`
@@ -90,6 +90,7 @@ const SubContent = styled.div`
 `;
 
 const Image = styled.img`
-  width: 1000px;
+  width: 80%;
+  min-width: 600px;
   margin-bottom: 80px;
 `;

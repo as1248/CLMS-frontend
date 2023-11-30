@@ -51,7 +51,7 @@ const FooterContent = styled.footer`
   position : relative;
   width: 100%;
   min-width: 900px;
-  height: 250px;
+  min-height: 250px;
   background-color: #232f3e;
   padding: 2%;
   display: flex;

@@ -71,6 +71,7 @@ export default DocumentsHome;
 
 const Content = styled.div`
   width: 100%;
+  min-width: 700px;
   padding: 20px 40px;
   background-color: white;
 `;
@@ -106,7 +107,7 @@ const SubContent = styled.div`
 
 const Image = styled.img`
   margin-left: 40px;
-  width: 400px;
+  height: 500px;
 `;
 
 const Detail = styled(SubContent)`

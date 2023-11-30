@@ -34,6 +34,7 @@ export default DocumentsEnrolment;
 
 const Content = styled.div`
   width: 100%;
+  min-width: 700px;
   padding: 20px 40px;
   background-color: white;
 `;
@@ -63,6 +64,7 @@ const SubContent = styled.div`
 `;
 
 const Image = styled.img`
-  width: 1000px;
+  width: 80%;
+  min-width: 600px;
   margin-bottom: 80px;
 `;

@@ -53,6 +53,7 @@ export default DocumentsConnectInstance;
 
 const Content = styled.div`
   width: 100%;
+  min-width: 700px;
   padding: 20px 40px;
   background-color: white;
 `;
@@ -60,7 +61,6 @@ const Content = styled.div`
 const Title = styled.div`
   font-size: 32px;
   font-weight: 600;
-  
 `;
 
 const List = styled.div`
@@ -82,7 +82,8 @@ const SubContent = styled.div`
 `;
 
 const Image = styled.img`
-  width: 1000px;
+  width: 80%;
+  min-width: 600px;
   margin-bottom: 80px;
 `;
 
@@ -93,7 +94,7 @@ const CodeBox = styled.div`
   padding: 20px;
   font-size: 16px;
   width: 70%;
-  min-width: 650px;
+  min-width: 600px;
   border-radius: 5px;
   font-family: SFMono-Regular, Menlo, Consolas, 'PT-Mono', 'Liberation Mono', Courier;
 `;
