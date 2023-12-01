@@ -23,5 +23,5 @@ export default Instances;
 const Content = styled.div`
   display: flex;
   height: auto;
-  min-height: 100%;
+  min-height: 100vh;
 `;
