@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
 import Grid from '@mui/material/Grid';
-import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useRecoilState } from "recoil";
 import { userState } from "../../Atoms"
 import axios from 'axios';
@@ -15,6 +10,9 @@ import { Cookies } from "react-cookie";
 import Footer from "../../components/Footer";
 import styled from "styled-components";
 import { BiLogIn } from "react-icons/bi";
+import EmailInput from "../../components/User/Login/EmailInput";
+import PasswordInput from "../../components/User/Login/PasswordInput";
+import LoginBtn from "../../components/User/Login/LoginBtn";
 
 const Login = () => {
   const [, setUserState] = useRecoilState(userState);
@@ -24,10 +22,6 @@ const Login = () => {
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [notAllow, setNotAllow] = useState(true);
-  const [passwordType, setPasswordType] = useState({
-    type: 'password',
-    visible: false
-  })
 
   const cookies = new Cookies();
 
@@ -90,17 +84,6 @@ const Login = () => {
     }
   }
 
-  const handlePasswordType = () => {
-    setPasswordType(prevState => {
-      return {
-        type: prevState.visible ? "password" : "text",
-        visible: !prevState.visible
-      };
-    });
-  };
-
-  const PasswordIcon = passwordType.visible ? VisibilityIcon : VisibilityOffIcon;
-
   // API 요청 시 Authorization 헤더에 토큰 추가
   axios.interceptors.request.use(
     config => {
@@ -123,54 +106,24 @@ const Login = () => {
           <BiLogIn/> 로그인
         </LoginHeader>
         <Box>
-          <TextField 
-            value={email} 
-            onChange={handleEmail} 
-            onKeyDown={handleKeyDown} 
-            label="이메일" 
-            placeholder="이메일을 입력해주세요." 
-            margin="normal" 
-            required 
-            fullWidth
-          />
-          <TextField
-            margin="normal"
-            label="비밀번호"
-            name="password"
-            placeholder="특수문자 제외, 영문, 숫자 포함 8자 이상"
-            required
-            fullWidth
-            autoComplete="current-password"
-            type={passwordType.type}
-            value={pw}
-            onChange={handlePw}
-            onKeyDown={handleKeyDown}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PasswordIcon onClick={handlePasswordType} />
-                </InputAdornment>
-              )
-            }} 
-          />
-          <Button
-            disabled={notAllow}
-            onClick={onClickConfirmButton}
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}>
-              로그인
-          </Button>
+          <EmailInput email={email} handleEmail={handleEmail} handleKeyDown={handleKeyDown}/>
+          <PasswordInput pw={pw} handlePw={handlePw} handleKeyDown={handleKeyDown}/>
+          <LoginBtn notAllow={notAllow} onClickConfirmButton={onClickConfirmButton}/>
           <Grid container>
             <Grid item xs>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/findPw")} style={{cursor:'pointer'}}>비밀번호 변경</Link>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/findPw")} style={{cursor:'pointer'}}>
+                비밀번호 변경
+              </Link>
             </Grid>
             <Grid item xs>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUp")} style={{cursor:'pointer'}}>회원가입(학습자)</Link>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUp")} style={{cursor:'pointer'}}>
+                회원가입(학습자)
+              </Link>
             </Grid>
             <Grid item>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUpAd")} style={{cursor:'pointer'}}>회원가입(교수자)</Link>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUpAd")} style={{cursor:'pointer'}}>
+                회원가입(교수자)
+              </Link>
             </Grid>
           </Grid>
         </Box>
