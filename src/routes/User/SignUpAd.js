@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Header from'../../components/Header';
-import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import VerifyEmail from '../../components/User/VerifyEmail';
-import SelectUniv from '../../components/User/SelectUniv';
-import SelectDept from '../../components/User/SelectDept';
+import SelectUniv from '../../components/User/SignUp, SignUpAd/SelectUniv';
+import SelectDept from '../../components/User/SignUp, SignUpAd/SelectDept';
 import Footer from "../../components/Footer";
 import EmailInput from "../../components/User/SignUp, SignUpAd/EmailInput";
 import SendEmailBtn from "../../components/User/SignUp, SignUpAd/SendEmailBtn";
