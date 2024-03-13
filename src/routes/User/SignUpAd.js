@@ -12,77 +12,63 @@ import VerifyEmail from '../../components/User/VerifyEmail';
 import SelectUniv from '../../components/User/SelectUniv';
 import SelectDept from '../../components/User/SelectDept';
 import Footer from "../../components/Footer";
-
-const User = {
-    email: 'wkdroal11@gmail.com',
-    pw: 'hyuk0229'
-  }
+import EmailInput from "../../components/User/SignUp, SignUpAd/EmailInput";
+import SendEmailBtn from "../../components/User/SignUp, SignUpAd/SendEmailBtn";
+import PasswordInput from "../../components/User/SignUp, SignUpAd/PasswordInput";
+import PasswordConfirmInput from "../../components/User/SignUp, SignUpAd/PasswordConfirmInput";
+import NameInput from "../../components/User/SignUp, SignUpAd/NameInput";
+import SubmitBtn from "../../components/User/SignUp, SignUpAd/SubmitBtn";
+import PhoneNumberInput from "../../components/User/SignUp, SignUpAd/PhoneNumberInput";
 
 const SignUpAd = () => {
     const [NumberValid, setNumberValid] = useState(false);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [pw, setPw] = useState('');
-    const [pw2, setPw2] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
     const [name, setName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [emailValid, setEmailValid] = useState(false);
-    const [pwValid, setPwValid] = useState(false);
-    const [pw2Valid, setPw2Valid] = useState(false);
-    const [TelValid, setTelValid] = useState(false);
+    const [passwordValid, setPasswordValid] = useState(false);
+    const [passwordConfirmValid, setPasswordConfirmValid] = useState(false);
+    const [phoneNumberValid, setPhoneNumberValid] = useState(false);
     const [notAllow,setNotAllow] = useState(true);
     const [sendButtonDisabled, setSendButtonDisabled] = useState(false);
     const [showEmailField, setShowEmailField] = useState(false);
     const [UnivStu, setUnivStu] = useState('');
     const [DeptStu, setDeptStu] = useState('');
-    const [Tel, setTel] = useState('');
-
-    //
-    const handleEmail = (e)=> {
-      setEmail(e.target.value);
-      const regex =
-        /^(([^<>()\].,;:\s@"]+(\.[^<>()\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-      if (regex.test(e.target.value)) {
-        setEmailValid(true);
-      } else {
-        setEmailValid(false);
-      }
-    }
 
     //비밀번호 오류메세지
-    const handlePw = (e)=> {
-      setPw(e.target.value);
+    const handlePassword = (e)=> {
+      setPassword(e.target.value);
       const regex =
         /^[a-zA-z0-9]{8,20}$/;
       if(regex.test(e.target.value)) {
-        setPwValid(true);
+        setPasswordValid(true);
       } else {
-        setPwValid(false);
+        setPasswordValid(false);
       }
     }
 
     //비밀번호 확인 오류메세지
-    const handlePw2 = (e)=> {
-      setPw2(e.target.value);
-      const regex =pw;
+    const handlePasswordConfirm = (e)=> {
+      setPasswordConfirm(e.target.value);
+      const regex =password;
       if(regex===e.target.value) {
-        setPw2Valid(true);
+        setPasswordConfirmValid(true);
       } else {
-        setPw2Valid(false);
+        setPasswordConfirmValid(false);
       }
-    }
-
-    const handleName = (e) => {
-      setName(e.target.value);
     }
 
     //회원가입 버튼 눌렀을 시 메세지
     const onClickConfirmButton =() =>{
-      if(pw!==pw2){
+      if(password!==passwordConfirm){
         alert('비밀번호를 다시 확인해주세요.');
       }
       else {
       console.log("실행됨");
-        axios.post('/register/manager', { username: email, password: pw, name, universityId: UnivStu , departmentId: DeptStu, phone: Tel})
+        axios.post('/register/manager', { username: email, password: password, name, universityId: UnivStu , departmentId: DeptStu, phone: phoneNumber})
         .then(response => {
           navigate('/login');
         })
@@ -101,38 +87,34 @@ const SignUpAd = () => {
 
     //버튼 활성화 실시간으로
     useEffect(() =>{
-      if(NumberValid && pwValid && pw2Valid && name && UnivStu && DeptStu && TelValid ){
+      if(NumberValid && passwordValid && passwordConfirmValid && name && UnivStu && DeptStu && phoneNumberValid ){
         setNotAllow(false);
         return;
       }
       setNotAllow(true);
-    },[NumberValid,pwValid,pw2Valid,name,UnivStu,DeptStu,TelValid]);
+    },[NumberValid,passwordValid,passwordConfirmValid,name,UnivStu,DeptStu,phoneNumberValid]);
 
     //
     const handleButtonClick = () => {
-      if (email === User.email) {
-        alert('존재하는 메일입니다.');
-      } else {
-        setShowEmailField(true);
-        setSendButtonDisabled(true);
-        axios.get('/register/verification', { params: { email: email } })
-          .then(response => {
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }
+      setShowEmailField(true);
+      setSendButtonDisabled(true);
+      axios.get('/register/verification', { params: { email: email } })
+      .then(response => {
+
+      })
+      .catch(error => {
+        console.error(error);
+      });
     };
 
-    const handleTel = (e) => {
-      setTel(e.target.value);
-      if (e.target.value.length > 0) { // 전화번호 한글자로 입력을 했을 시
-          setTelValid(true);
+    const handlePhoneNumber = (e) => {
+      setPhoneNumber(e.target.value);
+      if (e.target.value.length > 0) {
+          setPhoneNumberValid(true);
         } else { // 전화번호 아무것도 입력 안 했을 시
-          setTelValid(false);
+          setPhoneNumberValid(false);
         }
       };
-
       
     return (
     <>
@@ -149,102 +131,32 @@ const SignUpAd = () => {
         <Title>교수자 회원가입</Title>
         <Grid container spacing={2}>
           <Grid item xs={9}>
-            <TextField
-              value={email}
-              onChange={handleEmail}
-              onKeyDown={handleKeyDown}
-              disabled={showEmailField}
-              label="이메일"
-              placeholder="example@company.com"
-              margin="normal"
-              required
-              fullWidth
-            />
-            {
-              !emailValid && email.length > 0 && (
+            <EmailInput email={email} setEmail={setEmail} setEmailValid={setEmailValid} handleKeyDown={handleKeyDown} showEmailField={showEmailField} />
+            {!emailValid && email.length > 0 && (
                 <StyledText>올바른 이메일 형식을 입력해주세요</StyledText>
-              )
-            }
+              )}
           </Grid>
           <Grid item xs={3}>
-            <Button
-              disabled={!emailValid || sendButtonDisabled}
-              onClick={handleButtonClick}
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              전송
-            </Button>
+            <SendEmailBtn emailValid={emailValid} sendButtonDisabled={sendButtonDisabled} handleButtonClick={handleButtonClick} />
           </Grid>
         </Grid>
         {showEmailField && <VerifyEmail email={email} onNumberValidChange={setNumberValid}/>}
-        <TextField
-          value={pw}
-          onChange={handlePw}
-          onKeyDown={handleKeyDown}
-          margin="normal"
-          label="비밀번호"
-          type="password"
-          name="password"
-          placeholder="특수문자 제외, 영문, 숫자 포함 8자 이상"
-          required
-          fullWidth
-          autoComplete="current-password"
-        />
-        {
-          !pwValid && pw.length > 0 && (
+
+        <PasswordInput password={password} handlePassword={handlePassword} handleKeyDown={handleKeyDown} />
+        {!passwordValid && password.length > 0 && (
             <StyledText >특문자 제외 영문자 숫자로 8자 이상 20자 미만으로 입력해주세요</StyledText>
-          )
-        }
-        <TextField
-          value={pw2}
-          onChange={handlePw2}
-          onKeyDown={handleKeyDown}
-          margin="normal"
-          label="비밀번호 확인"
-          type="password"
-          name="passwordConfirm"
-          required
-          fullWidth
-          autoComplete="current-password"
-        />
-        {
-          !pw2Valid && pw2.length > 0 && (
+          )}
+
+        <PasswordConfirmInput passwordConfirm={passwordConfirm} handlePasswordConfirm={handlePasswordConfirm} handleKeyDown={handleKeyDown} />
+        {!passwordConfirmValid && passwordConfirm.length > 0 && (
             <StyledText>비밀번호가 일치하지 않습니다</StyledText>
-          )
-        }
-        <TextField
-            value={name}
-            onChange={handleName}
-            onKeyDown={handleKeyDown}
-            margin="normal"
-            label="이름"
-            name="name"
-            required
-            fullWidth
-          />
-          <SelectUniv setUnivStu={setUnivStu}/>
-          <SelectDept universityId={UnivStu} setDeptStu={setDeptStu}/>
-          <TextField
-            value={Tel}  
-            onChange={handleTel}
-            label="학과 전화번호"
-            margin="normal"
-            required
-            fullWidth
-          />
-          <Button
-            disabled={notAllow}
-            onClick={onClickConfirmButton}
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            가입하기
-          </Button>
+          )}
+
+        <NameInput name={name} setName={setName} handleKeyDown={handleKeyDown} />
+        <SelectUniv setUnivStu={setUnivStu} />
+        <SelectDept universityId={UnivStu} setDeptStu={setDeptStu} />
+        <PhoneNumberInput phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} handleKeyDown={handleKeyDown} />
+        <SubmitBtn notAllow={notAllow} onClickConfirmButton={onClickConfirmButton} />
         </Box>
       </Container>
       <Footer/>
