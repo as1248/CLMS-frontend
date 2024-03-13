@@ -5,8 +5,7 @@ import ServerTabs from "../../components/Server/ServerResources/ServerTabs";
 import ServerResource from "../../components/Server/ServerResources/ServerResource";
 import axios from "axios";
 
-//serverId 별로 학생 리스트 요청하도록 구현하기
-//serverId 변경되면 학생리스트, 리소스 API 요청 하게 수정하기
+//현재 사용 안함
 const ServerResources = () => {
     const departmentId = localStorage.getItem('departmentId');
     const [data, setData] = useState([]);

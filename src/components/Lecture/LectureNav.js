@@ -20,12 +20,12 @@ const LectureNav = ({title=''}) => {
 
   return(
     <Nav>
-      <Navigater onClick={()=>navigate(`/${lectureId}`)}>{lectureName}</Navigater>
+      <Navigator onClick={()=>navigate(`/${lectureId}`)}>{lectureName}</Navigator>
       {pathname.split('/')[2] ? (' > ') : ''}
       {pathname.split('/')[2] === 'notice' ? (
-      <Navigater onClick={()=>navigate(`/${lectureId}/notice`)}>공지사항</Navigater>
+      <Navigator onClick={()=>navigate(`/${lectureId}/notice`)}>공지사항</Navigator>
       ) : pathname.split('/')[2] === 'instances' ? (
-      <Navigater onClick={()=>navigate(`/${lectureId}/instances`)}>인스턴스 목록</Navigater>) : ''}
+      <Navigator onClick={()=>navigate(`/${lectureId}/instances`)}>인스턴스 목록</Navigator>) : ''}
       {pathname.split('/')[3] === undefined ? '' : pathname.split('/')[3] === 'createNotice' ? (` > 공지사항 작성`) : ` > ${title}`}
     </Nav>
   );
@@ -42,7 +42,7 @@ const Nav = styled.nav`
   min-width: 600px;
 `;
 
-const Navigater = styled.div`
+const Navigator = styled.div`
   cursor: pointer;
   margin: 0 10px;
   min-width: 100px;

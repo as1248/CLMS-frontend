@@ -5,7 +5,6 @@ import ManagerLectureList from "../../components/Lecture/LecturesHome/ManagerLec
 import StudentLectureList from "../../components/Lecture/LecturesHome/StudentLectureList";
 import ServerList from "../../components/Lecture/LecturesHome/ServerList";
 
-//학생, 관리자 구분해서 만들기
 const LecturesHome = () => {
   const userRole = localStorage.getItem('userRole');
 

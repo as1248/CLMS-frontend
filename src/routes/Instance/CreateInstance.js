@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 
 const CreateInstance = () => {
-  //서버ID 없앨지 값 받아서 전달할지
+
   const { lectureId } = useParams();
   const [data,setData] = useState({
     name: '',
