@@ -39,8 +39,7 @@ const SignUpAd = () => {
     //비밀번호 오류메세지
     const handlePassword = (e)=> {
       setPassword(e.target.value);
-      const regex =
-        /^[a-zA-z0-9]{8,20}$/;
+      const regex = /^[a-zA-z0-9]{8,20}$/;
       if(regex.test(e.target.value)) {
         setPasswordValid(true);
       } else {
@@ -51,7 +50,7 @@ const SignUpAd = () => {
     //비밀번호 확인 오류메세지
     const handlePasswordConfirm = (e)=> {
       setPasswordConfirm(e.target.value);
-      const regex =password;
+      const regex = password;
       if(regex===e.target.value) {
         setPasswordConfirmValid(true);
       } else {
@@ -107,7 +106,8 @@ const SignUpAd = () => {
 
     const handlePhoneNumber = (e) => {
       setPhoneNumber(e.target.value);
-      if (e.target.value.length > 0) {
+      const regex = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
+      if (regex.test(e.target.value)) {
           setPhoneNumberValid(true);
         } else { // 전화번호 아무것도 입력 안 했을 시
           setPhoneNumberValid(false);
@@ -129,7 +129,7 @@ const SignUpAd = () => {
         <Title>교수자 회원가입</Title>
         <Grid container spacing={2}>
           <Grid item xs={9}>
-            <EmailInput email={email} setEmail={setEmail} setEmailValid={setEmailValid} handleKeyDown={handleKeyDown} showEmailField={showEmailField} />
+            <EmailInput email={email} setEmail={setEmail} emailValid={emailValid} setEmailValid={setEmailValid} handleKeyDown={handleKeyDown} showEmailField={showEmailField} />
             {!emailValid && email.length > 0 && (
                 <StyledText>올바른 이메일 형식을 입력해주세요</StyledText>
               )}
@@ -140,12 +140,12 @@ const SignUpAd = () => {
         </Grid>
         {showEmailField && <VerifyEmail email={email} onNumberValidChange={setNumberValid}/>}
 
-        <PasswordInput password={password} handlePassword={handlePassword} handleKeyDown={handleKeyDown} />
+        <PasswordInput password={password} handlePassword={handlePassword} passwordValid={passwordValid} handleKeyDown={handleKeyDown} />
         {!passwordValid && password.length > 0 && (
             <StyledText >특문자 제외 영문자 숫자로 8자 이상 20자 미만으로 입력해주세요</StyledText>
           )}
 
-        <PasswordConfirmInput passwordConfirm={passwordConfirm} handlePasswordConfirm={handlePasswordConfirm} handleKeyDown={handleKeyDown} />
+        <PasswordConfirmInput passwordConfirm={passwordConfirm} handlePasswordConfirm={handlePasswordConfirm} passwordConfirmValid={passwordConfirmValid} handleKeyDown={handleKeyDown} />
         {!passwordConfirmValid && passwordConfirm.length > 0 && (
             <StyledText>비밀번호가 일치하지 않습니다</StyledText>
           )}
@@ -153,7 +153,7 @@ const SignUpAd = () => {
         <NameInput name={name} setName={setName} handleKeyDown={handleKeyDown} />
         <SelectUniv setUnivStu={setUnivStu} />
         <SelectDept universityId={UnivStu} setDeptStu={setDeptStu} />
-        <PhoneNumberInput phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} handleKeyDown={handleKeyDown} />
+        <PhoneNumberInput phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} phoneNumberValid={phoneNumberValid} handleKeyDown={handleKeyDown} />
         <SubmitBtn notAllow={notAllow} onClickConfirmButton={onClickConfirmButton} />
         </Box>
       </Container>

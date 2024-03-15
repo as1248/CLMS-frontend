@@ -118,7 +118,7 @@ const SignUp = () => {
           <Title>학습자 회원가입</Title>
           <Grid container spacing={2}>
             <Grid item xs={9}>
-              <EmailInput email={email} setEmail={setEmail} setEmailValid={setEmailValid} handleKeyDown={handleKeyDown} showEmailField={showEmailField} />
+              <EmailInput email={email} setEmail={setEmail} emailValid={emailValid} setEmailValid={setEmailValid} handleKeyDown={handleKeyDown} showEmailField={showEmailField} />
               {!emailValid && email.length > 0 && (
                   <StyledText>올바른 이메일 형식을 입력해주세요</StyledText>
                 )}
@@ -129,12 +129,12 @@ const SignUp = () => {
           </Grid>
           {showEmailField && <VerifyEmail email={email} onNumberValidChange={setNumberValid}/>}
 
-          <PasswordInput password={password} handlePassword={handlePassword} handleKeyDown={handleKeyDown} />
+          <PasswordInput password={password} handlePassword={handlePassword} passwordValid={passwordValid} handleKeyDown={handleKeyDown} />
           {!passwordValid && password.length > 0 && (
               <StyledText>특문자 제외 영문자 숫자로 8자 이상 20자 미만으로 입력해주세요</StyledText>
             )}
 
-          <PasswordConfirmInput passwordConfirm={passwordConfirm} handlePasswordConfirm={handlePasswordConfirm} handleKeyDown={handleKeyDown} />
+          <PasswordConfirmInput passwordConfirm={passwordConfirm} handlePasswordConfirm={handlePasswordConfirm} passwordConfirmValid={passwordConfirmValid} handleKeyDown={handleKeyDown} />
           {!passwordConfirmValid && passwordConfirm.length > 0 && (
               <StyledText>비밀번호가 일치하지 않습니다</StyledText>
             )}

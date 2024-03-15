@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField';
 
-const EmailInput = ({email, setEmail, setEmailValid, handleKeyDown, showEmailField}) => {
+const EmailInput = ({email, setEmail, emailValid, setEmailValid, handleKeyDown, showEmailField}) => {
 
   const handleEmail = (e)=> {
     setEmail(e.target.value);
@@ -15,6 +15,7 @@ const EmailInput = ({email, setEmail, setEmailValid, handleKeyDown, showEmailFie
 
   return (
     <TextField
+      error={!emailValid}
       value={email}
       onChange={handleEmail}
       onKeyDown={handleKeyDown}

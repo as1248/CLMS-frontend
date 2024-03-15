@@ -1,8 +1,9 @@
 import TextField from '@mui/material/TextField';
 
-const PasswordInput = ({password, handlePassword, handleKeyDown}) => {
+const PasswordInput = ({password, handlePassword, passwordValid, handleKeyDown}) => {
   return (
     <TextField
+      error={!passwordValid}
       value={password}
       onChange={handlePassword}
       onKeyDown={handleKeyDown}

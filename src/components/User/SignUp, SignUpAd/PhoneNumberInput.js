@@ -1,8 +1,9 @@
 import TextField from '@mui/material/TextField';
 
-const PhoneNumberInput = ({phoneNumber, handlePhoneNumber, handleKeyDown}) => {
+const PhoneNumberInput = ({phoneNumber, handlePhoneNumber, phoneNumberValid, handleKeyDown}) => {
   return (
     <TextField
+      error={!phoneNumberValid}
       value={phoneNumber}  
       onChange={handlePhoneNumber}
       onKeyDown={handleKeyDown}
