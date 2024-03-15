@@ -1,46 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import TextField from '@mui/material/TextField';
 import styled from 'styled-components'
 import Header from'../../components/Header';
 import Footer from "../../components/Footer";
+import PasswordInput from "../../components/User/PasswordInput";
+import PasswordConfirmInput from "../../components/User/PasswordConfirmInput";
 
-const ChangePw = () => {
+const ChangePassword = () => {
     const navigate = useNavigate(); 
-    const [pw, setPw] = useState(''); 
-    const [pw2, setPw2] = useState('');
-    const [pwValid, setPwValid] = useState(false);
-    const [pw2Valid, setPw2Valid] = useState(false);
+    const [password, setPassword] = useState(''); 
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [passwordValid, setPasswordValid] = useState(false);
+    const [passwordConfirmValid, setPasswordConfirmValid] = useState(false);
     const [notAllow,setNotAllow] = useState(true);
 
 
     // 비밀번호가 비밀번호 양식에 맞는지 확인
-    const handlePw = (e)=> {
-      setPw(e.target.value);
-      const regex =
-        /^[a-zA-z0-9]{8,20}$/;
+    const handlePassword = (e)=> {
+      setPassword(e.target.value);
+      const regex = /^[a-zA-z0-9]{8,20}$/;
       if(regex.test(e.target.value)) {
-        setPwValid(true);
+        setPasswordValid(true);
       } else {
-        setPwValid(false);
+        setPasswordValid(false);
       }
     }
 
     // 비밀번호 확인이 비밀번호 양식에 맞는지 확인
-    const handlePw2 = (e)=> {
-      setPw2(e.target.value);
-      const regex =pw;
+    const handlePasswordConfirm = (e)=> {
+      setPasswordConfirm(e.target.value);
+      const regex = password;
       if(regex===e.target.value) {
-        setPw2Valid(true);
+        setPasswordConfirmValid(true);
       } else {
-        setPw2Valid(false);
+        setPasswordConfirmValid(false);
       }
     }
     
     // 비밀번호 변경 버튼 눌렀을 때
     const onClickConfirmButton =() =>{
-      if(pw!==pw2){ // 비밀번호와 비밀번호가 일치하지 않을 때
+      if(password!==passwordConfirm){ // 비밀번호와 비밀번호가 일치하지 않을 때
         alert('비밀번호를 다시 확인해주세요.');
       }
       else {
@@ -58,12 +58,12 @@ const ChangePw = () => {
 
     //버튼 활성화 실시간으로
     useEffect(() =>{
-      if(pwValid && pw2Valid){
+      if(passwordValid && passwordConfirmValid){
         setNotAllow(false);
         return;
       }
       setNotAllow(true);
-    },[pwValid,pw2Valid]);
+    },[passwordValid,passwordConfirmValid]);
     
     //페이지 UI 설정
     return (
@@ -72,38 +72,15 @@ const ChangePw = () => {
         <Container>
         <Box>
           <Title>비밀번호 변경</Title>
-          <TextField
-            value={pw}
-            onChange={handlePw}
-            onKeyDown={handleKeyDown}
-            margin="normal"
-            label="비밀번호"
-            type="password"
-            name="password"
-            placeholder="특수문자 제외, 영문, 숫자 포함 8자 이상"
-            required
-            fullWidth
-            autoComplete="current-password"
-          />
+          <PasswordInput password={password} handlePassword={handlePassword} passwordValid={passwordValid} handleKeyDown={handleKeyDown} />
           {
-            !pwValid && pw.length > 0 && (
+            !passwordValid && password.length > 0 && (
               <StyledText>특문자 제외 영문자 숫자로 8자 이상 20자 미만으로 입력해주세요</StyledText>
             )
           }
-          <TextField
-            value={pw2}
-            onChange={handlePw2}
-            onKeyDown={handleKeyDown}
-            margin="normal"
-            label="비밀번호 확인"
-            type="password"
-            name="passwordConfirm"
-            required
-            fullWidth
-            autoComplete="current-password"
-          />
+          <PasswordConfirmInput passwordConfirm={passwordConfirm} handlePasswordConfirm={handlePasswordConfirm} passwordConfirmValid={passwordConfirmValid} handleKeyDown={handleKeyDown} />
           {
-            !pw2Valid && pw2.length > 0 && (
+            !passwordConfirmValid && passwordConfirm.length > 0 && (
               <StyledText>비밀번호가 일치하지 않습니다</StyledText>
             )
           }
@@ -123,7 +100,7 @@ const ChangePw = () => {
   ); 
 };
 
-export default ChangePw;
+export default ChangePassword;
 
 const StyledText = styled.div`
 color:red;

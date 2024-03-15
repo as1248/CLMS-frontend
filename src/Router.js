@@ -4,8 +4,8 @@ import Login from "./routes/User/Login";
 import Admin from "./routes/Admin";
 import SignUp from "./routes/User/SignUp";
 import SignUpAd from "./routes/User/SignUpAd";
-import FindPw from "./routes/User/FindPw";
-import ChangePw from "./routes/User/ChangePw";
+import FindPassword from "./routes/User/FindPassword";
+import ChangePassword from "./routes/User/ChangePassword";
 import InstanceDetail from "./routes/Instance/InstanceDetail";
 import CreateInstance from "./routes/Instance/CreateInstance";
 import InboundRules from "./routes/Instance/InboundRules";
@@ -41,8 +41,8 @@ const Router = () => {
         <Route path="/login" exact element={<Login />} />
         <Route path="/login/signUp" exact element={<SignUp />} />
         <Route path="/login/signUpAd" exact element={<SignUpAd />} />
-        <Route path="/login/findPw" exact element={<FindPw />} />
-        <Route path="/login/findPw/changePw" exact element={<ChangePw />} />
+        <Route path="/login/findPassword" exact element={<FindPassword />} />
+        <Route path="/login/findPassword/changePassword" exact element={<ChangePassword />} />
 
         <Route path="/documents/" exact element={<Documents />} />
         <Route path="/documents/versions" exact element={<DocsVersions />} />

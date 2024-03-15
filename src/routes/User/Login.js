@@ -111,7 +111,7 @@ const Login = () => {
           <LoginBtn notAllow={notAllow} onClickConfirmButton={onClickConfirmButton}/>
           <Grid container>
             <Grid item xs>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/findPw")} style={{cursor:'pointer'}}>
+              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/findPassword")} style={{cursor:'pointer'}}>
                 비밀번호 변경
               </Link>
             </Grid>
