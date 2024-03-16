@@ -7,18 +7,16 @@ import Timer from './Timer';
 import axios from 'axios';
 
 
-const VerifyEmail = ({ email, onNumberValidChange }) => {
+const VerifyEmail = ({ email, authentication, setAuthentication }) => {
   const [showEmailField, setShowEmailField] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
-  const [numberValid, setNumberValid] = useState(false);
   const [timerExpired, setTimerExpired] = useState(false);
   const [timerRunning, setTimerRunning] = useState(true);
 
-
   //이메일 재전송
   const handleResetTimer = () => {
-    if (!numberValid) {
+    if (!authentication) {
       setResetKey(resetKey + 1);
       setTimerExpired(false);
       window.alert("메일을 다시 전송하였습니다!");
@@ -43,7 +41,7 @@ const showAlert = () => {
         if (response.data.success) {
           window.alert("인증이 완료되었습니다.");
           setShowEmailField(true);
-          setNumberValid(true);
+          setAuthentication(true);
           setTimerRunning(false); // 타이머 중지
         } else {
           window.alert("인증번호가 잘못되었습니다.");
@@ -61,8 +59,8 @@ const showAlert = () => {
 
 
   useEffect(() => {
-    onNumberValidChange(numberValid);
-  }, [numberValid, onNumberValidChange]);
+    setAuthentication(authentication);
+  }, [authentication, setAuthentication]);
 
   //빈칸일 때 버튼 비활성화
   const isTextFieldEmpty = textFieldValue === '';
@@ -83,7 +81,7 @@ const showAlert = () => {
         <Grid item xs={3}>
           <Button 
             onClick={showAlert} 
-            disabled={isTextFieldEmpty || numberValid}
+            disabled={isTextFieldEmpty || authentication}
             type="submit"
             fullWidth
             variant="contained"
@@ -95,7 +93,7 @@ const showAlert = () => {
       </Grid>
       <Grid container>
         <Grid item xs>
-          <Button disabled={numberValid} onClick={handleResetTimer} > 
+          <Button disabled={authentication} onClick={handleResetTimer} > 
             인증번호 재전송
           </Button>
         </Grid>
