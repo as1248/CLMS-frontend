@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import { useRecoilState } from "recoil";
 import { userState } from "../../Atoms"
 import axios from 'axios';
@@ -13,6 +11,7 @@ import { BiLogIn } from "react-icons/bi";
 import EmailInput from "../../components/User/Login/EmailInput";
 import PasswordInput from "../../components/User/Login/PasswordInput";
 import LoginBtn from "../../components/User/Login/LoginBtn";
+import LoginMore from "../../components/User/Login/LoginMore";
 
 const Login = () => {
   const [, setUserState] = useRecoilState(userState);
@@ -109,23 +108,7 @@ const Login = () => {
           <EmailInput email={email} handleEmail={handleEmail} handleKeyDown={handleKeyDown}/>
           <PasswordInput pw={pw} handlePw={handlePw} handleKeyDown={handleKeyDown}/>
           <LoginBtn notAllow={notAllow} onClickConfirmButton={onClickConfirmButton}/>
-          <Grid container>
-            <Grid item xs>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/findPassword")} style={{cursor:'pointer'}}>
-                비밀번호 변경
-              </Link>
-            </Grid>
-            <Grid item xs>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUp")} style={{cursor:'pointer'}}>
-                회원가입(학습자)
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link sx={{ fontSize: '1rem' }} underline="hover" onClick={()=>navigate("/login/signUpAd")} style={{cursor:'pointer'}}>
-                회원가입(교수자)
-              </Link>
-            </Grid>
-          </Grid>
+          <LoginMore />
         </Box>
       </Container>
       <Footer/>
