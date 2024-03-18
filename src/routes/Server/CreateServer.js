@@ -1,5 +1,5 @@
 import { redirect, useNavigate } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import axios from "axios";
@@ -9,7 +9,6 @@ import ServerIP from "../../components/Server/CreateServer/ServerIP";
 import ServerName from "../../components/Server/CreateServer/ServerName";
 import UserName from "../../components/Server/CreateServer/UserName";
 
-//post 요청 구현하고 페이지 전환 기능 추가하기
 const CreateServer = () => {
   const navigate = useNavigate();
   const departmentId = localStorage.getItem("departmentId");
@@ -36,6 +35,7 @@ const CreateServer = () => {
       alert("입력이 올바르지 않습니다.");
     }
   };
+
   return (
     <>
       <Header />

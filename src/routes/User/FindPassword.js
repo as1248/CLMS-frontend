@@ -21,7 +21,7 @@ const FindPassword = () => {
     }
   }, [authentication]);
 
-  // 이메일 인증이 완료되면 다음 비밀번호 변경 페이지로 이동
+  // 이메일 인증이 완료되면 다음 비밀번호 변경 페이지로 이동(이메일 인증 로직 구현해야함)
   const onClickConfirmButton = () => {
     navigate('/login/findPassword/changePassword');
   };

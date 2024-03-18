@@ -31,12 +31,12 @@ const SignUpAd = () => {
     const [UnivStu, setUnivStu] = useState('');
     const [DeptStu, setDeptStu] = useState('');
 
+    //회원가입 요청
     const onClickConfirmButton =() =>{
       if(password!==passwordConfirm){
         alert('비밀번호를 다시 확인해주세요.');
       }
       else {
-      console.log("실행됨");
         axios.post('/register/manager', { username: email, password: password, name, universityId: UnivStu , departmentId: DeptStu, phone: phoneNumber})
         .then(response => {
           navigate('/login');
@@ -54,6 +54,18 @@ const SignUpAd = () => {
       }
     }
 
+    //학과 전화번호
+    const handlePhoneNumber = (e) => {
+      setPhoneNumber(e.target.value);
+      const regex = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
+      if (regex.test(e.target.value)) {
+        setPhoneNumberValid(true);
+      } else {
+        setPhoneNumberValid(false);
+      }
+    };
+
+    //모든 입력에 대한 유효성 검사가 되면 회원가입 버튼 활성화
     useEffect(() =>{
       if(authentication && passwordValid && passwordConfirmValid && name && UnivStu && DeptStu && phoneNumberValid ){
         setNotAllow(false);
@@ -61,16 +73,6 @@ const SignUpAd = () => {
       }
       setNotAllow(true);
     },[authentication,passwordValid,passwordConfirmValid,name,UnivStu,DeptStu,phoneNumberValid]);
-
-    const handlePhoneNumber = (e) => {
-      setPhoneNumber(e.target.value);
-      const regex = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
-      if (regex.test(e.target.value)) {
-          setPhoneNumberValid(true);
-        } else {
-          setPhoneNumberValid(false);
-        }
-      };
       
     return (
     <>

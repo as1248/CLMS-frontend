@@ -30,10 +30,12 @@ const SignUp = () => {
   const [UnivStu, setUnivStu] = useState('');
   const [DeptStu, setDeptStu] = useState('');
 
+  //학번
   const handleStudentNumber = (e) => {
     setStudentNumber(e.target.value);
   }
 
+  //회원가입 요청
   const onClickConfirmButton = () => {
     if(password !== passwordConfirm){
       alert('비밀번호를 다시 확인해주세요.');
@@ -54,6 +56,7 @@ const SignUp = () => {
     }
   }
 
+  //모든 입력에 대한 유효성 검사가 되면 회원가입 버튼 활성화
   useEffect(() => {
     if(authentication && passwordValid && passwordConfirmValid && name && studentNumber && UnivStu && DeptStu ){
       setNotAllow(false);

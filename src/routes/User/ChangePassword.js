@@ -17,12 +17,12 @@ const ChangePassword = () => {
 
     // 비밀번호 변경 버튼 눌렀을 때
     const onClickConfirmButton =() =>{
-      if(password!==passwordConfirm){ // 비밀번호와 비밀번호가 일치하지 않을 때
+      if(password!==passwordConfirm){
         alert('비밀번호를 다시 확인해주세요.');
       }
       else {
-        alert('비밀번호 변경완료!'); // 비밀번호와 비밀번호가 일치할 때
-        navigate('/login');// login 페이지로 이동
+        alert('비밀번호 변경완료!');
+        navigate('/login');
       }
     }
 

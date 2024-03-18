@@ -17,11 +17,12 @@ const InstanceDetail = () => {
   const { lectureId } = useParams();
   const { state } = useLocation();
   
+  //교수자일때 인스턴스 목록에서 넘어올 때 instanceId 가져오기
   if(state?.instanceId){
     setInstanceId(state?.instanceId);
   }
   
-//인스턴스 id
+//학생 본인의 instanceId 요청
   useEffect(()=>{
     if(userRole !== 'ROLE_MANAGER'){
       try {
@@ -31,6 +32,8 @@ const InstanceDetail = () => {
       }
     }
 },[]);
+
+//instanceId 값 저장 / 불러오기
   useEffect(()=>{
     if(instanceId > 0){
       localStorage.setItem('instanceId', instanceId);
@@ -40,7 +43,7 @@ const InstanceDetail = () => {
     }
   },[instanceId]);
 
-  //인스턴스 상세
+  //인스턴스 상세 요청
   useEffect(()=>{
     if(instanceId > 0){
       try {
