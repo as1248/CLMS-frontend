@@ -2,7 +2,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, redirect, useParams } from "react-router-dom";
 
-//인스턴스 생성 후, 취소 버튼 눌렀을 때 url 수정하기
 const CreateInstanceButtons = ({data, validate}) => {
   const navigate = useNavigate();
   const { lectureId } = useParams();
@@ -21,12 +20,12 @@ const CreateInstanceButtons = ({data, validate}) => {
       alert('입력이 올바르지 않습니다.');
     }
   }
-    return (
+  return (
     <Btn>
-        <Cancel onClick={() => navigate(`/${lectureId}/instanceDetail`)}>취소</Cancel>
-        <Create onClick={() => createInstance()}>인스턴스 생성</Create> 
-    </Btn>);
-  
+      <Cancel onClick={() => navigate(`/${lectureId}/instanceDetail`)}>취소</Cancel>
+      <Create onClick={() => createInstance()}>인스턴스 생성</Create> 
+    </Btn>
+  );
 };
 export default CreateInstanceButtons;
 
@@ -49,6 +48,7 @@ const Create = styled.div`
   color: white;
   font-weight: 600;
   border: none;
+  transition: all 0.4s;
   &:hover{
     background-color: #2da4b3;
   }
@@ -59,6 +59,7 @@ const Cancel = styled.div`
   padding: 4px 15px;
   font-weight: 600;
   border-radius: 20px;
+  transition: all 0.4s;
   &:hover{
     background-color: white;
     color: black;

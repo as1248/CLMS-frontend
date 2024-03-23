@@ -89,19 +89,3 @@ const Title = styled.div`
   font-size: 24px;
   border-right: 1px solid black;
 `;
-
-const LectureBtn = styled.button`
-  float: right;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 12%;
-  min-width: 180px;
-  height: 45px;
-  border-radius: 25px;
-  color: white;
-  background-color: #6967c7;
-  font-size: 16px;
-  border: none;
-`;

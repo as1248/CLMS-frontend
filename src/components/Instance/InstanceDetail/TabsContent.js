@@ -181,6 +181,7 @@ const DetailTab = styled.div`
   display: inline-block;
   padding: 5px;
   margin-right: 20px;
+  transition: all 0.4s;
   &:hover{
     color: #3eb5c4;
     border-bottom: 2px solid  #3eb5c4;
@@ -234,6 +235,7 @@ const EditRules = styled.div`
   font-weight: 600;
   border-radius: 20px;
   background-color: white;
+  transition: all 0.4s;
   &:hover{
     background-color: #fafafa;
     color: black;

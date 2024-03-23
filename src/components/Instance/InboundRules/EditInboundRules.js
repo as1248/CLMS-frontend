@@ -148,6 +148,7 @@ const AddRule = styled.div`
   background-color: white;
   border-radius: 20px;
   font-weight: 600;
+  transition: all 0.4s;
   &:hover{
     background-color: #fafafa;
     border-color: #2da4b3;
@@ -163,6 +164,7 @@ const SaveRules = styled.div`
   border-radius: 20px;
   color: white;
   font-weight: 600;
+  transition: all 0.4s;
   &:hover{
     background-color: #2da4b3;
   }
@@ -174,6 +176,7 @@ const Cancel = styled.div`
   border: 3px solid #3eb5c4;
   border-radius: 20px;
   font-weight: 600;
+  transition: all 0.4s;
   &:hover{
     background-color: white;
     color: black;

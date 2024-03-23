@@ -83,6 +83,7 @@ const HeaderBtn = styled.button`
   border: 2px #3eb5c4 solid;
   border-radius: 20px;
   margin-right: 20px;
+  transition: all 0.4s;
   &:hover{
     background-color: #2da4b3;
   }

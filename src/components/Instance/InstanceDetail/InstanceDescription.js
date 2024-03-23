@@ -137,6 +137,7 @@ const State = styled.div`
   width: 190px;
   font-weight: 600;
   background-color: white;
+  transition: all 0.4s;
   &:hover{
     background-color: #fafafa;
     color: black;
@@ -153,6 +154,7 @@ const SetState = styled.div`
   border: 0.5px solid #879596;
   font-weight: 600;
   width: 190px;
+  transition: all 0.4s;
   &:hover{
     background-color: #fafafa;
     border: 2px solid #879596;
@@ -170,6 +172,7 @@ const InstanceCreateBtn = styled.div`
   color: white;
   font-weight: 600;
   text-align: center;
+  transition: all 0.4s;
   &:hover{
     background-color: #2da4b3;
   }

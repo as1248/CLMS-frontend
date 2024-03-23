@@ -95,6 +95,7 @@ const Login = styled.div`
   margin-bottom: 5px;
   color: white;
   font-weight: 600;
+  transition: all 0.4s;
   &:hover{
     background-color: #2da4b3;
   }

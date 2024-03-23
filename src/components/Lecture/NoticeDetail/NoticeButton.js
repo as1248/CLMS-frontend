@@ -20,6 +20,7 @@ const Btn = styled(Button)({
   color: 'white',
   fontWeight: '600',
   padding: '0.5% 1%',
+  transition: 'all 0.4s',
   '&:hover': {
     backgroundColor: '#0069d9',
     borderColor: '#0062cc',

@@ -187,6 +187,7 @@ const Create = styled.div`
   background-color: #3eb5c4;
   border-radius: 20px;
   color: white;
+  transition: all 0.4s;
   &:hover{
     background-color: #2da4b3;
   }
@@ -196,6 +197,7 @@ const Cancel = styled.div`
   cursor: pointer;
   padding: 4px 15px;
   border-radius: 20px;
+  transition: all 0.4s;
   &:hover{
     background-color: #fafafa;
     color: black;

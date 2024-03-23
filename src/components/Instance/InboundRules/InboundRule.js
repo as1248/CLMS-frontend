@@ -55,6 +55,7 @@ const DeleteRule = styled.td`
   width: 80px;
   padding: 0 8px;
   font-weight: 600;
+  transition: all 0.4s;
   &:hover{
     background-color: #fafafa;
     color: black;

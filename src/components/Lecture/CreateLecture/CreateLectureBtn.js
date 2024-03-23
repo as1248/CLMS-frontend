@@ -42,6 +42,7 @@ const CancelBtn = styled.div`
   padding: 4px 15px;
   border-radius: 20px;
   font-weight: 600;
+  transition: all 0.4s;
   &:hover {
     background-color: white;
     color: black;
@@ -59,6 +60,7 @@ const CreateBtn = styled.div`
   color: white;
   border-radius: 20px;
   font-weight: 600;
+  transition: all 0.4s;
   &:hover {
     background-color: #2da4b3;
   }
