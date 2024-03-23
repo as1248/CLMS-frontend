@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import Content from "../Content";
+import Title from "../Title";
+import List from "../List";
+import SubTitle from "../SubTitle";
 import CreateServer1 from '../../../img/Documents/CreateServer/CreateServer1.png';
 import CreateServer2 from '../../../img/Documents/CreateServer/CreateServer2.png';
 import CreateServer3 from '../../../img/Documents/CreateServer/CreateServer3.png';
@@ -80,28 +84,6 @@ const DocumentsCreateServer = () => {
 }
 
 export default DocumentsCreateServer;
-
-const Content = styled.div`
-  width: 100%;
-  min-width: 700px;
-  padding: 20px 40px;
-  background-color: white;
-`;
-
-const Title = styled.div`
-  font-size: 32px;
-  font-weight: 600;
-`;
-
-const List = styled.div`
-  margin-top: 50px;
-`;
-
-const SubTitle = styled.div`
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 400;
-`;
 
 const SubContent = styled.div`
   width: 90%;

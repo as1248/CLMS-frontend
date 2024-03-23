@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import Content from "../Content";
+import Title from "../Title";
+import List from "../List";
+import SubTitle from "../SubTitle";
 import CreateLecture1 from '../../../img/Documents/CreateLecture/CreateLecture1.png';
 import CreateLecture2 from '../../../img/Documents/CreateLecture/CreateLecture2.png';
 import CreateLecture3 from '../../../img/Documents/CreateLecture/CreateLecture3.png';
@@ -30,28 +34,6 @@ const DocumentsCreateLecture = () => {
 }
 
 export default DocumentsCreateLecture;
-
-const Content = styled.div`
-  width: 100%;
-  min-width: 700px;
-  padding: 20px 40px;
-  background-color: white;
-`;
-
-const Title = styled.div`
-  font-size: 32px;
-  font-weight: 600;
-`;
-
-const List = styled.div`
-  margin-top: 50px;
-`;
-
-const SubTitle = styled.div`
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 400;
-`;
 
 const SubContent = styled.div`
   width: 90%;

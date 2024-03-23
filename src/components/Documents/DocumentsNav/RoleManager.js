@@ -1,9 +1,10 @@
-import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Tab from './Tab';
+import SelectedTab from './SelectedTab';
 
 const RoleManager = () => {
   const navigate = useNavigate();
@@ -15,14 +16,14 @@ const RoleManager = () => {
         </AccordionSummary>
         <AccordionDetails>
         {pathname.split('/')[2] === 'createServer' ? (
-            <SelectedItem>서버 등록</SelectedItem>
+            <SelectedTab>서버 등록</SelectedTab>
           ) : (
-            <Item onClick={()=>navigate("/documents/createServer")}>서버 등록</Item>
+            <Tab onClick={()=>navigate("/documents/createServer")}>서버 등록</Tab>
           )}
           {pathname.split('/')[2] === 'createLecture' ? (
-            <SelectedItem>강의 등록</SelectedItem>
+            <SelectedTab>강의 등록</SelectedTab>
           ) : (
-            <Item onClick={()=>navigate("/documents/createLecture")}>강의 등록</Item>
+            <Tab onClick={()=>navigate("/documents/createLecture")}>강의 등록</Tab>
           )}
         </AccordionDetails>
       </Accordion>
@@ -30,18 +31,3 @@ const RoleManager = () => {
 }
 
 export default RoleManager;
-
-const Item = styled.div`
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 5px;
-  &:hover{
-    background-color: #f2f4f7;
-  }
-`;
-
-const SelectedItem = styled(Item)`
-  background-color: #f2f4f7;
-  border-radius: 5px;
-`;

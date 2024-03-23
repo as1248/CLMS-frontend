@@ -1,9 +1,10 @@
-import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Tab from './Tab';
+import SelectedTab from './SelectedTab';
 
 const RoleUser = () => {
   const navigate = useNavigate();
@@ -15,24 +16,24 @@ const RoleUser = () => {
         </AccordionSummary>
         <AccordionDetails>
           {pathname.split('/')[2] === 'createInstance' ? (
-            <SelectedItem>인스턴스 생성</SelectedItem>
+            <SelectedTab>인스턴스 생성</SelectedTab>
           ) : (
-            <Item onClick={()=>navigate("/documents/createInstance")}>인스턴스 생성</Item>
+            <Tab onClick={()=>navigate("/documents/createInstance")}>인스턴스 생성</Tab>
           )}
           {pathname.split('/')[2] === 'connectInstance' ? (
-            <SelectedItem>인스턴스 접속</SelectedItem>
+            <SelectedTab>인스턴스 접속</SelectedTab>
           ) : (
-            <Item onClick={()=>navigate("/documents/connectInstance")}>인스턴스 접속</Item>
+            <Tab onClick={()=>navigate("/documents/connectInstance")}>인스턴스 접속</Tab>
           )}
           {pathname.split('/')[2] === 'connectDomain' ? (
-            <SelectedItem>도메인 연결</SelectedItem>
+            <SelectedTab>도메인 연결</SelectedTab>
           ) : (
-            <Item onClick={()=>navigate("/documents/connectDomain")}>도메인 연결</Item>
+            <Tab onClick={()=>navigate("/documents/connectDomain")}>도메인 연결</Tab>
           )}
           {pathname.split('/')[2] === 'enrolment' ? (
-            <SelectedItem>수강 신청</SelectedItem>
+            <SelectedTab>수강 신청</SelectedTab>
           ) : (
-            <Item onClick={()=>navigate("/documents/enrolment")}>수강 신청</Item>
+            <Tab onClick={()=>navigate("/documents/enrolment")}>수강 신청</Tab>
           )}
         </AccordionDetails>
       </Accordion>
@@ -40,18 +41,3 @@ const RoleUser = () => {
 }
 
 export default RoleUser;
-
-const Item = styled.div`
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 5px;
-  &:hover{
-    background-color: #f2f4f7;
-  }
-`;
-
-const SelectedItem = styled(Item)`
-  background-color: #f2f4f7;
-  border-radius: 5px;
-`;

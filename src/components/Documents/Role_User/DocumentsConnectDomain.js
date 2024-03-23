@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import Content from "../Content";
+import Title from "../Title";
+import List from "../List";
+import SubTitle from "../SubTitle";
 import ConnectDomain1 from '../../../img/Documents/ConnectDomain/ConnectDomain1.png';
 import ConnectDomain2 from '../../../img/Documents/ConnectDomain/ConnectDomain2.png';
 import ConnectDomain3 from '../../../img/Documents/ConnectDomain/ConnectDomain3.png';
@@ -40,28 +44,6 @@ const DocumentsConnectDomain = () => {
 }
 
 export default DocumentsConnectDomain;
-
-const Content = styled.div`
-  width: 100%;
-  min-width: 700px;
-  padding: 20px 40px;
-  background-color: white;
-`;
-
-const Title = styled.div`
-  font-size: 32px;
-  font-weight: 600;
-`;
-
-const List = styled.div`
-  margin-top: 50px;
-`;
-
-const SubTitle = styled.div`
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 400;
-`;
 
 const SubContent = styled.div`
   width: 90%;
