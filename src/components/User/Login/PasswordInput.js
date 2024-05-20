@@ -4,7 +4,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-const PasswordInput = ({pw, handlePw, handleKeyDown}) => {
+const PasswordInput = ({password, handlePassword, handleKeyDown}) => {
   const [passwordType, setPasswordType] = useState({
     type: 'password',
     visible: false
@@ -31,8 +31,8 @@ const PasswordInput = ({pw, handlePw, handleKeyDown}) => {
       fullWidth
       autoComplete="current-password"
       type={passwordType.type}
-      value={pw}
-      onChange={handlePw}
+      ref={password}
+      onChange={handlePassword}
       onKeyDown={handleKeyDown}
       InputProps={{
         endAdornment: (

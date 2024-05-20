@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../Atoms"
@@ -16,8 +16,8 @@ import LoginMore from "../../components/User/Login/LoginMore";
 const Login = () => {
   const [, setUserState] = useRecoilState(userState);
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [pw, setPw] = useState('');
+  const email = useRef('');
+  const password = useRef('');
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [notAllow, setNotAllow] = useState(true);
@@ -33,7 +33,7 @@ const Login = () => {
   }, [emailValid, pwValid]);
 
   const handleEmail = (e) => {
-    setEmail(e.target.value);
+    email.current.value = e.target.value;
     if (e.target.value.length > 0) {
       setEmailValid(true);
     } else {
@@ -41,8 +41,8 @@ const Login = () => {
     }
   };
 
-  const handlePw = (e) => {
-    setPw(e.target.value);
+  const handlePassword = (e) => {
+    password.current.value = e.target.value;
     if (e.target.value.length > 0) {
       setPwValid(true);
     } else {
@@ -51,7 +51,7 @@ const Login = () => {
   }
   
   const onClickConfirmButton = () => {
-    axios.post('/login', { username: email, password: pw }, {withCredentials: true})
+    axios.post('/login', { username: email, password: password.current.value }, {withCredentials: true})
       .then(response => {
         if (response.data.success) {
           const accessToken = response.headers.authorization;
@@ -106,7 +106,7 @@ const Login = () => {
         </LoginHeader>
         <Box>
           <EmailInput email={email} handleEmail={handleEmail} handleKeyDown={handleKeyDown}/>
-          <PasswordInput pw={pw} handlePw={handlePw} handleKeyDown={handleKeyDown}/>
+          <PasswordInput password={password} handlePassword={handlePassword} handleKeyDown={handleKeyDown}/>
           <LoginBtn notAllow={notAllow} onClickConfirmButton={onClickConfirmButton}/>
           <LoginMore />
         </Box>

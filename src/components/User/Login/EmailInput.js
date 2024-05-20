@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 const EmailInput = ({email, handleEmail, handleKeyDown}) => {
   return (
     <TextField 
-      value={email} 
+      ref={email}
       onChange={handleEmail} 
       onKeyDown={handleKeyDown} 
       label="이메일" 
