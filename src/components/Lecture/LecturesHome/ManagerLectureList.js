@@ -1,25 +1,29 @@
 import styled from "styled-components";
 import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { loadLectures } from "../../../API/Lecture";
+
 
 const ManagerLectureList = () => {
   const departmentId = localStorage.getItem('departmentId');
-  
   const navigate = useNavigate();
   const [lectureList,setLectureList] = useState([]);
 
-useEffect(()=>{
-    try{
-      axios.get(`/lecture?departmentId=${departmentId}`).then((response)=>setLectureList(response.data.lectureList));
-    } catch (error) {
-      console.error(error);
-    };
-  },[]);
   
+  const { isError, error, data } = useQuery('managerLectures', ()=>loadLectures(departmentId));
 
+  useEffect(() => {
+    if (data) {
+      setLectureList(data);
+    }
+  }, [data]);
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+  
   return (
     <List>
       {lectureList?.map((i)=>{

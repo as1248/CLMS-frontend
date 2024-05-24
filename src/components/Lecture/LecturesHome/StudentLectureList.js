@@ -2,20 +2,25 @@ import styled from "styled-components";
 import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
 import { useState } from "react";
+import { useQuery } from "react-query";
+import { loadStudentLectures } from "../../../API/Lecture";
 
 const StudentLectureList = () => {
   const navigate = useNavigate();
   const [lectureList,setLectureList] = useState([]);
 
+  const { isError, error, data } = useQuery('managerServers', ()=>loadStudentLectures());
+
 useEffect(()=>{
-    try{
-      axios.get(`/lecture/my`).then((response)=>setLectureList(response.data.lectureList));
-    } catch (error) {
-      console.error(error);
-    };
-  },[]);
+    if(data){
+      setLectureList(data);
+    }
+  },[data]);
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
   
   return (
     <List>

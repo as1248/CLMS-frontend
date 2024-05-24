@@ -1,26 +1,31 @@
 import styled from "styled-components";
 import { AiOutlineLaptop } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useQuery } from "react-query";
+import { loadServers } from "../../../API/Lecture";
 
 const ServerList = () => {
   const navigate = useNavigate();
-  const [list,setList] = useState([]);
+  const [serverList,setServerList] = useState([]);
   const departmentId = localStorage.getItem('departmentId');
 
+  const { isError, error, data } = useQuery('managerServers', ()=>loadServers(departmentId));
+
   useEffect(()=>{
-    try{
-      axios.get(`/servers/management/list?departmentId=${departmentId}`).then((response)=>setList(response.data.servers));
-    } catch (error) {
-      console.error(error);
-    };
-  },[]);
+    if(data){
+      setServerList(data);
+    }
+  },[data]);
   
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <List>
-      {list?.map((item)=>{
+      {serverList?.map((item)=>{
         return(
           <Grid key={item?.ipv4}>
             <Server>
