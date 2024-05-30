@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import Slider from "react-slick";
-import Image4 from "../../img/IMAGE4.png";
 import Image5 from "../../img/IMAGE5.png";
 
 const Slide = () => {
   const settings = {
     dots: false,
-    lazyLoad: true,
     infinite: true,
     autoplay: true,
     speed: 500,
@@ -19,7 +17,7 @@ const Slide = () => {
     <SliderWrapper>
       <Slider {...settings}>
         <div>
-          <SlideImage src={Image5} alt="광고5" />
+          <SlideImage src={Image5} alt="광고" />
         </div>
       </Slider>
     </SliderWrapper>
@@ -29,6 +27,7 @@ export default Slide;
 
 const SlideImage = styled.img`
   width: 100%;
+  height: 100%;
   min-width: 1200px;
 `;
 

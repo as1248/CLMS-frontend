@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <HeaderContent>
       <HeaderLogo onClick={() => navigate('/')}>
-        <Logo src={process.env.PUBLIC_URL + '/CLMS_icon.png'}/>
+        <Logo src={process.env.PUBLIC_URL + '/CLMS_icon.png'} alt="CLMS로고"/>
         <div>CLMS</div>
       </HeaderLogo>
       <div style={{marginRight:'50px'}}>

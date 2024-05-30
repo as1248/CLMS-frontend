@@ -12,7 +12,7 @@ const Footer = () => {
     }
     return (
         <FooterContent>
-            <Logo src={process.env.PUBLIC_URL+'/CLMS_icon.png'}/>
+            <Logo src={process.env.PUBLIC_URL+'/CLMS_icon.png'} alt="CLMS 로고"/>
                 <Content>
                     <Title>CLMS</Title>
                     <List>Email : donghyeon009@gmail.com</List>
@@ -37,9 +37,9 @@ const Footer = () => {
                         <Login onClick={logOut}>로그아웃</Login>
                     )}
                     <Icons>
-                      <Icon src={process.env.PUBLIC_URL + '/emailIcon.png'} />
+                      <Icon src={process.env.PUBLIC_URL + '/emailIcon.png'} alt="이메일"/>
                       <a href="https://github.com/DonghyeonKang/CLMS-backend" target="_blank" rel="noreferrer noopener">
-                        <Icon src={process.env.PUBLIC_URL + '/githubIcon.png'} />
+                        <Icon src={process.env.PUBLIC_URL + '/githubIcon.png'} alt="깃허브"/>
                       </a>
                     </Icons>
                 </Content>
