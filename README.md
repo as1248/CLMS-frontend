@@ -7,7 +7,7 @@ CLMS는 Cloud 와 LMS를 합친 합성어로 CLMS는 교수자와 학생을 위�
 <br/><br/><br/>
 
 ## 팀원
-- 프론트
+- 프론트엔드
   - 임채준 ([as1248](https://github.com/as1248))
   - 장우혁 ([CooAnt](https://github.com/CooAnt))
 
