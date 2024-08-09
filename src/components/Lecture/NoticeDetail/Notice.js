@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import NoticeButton from "./NoticeButton";
 import { Button } from "@mui/material";
-import axios from "axios";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import LectureNav from "../LectureNav";
+import { useMutation } from "react-query";
+import { deleteNotice } from "../../../API/Lecture";
 
 const Notice = () => {
   const userRole = localStorage.getItem('userRole');
@@ -11,12 +12,14 @@ const Notice = () => {
   const { lectureId ,noticeId } = useParams();
   const { state } = useLocation();
 
-  const deleteNotice = () => {
-    if(window.confirm('해당 공지사항을 삭제하시겠습니까?')){
-      axios.delete(`/lecture/notice?id=${noticeId}`).then(()=>navigate(`/${lectureId}/notice`));
-    }else{
-      return;
-    }
+  const { mutate, isError, error, isSuccess } = useMutation(()=>deleteNotice(noticeId));
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if(isSuccess){
+    navigate(`/${lectureId}/notice`);
   }
 
   return (
@@ -26,7 +29,7 @@ const Notice = () => {
         <Btns>
           <NoticeButton/>
           {userRole === 'ROLE_MANAGER' ? (
-            <Button variant="outlined" color="error" onClick={deleteNotice}>삭제</Button>
+            <Button variant="outlined" color="error" onClick={mutate}>삭제</Button>
           ):<></>}
         </Btns>
         <Container>

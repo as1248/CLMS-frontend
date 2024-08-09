@@ -3,23 +3,27 @@ import React, { useEffect, useState } from "react";
 import { List } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeHeader from "./NoticeHeader";
-import axios from 'axios';
 import LectureNav from "../LectureNav";
+import { useQuery } from "react-query";
+import { loadNotices } from '../../../API/Lecture.js';
 
 const NoticeList = () => {
   const navigate = useNavigate();
   const { lectureId } = useParams();
   const [noticeList, setNoticeList] = useState([]);
+  
+  const { isError, error, data } = useQuery('loadNotices', ()=>loadNotices(lectureId));
 
-  useEffect(()=>{
-    try{
-      axios.get(`/lecture/notice/list?id=${lectureId}`).then((response)=>setNoticeList(response.data.notices));
-    } catch (error) {
-      console.error(error);
-    };
-  },[]);
+  useEffect(() => {
+    if (data) {
+      setNoticeList(data);
+    }
+  }, [data]);
 
-//공지사항 상세로 페이지 넘어갈 때 배열에서 해당 공지 내용 navigate에 전달하기
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <Content>
       <LectureNav/>
