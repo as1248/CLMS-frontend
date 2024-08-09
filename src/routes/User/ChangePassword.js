@@ -15,7 +15,7 @@ const ChangePassword = () => {
     const [passwordConfirmValid, setPasswordConfirmValid] = useState(false);
     const [notAllow,setNotAllow] = useState(true);
 
-    // 비밀번호 변경 버튼 눌렀을 때
+    // 비밀번호 변경 버튼 눌렀을 때(비밀번호 변경 API 연결해야함)
     const onClickConfirmButton =() =>{
       if(password!==passwordConfirm){
         alert('비밀번호를 다시 확인해주세요.');
@@ -29,7 +29,7 @@ const ChangePassword = () => {
     //Enter가 버튼 클릭 기능으로 구현되도록 설정
     const handleKeyDown = (e) => {
       if(e.code === 'Enter' && notAllow===false ) {
-        onClickConfirmButton()
+        onClickConfirmButton();
       }
     }
 

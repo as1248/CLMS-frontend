@@ -11,7 +11,7 @@ const ManagerLectureList = () => {
   const navigate = useNavigate();
   const [lectureList,setLectureList] = useState([]);
   
-  const { isError, error, data } = useQuery('managerLectures', ()=>loadLectures(departmentId));
+  const { isError, error, data } = useQuery('loadmanagerLectures', ()=>loadLectures(departmentId));
 
   useEffect(() => {
     if (data) {

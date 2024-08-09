@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const NoticeHeader = ({setDeleteNotice}) => {
+const NoticeHeader = () => {
   const userRole = localStorage.getItem('userRole');
   const navigate = useNavigate();
     return (

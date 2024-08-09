@@ -11,7 +11,7 @@ const ServerList = () => {
   const [serverList,setServerList] = useState([]);
   const departmentId = localStorage.getItem('departmentId');
 
-  const { isError, error, data } = useQuery('managerServers', ()=>loadServers(departmentId));
+  const { isError, error, data } = useQuery('loadServers', ()=>loadServers(departmentId));
 
   useEffect(()=>{
     if(data){

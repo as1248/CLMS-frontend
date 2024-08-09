@@ -96,7 +96,7 @@ const Login = () => {
       return Promise.reject(error);
     }
   );
-
+  
   return (
     <>
       <Header/>
@@ -124,6 +124,7 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  min-height: 600px;
   padding-top: 8%;
 `;
 
